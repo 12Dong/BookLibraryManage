@@ -51,7 +51,7 @@ public class SQLBase {
                 while(rs.next()){
                     for(int j=1;j<=columnCount;j++){
                         table[i][j-1]=rs.getString(j);
-                        System.out.print(table[i][j-1]+"\t");
+ //                       System.out.print(table[i][j-1]+"\t");
                     }
                     i++;
                 }
@@ -61,5 +61,16 @@ public class SQLBase {
             }
         }else
         System.out.println("Connection is not prepared");
+    }
+
+    boolean checkConnection(){
+        if(con==null){
+            System.out.println("Sorry,Connection is not prepared");
+            return false;
+        }
+        else{
+            System.out.println("Connection is ok.");
+            return true;
+        }
     }
 }
