@@ -1,7 +1,13 @@
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Calendar;
 public class user extends SQLBase{
     //用户名
     String userName=null;
+    //用户标号
+    String userId = null;
+    String host = null;
     //查询相关
     //查询书名
     String queryBookName=null;
@@ -23,6 +29,9 @@ public class user extends SQLBase{
     }
     void setUserName(String userName){
         this.userName = userName;
+    }
+    void setUserHost(String host){
+        this.host = host;
     }
     String makeQuerySQLCommand(){
         String SQLCommand = "select * from bookinformation";
@@ -77,5 +86,77 @@ public class user extends SQLBase{
         }
         return SQLCommand;
     }
+    //执行借书操作
+    //准备工作取得用户编号
+    //操作一 更新bookinformation
+    //操作二 更新rendinformation
+    void getUserId(){
+        String SQLQueryCommand = "select userId,userName from userinformation where host = "+'\''+host+'\'';
+        System.out.println(SQLQueryCommand);
+        query(SQLQueryCommand);
+        userId = table[1][0];
+        userName = table[1][1];
+    }
+    void rendBook(String bookId){
+        if(userId ==null ||userName ==null) getUserId();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date rendDate = new Date();
+        String strRendDate = sdf.format(rendDate);
+        Calendar returndate = Calendar.getInstance();
+        returndate.add(Calendar.DAY_OF_YEAR,30);
+        Date returnDate = returndate.getTime();
+        String strReturnDate = sdf.format(returnDate);
+        String SQLUpdateCommand = "update bookinformation set status = 2 where bookId = "+"\'"+bookId+"\'";
+        String SQLInsertCommand = "insert rendinformation values(\'"+userId+"\',\'"+bookId+"\',\'"+strRendDate+"\',"+
+                "\'"+strReturnDate+ "\'"+")";
+        try{
+            System.out.println("SQLUpdateCommand is "+SQLUpdateCommand);
+            System.out.println("SQLInsertCommand is "+SQLInsertCommand);
+            Statement statement = con.createStatement();
+            statement.executeUpdate(SQLUpdateCommand);
+            statement.executeUpdate(SQLInsertCommand);
+            System.out.println("Successfully rend.");
+        }
+        catch(SQLException e) {}
+    }
+    //执行还书操作
+    //准备工作取得用户编号
+    //操作一 更新bookinformation
+    //操作二 更新rendinformation
+    void returnBook(String bookId){
+        if(userId ==null ||userName ==null) getUserId();
+        String SQLUpdateCommand = "update bookinformation set status = 3 where bookId = "+"\'"+bookId+"\'";
+        String SQLDeleteCommand = "delete from rendinformation where bookId = "+"\'"+bookId+"\'";
+        try{
+            System.out.println("SQLUpdateCommand is "+SQLUpdateCommand);
+            System.out.println("SQLInsertCommand is "+SQLDeleteCommand);
+            Statement statement = con.createStatement();
+            statement.executeUpdate(SQLUpdateCommand);
+            statement.executeUpdate(SQLDeleteCommand);
+            System.out.println("Successfully return.");
+        }
+        catch(SQLException e) {}
+    }
+    //获得自己所属表里信息
+    String makeGetMessageSQLCommand(){
+        if(userId==null || userName==null) getUserId();
+        String SQLCommand = "select * from "+userId+"Message";
+        System.out.println(SQLCommand);
+        return SQLCommand;
+    }
+    void sendMessageSQLCommand(String sendMessage){
+        Date curtime = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String strCurTime = sdf.format(curtime);
+        String SQLCommand = "insert into rootMessage values (\'"+userId+"\',\'"+strCurTime+"\',\'"+sendMessage+"\')";
+        try{
+            System.out.println(SQLCommand);
+            Statement statement = con.createStatement();
+            statement.executeUpdate(SQLCommand);
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
 
+    }
 }
