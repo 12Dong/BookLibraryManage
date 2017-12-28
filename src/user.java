@@ -86,10 +86,13 @@ public class user extends SQLBase{
         }
         return SQLCommand;
     }
+    //资源锁操作 未实现
     //执行借书操作
     //准备工作取得用户编号
+    //准备工作检查该书是否借走
     //操作一 更新bookinformation
     //操作二 更新rendinformation
+    //bookinformation中的status 1 为 正常可借阅 2 为已借出 3 为已收回但无法操作
     void getUserId(){
         String SQLQueryCommand = "select userId,userName from userinformation where host = "+'\''+host+'\'';
         System.out.println(SQLQueryCommand);
@@ -97,7 +100,26 @@ public class user extends SQLBase{
         userId = table[1][0];
         userName = table[1][1];
     }
+    boolean checkRend(String bookId){
+        String SQLCommand = "select status from bookInformation where bookId =  \'"+bookId+" \'";
+        try{
+            Statement statement = con.createStatement();
+            System.out.println(SQLCommand);
+            query(SQLCommand);
+            String Table[][] = table;
+            if(Table[1][0]=="1") return true;
+            else return false;
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     void rendBook(String bookId){
+        if(!checkRend(bookId)){
+            System.out.println("The book was rended.");
+            return ;
+        }
         if(userId ==null ||userName ==null) getUserId();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date rendDate = new Date();
@@ -157,6 +179,5 @@ public class user extends SQLBase{
         catch(SQLException e){
             e.printStackTrace();
         }
-
     }
 }

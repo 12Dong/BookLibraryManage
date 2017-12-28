@@ -5,3 +5,13 @@
 			还书
 			发消息给root用户
 			接收root所发的消息
+2017.12.28		更新userInformation类
+				包含用户登录/注册数据
+				用以创造对象
+			
+			更新user类 借书准备操作
+				bookId对应的书是否被借出
+ 
+			更新publicFunction类 包含不属于 user类与manager类的基础函数
+				getNextId 获得一个表的下一个ID 作用创建新用户信息
+				transmit  传递userInformation 向userinformation表中插入用户信息

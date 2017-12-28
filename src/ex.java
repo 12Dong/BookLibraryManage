@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.text.ParseException;
 public class ex {
     public static void main(String[] argv){
+//        System.out.println(publicFunction.getNextId("userinformation"));
 //        Date d = new Date();
 //        System.out.println(d);
 //        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -36,10 +37,10 @@ public class ex {
 //            System.out.println("");
 //        }
 //        sqlBase.closeConnection();
-          user reader =  new user();
-          reader.GetDBConnection("booklibrarymanager","host","HanDong85");
-          reader.setUserHost("liming");
-          reader.getUserId();
+//          user reader =  new user();
+//          reader.GetDBConnection("booklibrarymanager","host","HanDong85");
+//          reader.setUserHost("liming");
+//          reader.getUserId();
 //          reader.rendBook("01");
 //          System.out.println(reader.userName+"   "+reader.userId);
 //          reader.setQueryBookName("高等");
@@ -61,6 +62,16 @@ public class ex {
 //            }
 //            System.out.println("");
 //        }
-        reader.sendMessageSQLCommand("吃了");
+//        System.out.println(reader.checkRend("01"));
+        userInformation UserInformation = new userInformation();
+        UserInformation.setHostName("wangxiaoming");
+        UserInformation.setName("王小明");
+        UserInformation.setSex("男");
+        UserInformation.setPassword("123456");
+        if(UserInformation==null) {
+            System.out.println("NullPointerException");
+            return ;
+        }
+        publicFunction.transmit(UserInformation,false);
     }
 }
