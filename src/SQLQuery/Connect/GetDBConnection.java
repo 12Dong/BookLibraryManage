@@ -1,3 +1,5 @@
+package SQLQuery.Connect;
+
 import java.sql.*;
 public class GetDBConnection {
     public static Connection connectDB(String DBName,String id,String p){
@@ -14,5 +16,15 @@ public class GetDBConnection {
         }
         catch(SQLException e){}
         return con;
+    }
+    public static void closeCon(Connection con){
+        if(con == null)
+            return;
+        try{
+            con.close();
+        }
+        catch (SQLException e){
+            System.out.println("Close Error!");
+        }
     }
 }

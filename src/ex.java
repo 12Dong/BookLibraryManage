@@ -1,11 +1,9 @@
-import java.sql.*;
-import java.util.Date;
-import java.util.Calendar;
-import java.text.SimpleDateFormat;
-import java.text.ParseException;
+import RegisterUser.publicFunction;
+import UserRelated.userInformation;
+
 public class ex {
     public static void main(String[] argv){
-//        System.out.println(publicFunction.getNextId("userinformation"));
+//        System.out.println(RegisterUser.publicFunction.getNextId("userinformation"));
 //        Date d = new Date();
 //        System.out.println(d);
 //        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -16,8 +14,8 @@ public class ex {
 //        returnDate.add(Calendar.DAY_OF_MONTH,30);
 //        Date returnDatedd = returnDate.getTime();
 //        String reStr = sdf.format(returnDatedd);
-//        SQLBase sqlBase = new SQLBase();
-//        sqlBase.GetDBConnection("example","host","HanDong85");
+//        SQLQuery.Base.SQLBase sqlBase = new SQLQuery.Base.SQLBase();
+//        sqlBase.SQLQuery.Connect.GetDBConnection("example","host","HanDong85");
 //        if(sqlBase.con==null){
 //            System.out.println("Connection is error");
 //            return ;
@@ -37,8 +35,8 @@ public class ex {
 //            System.out.println("");
 //        }
 //        sqlBase.closeConnection();
-//          user reader =  new user();
-//          reader.GetDBConnection("booklibrarymanager","host","HanDong85");
+//          UserRelated.user reader =  new UserRelated.user();
+//          reader.SQLQuery.Connect.GetDBConnection("booklibrarymanager","host","HanDong85");
 //          reader.setUserHost("liming");
 //          reader.getUserId();
 //          reader.rendBook("01");

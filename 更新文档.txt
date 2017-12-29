@@ -1,17 +1,17 @@
-2017.12.27	¸üÐÂSQLBaseÀà ManagerÀàºÍuserÀàµÄ»ù´¡²Ù×÷ °üÀ¨Á¬½ÓÊý¾Ý¿âÓë»ù±¾²éÑ¯
-		¸üÐÂuserÀà ×÷Îª¶ÁÕßÀà 
-			²éÑ¯Êé¼® 
-			½èÊé  
-			»¹Êé
-			·¢ÏûÏ¢¸ørootÓÃ»§
-			½ÓÊÕrootËù·¢µÄÏûÏ¢
-2017.12.28		¸üÐÂuserInformationÀà
-				°üº¬ÓÃ»§µÇÂ¼/×¢²áÊý¾Ý
-				ÓÃÒÔ´´Ôì¶ÔÏó
+2017.12.27	ï¿½ï¿½ï¿½ï¿½SQLQuery.Base.SQLBaseï¿½ï¿½ Managerï¿½ï¿½ï¿½UserRelated.userï¿½ï¿½Ä»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯
+		ï¿½ï¿½ï¿½ï¿½UserRelated.userï¿½ï¿½ ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			ï¿½ï¿½Ñ¯ï¿½é¼® 
+			ï¿½ï¿½ï¿½ï¿½  
+			ï¿½ï¿½ï¿½ï¿½
+			ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½rootï¿½Ã»ï¿½
+			ï¿½ï¿½ï¿½ï¿½rootï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+2017.12.28		ï¿½ï¿½ï¿½ï¿½UserRelated.userInformationï¿½ï¿½
+				ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Â¼/×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+				ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			
-			¸üÐÂuserÀà ½èÊé×¼±¸²Ù×÷
-				bookId¶ÔÓ¦µÄÊéÊÇ·ñ±»½è³ö
+			ï¿½ï¿½ï¿½ï¿½UserRelated.userï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+				bookIdï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ñ±»½ï¿½ï¿½
  
-			¸üÐÂpublicFunctionÀà °üº¬²»ÊôÓÚ userÀàÓëmanagerÀàµÄ»ù´¡º¯Êý
-				getNextId »ñµÃÒ»¸ö±íµÄÏÂÒ»¸öID ×÷ÓÃ´´½¨ÐÂÓÃ»§ÐÅÏ¢
-				transmit  ´«µÝuserInformation Ïòuserinformation±íÖÐ²åÈëÓÃ»§ÐÅÏ¢
+			ï¿½ï¿½ï¿½ï¿½RegisterUser.publicFunctionï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ UserRelated.userï¿½ï¿½ï¿½ï¿½managerï¿½ï¿½Ä»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+				getNextId ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ID ï¿½ï¿½ï¿½Ã´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ï¢
+				transmit  ï¿½ï¿½ï¿½ï¿½UserRelated.userInformation ï¿½ï¿½userinformationï¿½ï¿½ï¿½Ð²ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ï¢
