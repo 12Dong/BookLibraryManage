@@ -15,8 +15,8 @@ public class publicFunction{
             try{
                 Statement statement = register.con.createStatement();
                 String nextId = getNextId("userinformation");
-                String SQLCommand = "insert into userinformation values (\'"+nextId+"\',\'0\',"+
-                        "\'"+UserInformation.name+"\',\'"+UserInformation.sex+"\',\'1\',\'1\',\'"+UserInformation.hostName
+                String SQLCommand = "insert into userinformation values (\'"+nextId+"\',\'1\',"+
+                        "\'"+UserInformation.name+"\',\'"+UserInformation.sex+"\',\'1\',\'0\',\'"+UserInformation.hostName
                         +"\')";
                 System.out.println(SQLCommand);
                 statement.executeUpdate(SQLCommand);
