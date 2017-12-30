@@ -1,7 +1,7 @@
 # BookLibraryManage
-`
-## 包总览
 
+
+## 包总览
 *   [RegisterUser](#1)
     * [RegisterUser.MailCreator](#1.1)
     * [PrivilegeDivision](#1.2)
@@ -10,24 +10,24 @@
     * [SQLQuery.Connect](#2.2)
 *   [UserRelated](#3)
 
-### <span id="1">RegisterUser</span>
+### <a name = "1">registerUser</a>
 > 用于用户创建时相关初始化
-> #### <span id="1.1">RegisterUser.MailCreator</span>
+> #### <a name = "1.1">RegisterUser.MailCreator</a>
 > * MailCreator类
 >   * 用于用户创建时消息列表创建
-> #### <span id="1.2">RegisterUser.PrivilegeDivision</span>
+> #### <a name="1.2">RegisterUser.PrivilegeDivision</a>
 > * PrivilegeDivision类
 >   * 用于用户的权限分配
 
-### <span id="2">SQLQuery</span>
+### <a name="2">SQLQuery</a>
 > 用于SQL的基础操作包括连接，关闭，检查链接，SELECT语句
-> #### <span id="2.1">SQLQuery.Base</span>
+> #### <a name="2.1">SQLQuery.Base</a>
 > * SQLBase类
 >   * 用与基础查询，检查数据库连接
-> #### <span id="2.2">SQLQuery.Connect</span>
+> #### <a name="2.2">SQLQuery.Connect</a>
 > * GetDBConnection类
 >   * 用于数据库的连接以及关闭
-### <span id="3">UserRelated</span>
+### <a name="3">UserRelated</a>
 > 包括Root用户，Manager用户以及普通user的操作
 > * user类 ： 继承SLQBase类
 >   * 对书本进行缺省查询
