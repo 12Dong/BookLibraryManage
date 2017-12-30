@@ -1,20 +1,39 @@
-package RegisterUser;
+package UserRelated;
 
 import java.sql.*;
 import java.util.Arrays;
-import UserRelated.userInformation;
-import UserRelated.user;
+
+import RegisterUser.MailCreator.MailCreator;
+import RegisterUser.PrivilegeDivision.PrivilegeDivision;
 import SQLQuery.Base.*;
-import RegisterUser.PrivilegeDivision.*;
-public class publicFunction{
-    public static void transmit(userInformation UserInformation, boolean check){
+import SQLQuery.Connect.GetDBConnection;
+
+public class Root extends Manager{
+    public static boolean transmit(userInformation UserInformation, boolean check){
         //未实现manage注册
+        String sql = "create user '?'@'?' identified by '?';";
+        PreparedStatement preSQL;
+        Connection helper = GetDBConnection.connectDB("booklibrarymanager","root","");
+        try{
+            preSQL = helper.prepareStatement(sql);
+            preSQL.setString(1,UserInformation.hostName);
+            preSQL.setString(2,"%");
+            preSQL.setString(3,UserInformation.password);
+            int ok = preSQL.executeUpdate();
+            GetDBConnection.closeCon(helper);
+            if(ok == 0)
+                return false;
+        }
+        catch (SQLException e){
+            return false;
+        }
         if(check){
             user register = new user();
             register.GetDBConnection("booklibrarymanager","host","HanDong85");
+            String nextId;
             try{
                 Statement statement = register.con.createStatement();
-                String nextId = getNextId("userinformation");
+                nextId = getNextId("userinformation");
                 String SQLCommand = "insert into userinformation values (\'"+nextId+"\',\'1\',"+
                         "\'"+UserInformation.name+"\',\'"+UserInformation.sex+"\',\'1\',\'0\',\'"+UserInformation.hostName
                         +"\')";
@@ -22,16 +41,19 @@ public class publicFunction{
                 statement.executeUpdate(SQLCommand);
             }catch(SQLException e){
                 e.printStackTrace();
+                return false;
             }
+            MailCreator.createMail(nextId);
             PrivilegeDivision.managerPrivilegeDivision(UserInformation);
         }
         //未实现root分配权限
         else{
             user register = new user();
             register.GetDBConnection("booklibrarymanager","host","HanDong85");
+            String nextId;
             try{
                 Statement statement = register.con.createStatement();
-                String nextId = getNextId("userinformation");
+                nextId = getNextId("userinformation");
                 String SQLCommand = "insert into userinformation values (\'"+nextId+"\',\'0\',"+
                         "\'"+UserInformation.name+"\',\'"+UserInformation.sex+"\',\'1\',\'0\',\'"+UserInformation.hostName
                         +"\')";
@@ -39,9 +61,12 @@ public class publicFunction{
                 statement.executeUpdate(SQLCommand);
             }catch(SQLException e){
                 e.printStackTrace();
+                return false;
             }
+            MailCreator.createMail(nextId);
             PrivilegeDivision.readerPrivilegeDivision(UserInformation);
         }
+        return true;
     }
     //libName 仅仅包含 authorinformation bookinformation classification pressinformation  userinformation  开放
     public static String getNextId(String libName){
