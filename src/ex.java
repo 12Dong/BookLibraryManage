@@ -1,9 +1,9 @@
-import RegisterUser.publicFunction;
+import UserRelated.Root;
 import UserRelated.userInformation;
 
 public class ex {
     public static void main(String[] argv){
-//        System.out.println(RegisterUser.publicFunction.getNextId("userinformation"));
+//        System.out.println(UserRelated.Root.getNextId("userinformation"));
 //        Date d = new Date();
 //        System.out.println(d);
 //        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -70,6 +70,6 @@ public class ex {
             System.out.println("NullPointerException");
             return ;
         }
-        publicFunction.transmit(UserInformation,false);
+        Root.transmit(UserInformation,false);
     }
 }

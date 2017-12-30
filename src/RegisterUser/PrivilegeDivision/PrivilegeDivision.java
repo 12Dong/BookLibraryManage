@@ -5,6 +5,7 @@ import SQLQuery.Connect.GetDBConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class PrivilegeDivision {
@@ -17,6 +18,24 @@ public class PrivilegeDivision {
     public static void readerPrivilegeDivision(userInformation information){
         Connection helper = GetDBConnection.connectDB("booklibrarymanager","root","");
         //set Privilege
+        setPrivilege(helper,"authorinformation,bookinformation,pressinformation,classificationinformation,rootinfomation",
+                "select",information);
+        String sql = "select userId from userinformation where host = ?;";
+        String userId = null;
+        PreparedStatement preSQL;
+        try{
+            preSQL = helper.prepareStatement(sql);
+            preSQL.setString(1,information.hostName);
+            ResultSet rs = preSQL.executeQuery();
+            rs.beforeFirst();
+            if(rs.next())
+               userId = rs.getString(1);
+        }
+        catch (SQLException e){
+
+        }
+        setPrivilege(helper,userId + "message","select,delete,insert",information);
+        setPrivilege(helper,"rendinformation","*",information);
         refreshPrivilege(helper);
         GetDBConnection.closeCon(helper);
     }
