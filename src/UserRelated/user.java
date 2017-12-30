@@ -1,39 +1,42 @@
+package UserRelated;
+
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Calendar;
-public class user extends SQLBase{
+import SQLQuery.Base.*;
+public class user extends SQLBase {
     //用户名
-    String userName=null;
+    public String userName=null;
     //用户标号
-    String userId = null;
-    String host = null;
+    public String userId = null;
+    public String host = null;
     //查询相关
     //查询书名
-    String queryBookName=null;
+    public String queryBookName=null;
     //查询作者名
-    String queryAuthorName=null;
+    public String queryAuthorName=null;
     //查询出版社名
-    String queryPressName=null;
-    user(){ }
+    public String queryPressName=null;
+    public user(){ }
     //set相关 因为要进行可缺省查询 所以直接加%匹配所有 在查询中使用like 进行查询 查询完毕后 在进行升序排序
     // 完全匹配字典序最小 因为下一次比较为null对任意
-    void setQueryBookName(String queryBookName){
+    public void setQueryBookName(String queryBookName){
         this.queryBookName= "\'"+queryBookName+"%\'";
     }
-    void setQueryAuthorName(String queryAuthorName){
+    public void setQueryAuthorName(String queryAuthorName){
         this.queryAuthorName = "\'"+queryAuthorName+"%\'";
     }
-    void setQueryPressName(String queryPressName){
+    public void setQueryPressName(String queryPressName){
         this.queryPressName="\'"+queryPressName+"%\'";
     }
-    void setUserName(String userName){
+    public void setUserName(String userName){
         this.userName = userName;
     }
-    void setUserHost(String host){
+    public void setUserHost(String host){
         this.host = host;
     }
-    String makeQuerySQLCommand(){
+    public String makeQuerySQLCommand(){
         String SQLCommand = "select * from bookinformation";
         String FromInformation = " ";
         String QueryInformation = " ";
@@ -93,14 +96,14 @@ public class user extends SQLBase{
     //操作一 更新bookinformation
     //操作二 更新rendinformation
     //bookinformation中的status 1 为 正常可借阅 2 为已借出 3 为已收回但无法操作
-    void getUserId(){
+    public void getUserId(){
         String SQLQueryCommand = "select userId,userName from userinformation where host = "+'\''+host+'\'';
         System.out.println(SQLQueryCommand);
         query(SQLQueryCommand);
         userId = table[1][0];
         userName = table[1][1];
     }
-    boolean checkRend(String bookId){
+    public boolean checkRend(String bookId){
         String SQLCommand = "select status from bookInformation where bookId =  \'"+bookId+" \'";
         try{
             Statement statement = con.createStatement();
@@ -115,7 +118,7 @@ public class user extends SQLBase{
         return false;
     }
 
-    void rendBook(String bookId){
+    public void rendBook(String bookId){
         if(!checkRend(bookId)){
             System.out.println("The book was rended.");
             return ;
@@ -145,7 +148,7 @@ public class user extends SQLBase{
     //准备工作取得用户编号
     //操作一 更新bookinformation
     //操作二 更新rendinformation
-    void returnBook(String bookId){
+    public void returnBook(String bookId){
         if(userId ==null ||userName ==null) getUserId();
         String SQLUpdateCommand = "update bookinformation set status = 3 where bookId = "+"\'"+bookId+"\'";
         String SQLDeleteCommand = "delete from rendinformation where bookId = "+"\'"+bookId+"\'";
@@ -160,13 +163,13 @@ public class user extends SQLBase{
         catch(SQLException e) {}
     }
     //获得自己所属表里信息
-    String makeGetMessageSQLCommand(){
+    public String makeGetMessageSQLCommand(){
         if(userId==null || userName==null) getUserId();
         String SQLCommand = "select * from "+userId+"Message";
         System.out.println(SQLCommand);
         return SQLCommand;
     }
-    void sendMessageSQLCommand(String sendMessage){
+    public void sendMessageSQLCommand(String sendMessage){
         Date curtime = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String strCurTime = sdf.format(curtime);

@@ -1,10 +1,29 @@
+package RegisterUser;
+
 import java.sql.*;
 import java.util.Arrays;
+import UserRelated.userInformation;
+import UserRelated.user;
+import SQLQuery.Base.*;
+import RegisterUser.PrivilegeDivision.*;
 public class publicFunction{
-    public static void transmit(userInformation UserInformation,boolean check){
+    public static void transmit(userInformation UserInformation, boolean check){
         //未实现manage注册
         if(check){
-
+            user register = new user();
+            register.GetDBConnection("booklibrarymanager","host","HanDong85");
+            try{
+                Statement statement = register.con.createStatement();
+                String nextId = getNextId("userinformation");
+                String SQLCommand = "insert into userinformation values (\'"+nextId+"\',\'1\',"+
+                        "\'"+UserInformation.name+"\',\'"+UserInformation.sex+"\',\'1\',\'0\',\'"+UserInformation.hostName
+                        +"\')";
+                System.out.println(SQLCommand);
+                statement.executeUpdate(SQLCommand);
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+            PrivilegeDivision.managerPrivilegeDivision(UserInformation);
         }
         //未实现root分配权限
         else{
@@ -21,6 +40,7 @@ public class publicFunction{
             }catch(SQLException e){
                 e.printStackTrace();
             }
+            PrivilegeDivision.readerPrivilegeDivision(UserInformation);
         }
     }
     //libName 仅仅包含 authorinformation bookinformation classification pressinformation  userinformation  开放

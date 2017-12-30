@@ -1,10 +1,12 @@
+package SQLQuery.Base;
+
 import java.sql.*;
 
 public class SQLBase {
-    Connection con;
-    String[][] table;
+    public Connection con;
+    public String[][] table;
     //建立connection  连接数据库
-    void   GetDBConnection(String libName,String hostname,String password){
+    public void   GetDBConnection(String libName,String hostname,String password){
         con = null;
         String url ="jdbc:mysql://localhost:3306/";
         url +=libName;
@@ -19,7 +21,7 @@ public class SQLBase {
         catch(SQLException e){}
     }
     //关闭数据库 确保先建立连接后 再关闭连接
-    void closeConnection(){
+    public void closeConnection(){
         try{
             con.close();
             System.out.println("DataBase closed successfully");
@@ -31,7 +33,7 @@ public class SQLBase {
     }
 
     //执行查询操作 返回二维数组 包含字段名 和 数据
-    void query(String sqlCommand){
+    public void query(String sqlCommand){
         if(con!=null){
             ResultSet rs ;
             ResultSetMetaData metaData;
@@ -63,7 +65,7 @@ public class SQLBase {
         System.out.println("Connection is not prepared");
     }
 
-    boolean checkConnection(){
+    public boolean checkConnection(){
         if(con==null){
             System.out.println("Sorry,Connection is not prepared");
             return false;
