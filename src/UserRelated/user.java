@@ -97,21 +97,39 @@ public class user extends SQLBase {
     //操作二 更新rendinformation
     //bookinformation中的status 1 为 正常可借阅 2 为已借出 3 为已收回但无法操作
     public void getUserId(){
-        String SQLQueryCommand = "select userId,userName from userinformation where host = "+'\''+host+'\'';
-        System.out.println(SQLQueryCommand);
-        query(SQLQueryCommand);
-        userId = table[1][0];
-        userName = table[1][1];
+//        String SQLQueryCommand = "select userId,userName from userinformation where host = "+'\''+host+'\'';
+//        System.out.println(SQLQueryCommand);
+//        query(SQLQueryCommand);
+//        userId = table[1][0];
+//        userName = table[1][1];
+        try{
+            PreparedStatement pstmt = con.prepareStatement("select userId,userName from userinformation where host = ?");
+            pstmt.setString(1,host);
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()){
+                userId = rs.getString("userId");
+                userName = rs.getString("username");
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
     }
     public boolean checkRend(String bookId){
-        String SQLCommand = "select status from bookInformation where bookId =  \'"+bookId+" \'";
+//        String SQLCommand = "select status from bookInformation where bookId =  \'"+bookId+" \'";
+
         try{
-            Statement statement = con.createStatement();
-            System.out.println(SQLCommand);
-            query(SQLCommand);
-            String Table[][] = table;
-            if(Table[1][0]=="1") return true;
-            else return false;
+            PreparedStatement pstmt = con.prepareStatement("select status from bookInformation where bookId = ?");
+//            Statement statement = con.createStatement();
+//            System.out.println(SQLCommand);
+//            query(SQLCommand);
+//            String Table[][] = table;
+//            if(Table[1][0]=="1") return true;
+//            else return false;
+            pstmt.setString(1,bookId);
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()){
+               if( rs.getString("status")=="1") return true;
+            }
         }catch(SQLException e){
             e.printStackTrace();
         }
@@ -150,14 +168,22 @@ public class user extends SQLBase {
     //操作二 更新rendinformation
     public void returnBook(String bookId){
         if(userId ==null ||userName ==null) getUserId();
-        String SQLUpdateCommand = "update bookinformation set status = 3 where bookId = "+"\'"+bookId+"\'";
-        String SQLDeleteCommand = "delete from rendinformation where bookId = "+"\'"+bookId+"\'";
+//        String SQLUpdateCommand = "update bookinformation set status = 3 where bookId = "+"\'"+bookId+"\'";
+//        String SQLDeleteCommand = "delete from rendinformation where bookId = "+"\'"+bookId+"\'";
         try{
-            System.out.println("SQLUpdateCommand is "+SQLUpdateCommand);
-            System.out.println("SQLInsertCommand is "+SQLDeleteCommand);
-            Statement statement = con.createStatement();
-            statement.executeUpdate(SQLUpdateCommand);
-            statement.executeUpdate(SQLDeleteCommand);
+//            System.out.println("SQLUpdateCommand is "+SQLUpdateCommand);
+//            System.out.println("SQLInsertCommand is "+SQLDeleteCommand);
+            PreparedStatement pstmt = con.prepareStatement("update bookinformation set status = 3 where bookId = ?");
+            pstmt.setString(1,bookId);
+            pstmt.executeUpdate();
+
+            pstmt = con.prepareStatement("delete from rendinformation where bookId = ?");
+            pstmt.setString(1,bookId);
+            pstmt.executeUpdate();
+
+//            Statement statement = con.createStatement();
+//            statement.executeUpdate(SQLUpdateCommand);
+//            statement.executeUpdate(SQLDeleteCommand);
             System.out.println("Successfully return.");
         }
         catch(SQLException e) {}
@@ -176,8 +202,13 @@ public class user extends SQLBase {
         String SQLCommand = "insert into rootMessage values (\'"+userId+"\',\'"+strCurTime+"\',\'"+sendMessage+"\')";
         try{
             System.out.println(SQLCommand);
-            Statement statement = con.createStatement();
-            statement.executeUpdate(SQLCommand);
+            PreparedStatement pstmt = con.prepareStatement("insert into rootMessage values (?,?,?)");
+            pstmt.setString(1,userId);
+            pstmt.setString(2,strCurTime);
+            pstmt.setString(3,sendMessage);
+            pstmt.executeUpdate();
+//            Statement statement = con.createStatement();
+//            statement.executeUpdate(SQLCommand);
         }
         catch(SQLException e){
             e.printStackTrace();

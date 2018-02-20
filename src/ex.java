@@ -1,4 +1,5 @@
 import UserRelated.Root;
+import UserRelated.user;
 import UserRelated.userInformation;
 
 public class ex {
@@ -60,16 +61,18 @@ public class ex {
 //            }
 //            System.out.println("");
 //        }
-//        System.out.println(reader.checkRend("01"));
-        userInformation UserInformation = new userInformation();
-        UserInformation.setHostName("wangxiaoming");
-        UserInformation.setName("王小明");
-        UserInformation.setSex("男");
-        UserInformation.setPassword("123456");
-        if(UserInformation==null) {
-            System.out.println("NullPointerException");
-            return ;
-        }
-        Root.transmit(UserInformation,false);
+        user reader = new user();
+        reader.GetDBConnection("booklibrarymanager","host","HanDong85");
+        System.out.println(reader.checkRend("01"));
+//        userInformation UserInformation = new userInformation();
+//        UserInformation.setHostName("wangxiaoming");
+//        UserInformation.setName("王小明");
+//        UserInformation.setSex("男");
+//        UserInformation.setPassword("123456");
+//        if(UserInformation==null) {
+//            System.out.println("NullPointerException");
+//            return ;
+//        }
+//        Root.transmit(UserInformation,false);
     }
 }
