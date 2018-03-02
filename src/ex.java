@@ -1,5 +1,8 @@
 import UserRelated.Root;
+<<<<<<< HEAD
 import UserRelated.user;
+=======
+>>>>>>> 3f9f804f8e3aa87e216da19854e3ba50db4db93e
 import UserRelated.userInformation;
 
 public class ex {
@@ -61,6 +64,7 @@ public class ex {
 //            }
 //            System.out.println("");
 //        }
+<<<<<<< HEAD
         user reader = new user();
         reader.GetDBConnection("booklibrarymanager","host","HanDong85");
         System.out.println(reader.checkRend("01"));
@@ -74,5 +78,18 @@ public class ex {
 //            return ;
 //        }
 //        Root.transmit(UserInformation,false);
+=======
+//        System.out.println(reader.checkRend("01"));
+        userInformation UserInformation = new userInformation();
+        UserInformation.setHostName("wangxiaoming");
+        UserInformation.setName("王小明");
+        UserInformation.setSex("男");
+        UserInformation.setPassword("123456");
+        if(UserInformation==null) {
+            System.out.println("NullPointerException");
+            return ;
+        }
+        Root.transmit(UserInformation,false);
+>>>>>>> 3f9f804f8e3aa87e216da19854e3ba50db4db93e
     }
 }
