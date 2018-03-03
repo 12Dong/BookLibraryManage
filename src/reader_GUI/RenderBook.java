@@ -29,8 +29,10 @@ public class RenderBook extends JPanel {
         public Information(String...information){
             dataArray = new ArrayList<String>();
             for(String info:information){
-
-                dataArray.add(info);
+                if(info.equals("1")) dataArray.add("可借阅");
+                else if(info.equals("2")) dataArray.add("已借出");
+                else if(info.equals("3")) dataArray.add("整理中");
+                else dataArray.add(info);
             }
         }
 
@@ -153,6 +155,17 @@ public class RenderBook extends JPanel {
         add(blank2);
         layout.setConstraints(blank2,s);
         reset = new JButton("重  置");
+        ArrayList<Information> list = new ArrayList<Information>();
+        list.add(new Information("等待传参","等待传参","等待传参","等待传参","等待传参","等待传参"));
+        reset.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                bookText.setText(null);
+                authorText.setText(null);
+                pressText.setText(null);
+                userTableModel.setList(list);
+            }
+        });
         add(reset);
         s.gridx = 7;
         s.gridwidth=2;
@@ -168,8 +181,7 @@ public class RenderBook extends JPanel {
 //        jTable = new JTable();
         jTable = new JTable();
 
-        ArrayList<Information> list = new ArrayList<Information>();
-        list.add(new Information("等待传参","等待传参","等待传参","等待传参","等待传参"));
+
         userTableModel.setList(list);
         jTable.setModel(userTableModel);
 
@@ -184,8 +196,25 @@ public class RenderBook extends JPanel {
         book.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bookText.setText(null);
-                authorText.setText(null);
+                int row = jTable.getSelectedRow();
+                String bookId = (String)jTable.getValueAt(row,0);
+                user reader = new user();
+                reader.GetDBConnection("booklibrarymanager","host","HanDong85");
+                if(reader.checkRend(bookId)==false){
+                    JOptionPane.showMessageDialog(new JPanel(),"此书已借出");
+
+                }else
+                {
+                    try{
+                        reader.rendBook(bookId);
+                        JOptionPane.showMessageDialog(new JPanel(),"借书成功");
+                        userTableModel.setList(list);
+
+                    }catch(Exception error){
+                        error.printStackTrace();
+                        JOptionPane.showMessageDialog(new JPanel(),"借书失败");
+                    }
+                }
             }
         });
         add(book);

@@ -4,6 +4,9 @@ import UserRelated.userInformation;
 
 public class ex {
     public static void main(String[] argv){
+        java.util.Date rendDate = new java.util.Date ();
+        java.sql.Date RendDate = new java.sql.Date(rendDate.getTime());
+        System.out.println(RendDate);
 //        System.out.println(UserRelated.Root.getNextId("userinformation"));
 //        Date d = new Date();
 //        System.out.println(d);
@@ -61,9 +64,9 @@ public class ex {
 //            }
 //            System.out.println("");
 //        }
-        user reader = new user();
-        reader.GetDBConnection("booklibrarymanager","host","HanDong85");
-        System.out.println(reader.checkRend("01"));
+//        user reader = new user();
+//        reader.GetDBConnection("booklibrarymanager","host","HanDong85");
+//        System.out.println(reader.checkRend("01"));
 //        userInformation UserInformation = new userInformation();
 //        UserInformation.setHostName("wangxiaoming");
 //        UserInformation.setName("王小明");

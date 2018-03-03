@@ -25,13 +25,13 @@ public class user extends SQLBase {
     //set相关 因为要进行可缺省查询 所以直接加%匹配所有 在查询中使用like 进行查询 查询完毕后 在进行升序排序
     // 完全匹配字典序最小 因为下一次比较为null对任意
     public void setQueryBookName(String queryBookName){
-        this.queryBookName= "%"+queryBookName+"%";
+        this.queryBookName= queryBookName;
     }
     public void setQueryAuthorName(String queryAuthorName){
-        this.queryAuthorName = "%"+queryAuthorName+"%";
+        this.queryAuthorName = queryAuthorName;
     }
     public void setQueryPressName(String queryPressName){
-        this.queryPressName="%"+queryPressName+"%";
+        this.queryPressName=queryPressName;
     }
     public void setUserName(String userName){
         this.userName = userName;
@@ -55,13 +55,13 @@ public class user extends SQLBase {
     public String[][] queryBook(){
         try{
 
-            PreparedStatement pstmt = con.prepareStatement("select bookId,bookName,author,classification,press from bookinformation where bookName like ? and author like ? and press like ?");
+            PreparedStatement pstmt = con.prepareStatement("select bookId,bookName,author,classification,press,status from bookinformation where bookName like ? and author like ? and press like ?");
             System.out.println(getQueryBookName());
             System.out.println(getQueryAuthorName());
             System.out.println(getQueryPressName());
-            pstmt.setString(1,getQueryBookName());
-            pstmt.setString(2,getQueryAuthorName());
-            pstmt.setString(3,getQueryPressName());
+            pstmt.setString(1,"%"+getQueryBookName()+"%");
+            pstmt.setString(2,"%"+getQueryAuthorName()+"%");
+            pstmt.setString(3,"%"+getQueryPressName()+"%");
             ResultSet rs = pstmt.executeQuery();
             ResultSetMetaData metaData;
             metaData = rs.getMetaData();
@@ -133,7 +133,7 @@ public class user extends SQLBase {
             }else if(queryBookName!=null){
                 QueryInformation +=" and ";
             }
-            QueryInformation+=" pressinformation.pressName likes "+queryPressName+" and pressinformation.pressId = "+
+            QueryInformation+=" pressinformation.pressName like "+queryPressName+" and pressinformation.pressId = "+
                     "bookinformation.pressId ";
         }
         SQLCommand = SQLCommand+FromInformation + QueryInformation;
@@ -181,7 +181,7 @@ public class user extends SQLBase {
             pstmt.setString(1,bookId);
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()){
-                if( rs.getString("status")=="1") return true;
+                if( rs.getString("status").equals("1")) return true;
             }
         }catch(SQLException e){
             e.printStackTrace();
@@ -196,22 +196,34 @@ public class user extends SQLBase {
         }
         if(userId ==null ||userName ==null) getUserId();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date rendDate = new Date();
+        java.util.Date rendDate = new java.util.Date ();
+        java.sql.Date RendDate = new java.sql.Date(rendDate.getTime());
         String strRendDate = sdf.format(rendDate);
         Calendar returndate = Calendar.getInstance();
         returndate.add(Calendar.DAY_OF_YEAR,30);
-        Date returnDate = returndate.getTime();
+        java.util.Date returnDate = returndate.getTime();
+        java.sql.Date ReturnDate = new java.sql.Date(returnDate.getTime());
         String strReturnDate = sdf.format(returnDate);
         String SQLUpdateCommand = "update bookinformation set status = 2 where bookId = "+"\'"+bookId+"\'";
+//        PreparedStatement stmt = con.createStatement("update bookinformation set status = 2 where bookId = ?")
         String SQLInsertCommand = "insert rendinformation values(\'"+userId+"\',\'"+bookId+"\',\'"+strRendDate+"\',"+
                 "\'"+strReturnDate+ "\'"+")";
         try{
-            System.out.println("SQLUpdateCommand is "+SQLUpdateCommand);
-            System.out.println("SQLInsertCommand is "+SQLInsertCommand);
-            Statement statement = con.createStatement();
-            statement.executeUpdate(SQLUpdateCommand);
-            statement.executeUpdate(SQLInsertCommand);
-            System.out.println("Successfully rend.");
+//            System.out.println("SQLUpdateCommand is "+SQLUpdateCommand);
+//            System.out.println("SQLInsertCommand is "+SQLInsertCommand);
+//            Statement statement = con.createStatement();
+//            statement.executeUpdate(SQLUpdateCommand);
+//            statement.executeUpdate(SQLInsertCommand);
+//            System.out.println("Successfully rend.");
+            PreparedStatement stmt = con.prepareStatement("update bookinformation set status = 2 where bookId = ?");
+            stmt.setString(1,bookId);
+            stmt.execute();
+            stmt = con.prepareStatement("insert redinformation values(?,?,?,?)");
+            stmt.setString(1,userId);
+            stmt.setString(2,bookId);
+            stmt.setDate(3,RendDate);
+            stmt.setDate(4,ReturnDate);
+            stmt.execute();
         }
         catch(SQLException e) {}
     }
