@@ -5,6 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Calendar;
 import SQLQuery.Base.*;
+
+import javax.xml.transform.Result;
+
 public class user extends SQLBase {
     //用户名
     public String userName=null;
@@ -22,19 +25,69 @@ public class user extends SQLBase {
     //set相关 因为要进行可缺省查询 所以直接加%匹配所有 在查询中使用like 进行查询 查询完毕后 在进行升序排序
     // 完全匹配字典序最小 因为下一次比较为null对任意
     public void setQueryBookName(String queryBookName){
-        this.queryBookName= "\'"+queryBookName+"%\'";
+        this.queryBookName= "%"+queryBookName+"%";
     }
     public void setQueryAuthorName(String queryAuthorName){
-        this.queryAuthorName = "\'"+queryAuthorName+"%\'";
+        this.queryAuthorName = "%"+queryAuthorName+"%";
     }
     public void setQueryPressName(String queryPressName){
-        this.queryPressName="\'"+queryPressName+"%\'";
+        this.queryPressName="%"+queryPressName+"%";
     }
     public void setUserName(String userName){
         this.userName = userName;
     }
     public void setUserHost(String host){
         this.host = host;
+    }
+
+    public String getQueryAuthorName() {
+        return queryAuthorName;
+    }
+
+    public String getQueryBookName() {
+        return queryBookName;
+    }
+
+    public String getQueryPressName() {
+        return queryPressName;
+    }
+
+    public String[][] queryBook(){
+        try{
+
+            PreparedStatement pstmt = con.prepareStatement("select bookId,bookName,author,classification,press from bookinformation where bookName like ? and author like ? and press like ?");
+            System.out.println(getQueryBookName());
+            System.out.println(getQueryAuthorName());
+            System.out.println(getQueryPressName());
+            pstmt.setString(1,getQueryBookName());
+            pstmt.setString(2,getQueryAuthorName());
+            pstmt.setString(3,getQueryPressName());
+            ResultSet rs = pstmt.executeQuery();
+            ResultSetMetaData metaData;
+            metaData = rs.getMetaData();
+            int columnCount = metaData.getColumnCount();
+            rs.last();
+            int recordAmount = rs.getRow();
+            table = new String[recordAmount+1][columnCount];
+            for(int i=1;i<=columnCount;i++){
+                table[0][i-1]=metaData.getColumnName(i);
+                if(i==1) System.out.println(metaData.getColumnName(i));
+            }
+            int i=1;
+            rs.beforeFirst();
+            while(rs.next()){
+                for(int j=1;j<=columnCount;j++){
+                    table[i][j-1]=rs.getString(j);
+                    //                       System.out.print(table[i][j-1]+"\t");
+                }
+                i++;
+            }
+
+            return table;
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
     }
     public String makeQuerySQLCommand(){
         String SQLCommand = "select * from bookinformation";
@@ -65,7 +118,7 @@ public class user extends SQLBase {
                 QueryInformation +=" and ";
             }
             QueryInformation += " authorinformation.authorName likes "+queryAuthorName +" and authorinformation.authorId = "+
-            "bookinformation.authorId ";
+                    "bookinformation.authorId ";
         }
         // 添加作者名查询 若queryPressName不为null 则
         // 对 from 表 进行追加
@@ -128,7 +181,7 @@ public class user extends SQLBase {
             pstmt.setString(1,bookId);
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()){
-               if( rs.getString("status")=="1") return true;
+                if( rs.getString("status")=="1") return true;
             }
         }catch(SQLException e){
             e.printStackTrace();
