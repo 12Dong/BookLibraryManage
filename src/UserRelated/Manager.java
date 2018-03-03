@@ -13,6 +13,20 @@ public class Manager extends user{
     public Manager(String userID,String passWord){
         con = GetDBConnection.connectDB("booklibrarymanager",userID,passWord);
     }
+    public String userid;
+    public String isAdmin;
+    public String userName;
+    public String userSex;
+    public String userStatus;
+    public String userRentCount;
+    public String userHostName;
+    public String queryBookID;
+    public String queryBookName;
+    public String queryAuthor;
+    public String queryClassification;
+    public String queryPress;
+    public String queryEntyrDate;
+    public String queryStatus;
     static int AUTHOR_INFORMATION = 0;
     static int CLASSIFICATION_INFORMATION = 1;
     static int PRESS_INFORMATION = 2;
@@ -58,7 +72,33 @@ public class Manager extends user{
        }
     }
     //add press || classification || author
-    public boolean addNewInformation(int tableID,String needAdd){
+    public boolean removeInformation(String type,String removeKey){
+       if(type == null || removeKey == null)
+           return false;
+       Connection con = GetDBConnection.connectDB("booklibrarymanager","root","");
+       userId = removeKey;
+       String[][] res = queryUser();
+       if(res == null)
+           return false;
+       String sql = "delete from ? where ? = ?;";
+       PreparedStatement preSQL;
+       try{
+           preSQL = con.prepareStatement(sql);
+           preSQL.setString(1,type + "information");
+           preSQL.setString(2,type + "Id");
+           preSQL.setString(3,removeKey);
+           int ok = preSQL.executeUpdate();
+           GetDBConnection.closeCon(con);
+           if(ok == 1)
+              return true;
+           return false;
+       }
+       catch (SQLException e){
+           GetDBConnection.closeCon(con);
+           return false;
+       }
+    }
+    public boolean addNewDetailInformation(int tableID,String needAdd){
         if(tableID > 2)
             return false;
         String tableName = informationTable[tableID];
@@ -86,7 +126,7 @@ public class Manager extends user{
            return false;
         }
     }
-    public boolean removeInformation(int tableID,String needRemove){
+    public boolean removeDetailInformation(int tableID,String needRemove){
         if(tableID > 2)
             return false;
         String tableName = informationTable[tableID];
@@ -227,5 +267,85 @@ public class Manager extends user{
         catch (SQLException e){
             return false;
         }
+    }
+    public String[][] queryUser() {
+        try {
+            String sql = "select * from userinfomation where userId = ?, isAdmin = ?, userName = ?, userSex = ?, userStatus = ?, userRendCount = ?,host = ?;";
+            PreparedStatement preSQL = con.prepareStatement(sql);
+            if (userid != null)
+                preSQL.setString(1, userid);
+            if (isAdmin != null)
+                preSQL.setString(2, isAdmin);
+            if (userName != null)
+                preSQL.setString(3, userName);
+            if (userSex != null)
+                preSQL.setString(4, userSex);
+            if (userStatus != null)
+                preSQL.setString(5, userStatus);
+            if (userRentCount != null)
+                preSQL.setString(6, userRentCount);
+            if (userHostName != null)
+                preSQL.setString(7, userHostName);
+            ResultSet rs = preSQL.executeQuery();
+            ResultSetMetaData metaData;
+            metaData = rs.getMetaData();
+            int columnCount = metaData.getColumnCount();
+            rs.last();
+            int recordAmount = rs.getRow();
+            table = new String[recordAmount][columnCount];
+            int i = 0;
+            rs.beforeFirst();
+            while (rs.next()) {
+                for (int j = 1; j <= columnCount; j++) {
+                    table[i][j - 1] = rs.getString(j);
+                    //                       System.out.print(table[i][j-1]+"\t");
+                }
+                i++;
+            }
+            return table;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public String[][] queryBook(){
+        try {
+            String sql = "select * from userinfomation where bookId = ?, bookName = ?, author = ?, classification = ?, press = ?, entryDate = ?,status = ?;";
+            PreparedStatement preSQL = con.prepareStatement(sql);
+            if (queryBookID != null)
+                preSQL.setString(1, queryBookID);
+            if (queryBookName != null)
+                preSQL.setString(2, queryBookName);
+            if (queryAuthor != null)
+                preSQL.setString(3, queryAuthor);
+            if (queryClassification != null)
+                preSQL.setString(4, queryClassification);
+            if (queryPress != null)
+                preSQL.setString(5, queryPress);
+            if (queryEntyrDate != null)
+                preSQL.setString(6, queryEntyrDate);
+            if (queryStatus != null)
+                preSQL.setString(7, queryStatus);
+            ResultSet rs = preSQL.executeQuery();
+            ResultSetMetaData metaData;
+            metaData = rs.getMetaData();
+            int columnCount = metaData.getColumnCount();
+            rs.last();
+            int recordAmount = rs.getRow();
+            table = new String[recordAmount][columnCount];
+            int i = 0;
+            rs.beforeFirst();
+            while (rs.next()) {
+                for (int j = 1; j <= columnCount; j++) {
+                    table[i][j - 1] = rs.getString(j);
+                    //                       System.out.print(table[i][j-1]+"\t");
+                }
+                i++;
+            }
+            return table;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

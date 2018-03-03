@@ -1,31 +1,39 @@
 package UserGUI.ManagerUI;
 
 
+import RegisterUser.PrivilegeDivision.PrivilegeDivision;
 import SQLQuery.Base.SQLBase;
+import UserRelated.Manager;
+import UserRelated.Root;
 import UserRelated.user;
+import UserRelated.userInformation;
+import jdk.nashorn.internal.scripts.JO;
 
 import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 public class ManagerUI {
-    public ManagerUI(boolean is_supper_manager){
-        new ManagerFrame(is_supper_manager);
+    public ManagerUI(String userID,String password,boolean is_supper_manager){
+        new ManagerFrame(userID,password,is_supper_manager);
     }
     public static void main(String [] args){
-        new ManagerUI(true);
+        new ManagerUI("","",true);
     }
 }
 
 class ManagerFrame extends JFrame {
     boolean is_supper_manager;
+    Manager manager;
     //user information
-    static int USER_COL = 3;
-    static String[] USER_COL_ITEM = new String[] {"name","sex","age"};
+    static int USER_COL = 7;
+    static String[] USER_COL_ITEM = new String[] {"userID","isAdmin","userName","userSex","userStatus","userRentCount","hostName"};
     //book information
-    static int BOOK_COL = 3;
-    static String[] BOOK_COL_ITEM = new String[] {"name","library","fuck"};
+    static int BOOK_COL = 7;
+    static String[] BOOK_COL_ITEM = new String[] {"bookID","bookName","author","classification","press","entryDate","status"};
     // user managemet
     JSplitPane userPanel;
     JSplitPane userTempPanel;
@@ -71,11 +79,9 @@ class ManagerFrame extends JFrame {
     JTextArea message;
     JButton sendBtn;
     //user operator
-    JButton addUserBtn;
     JButton delUserBtn;
     JButton queryUserBtn;
     JButton banUserBtn;
-    JButton sendMessageBtn;
     //book operator
     JButton addBookBtn;
     JButton delBookBtn;
@@ -86,8 +92,9 @@ class ManagerFrame extends JFrame {
     JButton addManagerBtn;
     JButton delManagerBtn;
     JButton queryManagerBtn;
-    public ManagerFrame(boolean is_supper_manager) {
+    public ManagerFrame(String userID,String password,boolean is_supper_manager) {
         this.is_supper_manager = is_supper_manager;
+        manager = new Manager(userID,password);
         this.init();
         setBounds(10,10,700,400);
         setVisible(true);
@@ -110,7 +117,7 @@ class ManagerFrame extends JFrame {
        tabPane.add("user management",userPanel);
        tabPane.add("book management",bookPanel);
        if(is_supper_manager == true) {
-           initManagerPanl();
+           initManagerPanel();
            tabPane.add("manager management", managerPanel);
        }
        initMessagePanel();
@@ -119,10 +126,14 @@ class ManagerFrame extends JFrame {
        validate();
     }
     void initUserPanel(){
-        addUserBtn = new JButton("add");
         delUserBtn = new JButton("del");
         queryUserBtn = new JButton("query");
         banUserBtn = new JButton("ban");
+        QueryUserListener queryListener = new QueryUserListener(this);
+        queryUserBtn.addMouseListener(queryListener);
+        OperatorUserListener operatorUserListener = new OperatorUserListener(this);
+        delUserBtn.addMouseListener(operatorUserListener);
+        banUserBtn.addMouseListener(operatorUserListener);
         userOptionPanel = new JPanel();
         userTextPanel = new JPanel();
         GridLayout optionHelper = new GridLayout(USER_COL,1);
@@ -139,13 +150,12 @@ class ManagerFrame extends JFrame {
         userOptionPanel.setLayout(optionHelper);
         userTextPanel.setLayout(textHelper);
         userSettingPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,userOptionPanel,userTextPanel);
-        userQueryResult = new String[1][USER_COL];
+        userQueryResult = manager.queryUser();
         userResult = new JTable(userQueryResult,USER_COL_ITEM);
         userResultPanel = new JScrollPane(userResult);
         userOperatorPanel = new JPanel();
-        GridLayout operatorHelper = new GridLayout(4,1);
+        GridLayout operatorHelper = new GridLayout(3,1);
         userOperatorPanel.setLayout(operatorHelper);
-        userOperatorPanel.add(addUserBtn);
         userOperatorPanel.add(delUserBtn);
         userOperatorPanel.add(queryUserBtn);
         userOperatorPanel.add(banUserBtn);
@@ -160,6 +170,8 @@ class ManagerFrame extends JFrame {
         queryBookBtn = new JButton("query");
         addDetailBtn = new JButton("add deltail");
         updateBookBtn = new JButton("update status");
+        QueryBookListener queryBookListener = new QueryBookListener(this);
+        queryBookBtn.addMouseListener(queryBookListener);
         bookOptionPanel = new JPanel();
         bookTextPanel = new JPanel();
         GridLayout optionHelper = new GridLayout(BOOK_COL,1);
@@ -190,10 +202,15 @@ class ManagerFrame extends JFrame {
         bookTempPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,bookSettingPanel,bookOperatorPanel);
         bookPanel = new JSplitPane(JSplitPane.VERTICAL_SPLIT,bookTempPanel,bookResultPanel);
     }
-    void initManagerPanl(){
+    void initManagerPanel(){
         addManagerBtn = new JButton("add");
-        delManagerBtn = new JButton("del");
+        delManagerBtn = new JButton("cancel");
         queryManagerBtn = new JButton("query");
+        QueryManagerListener queryManagerListener = new QueryManagerListener(this);
+        OperatorManagerListener operatorManagerListener = new OperatorManagerListener(this);
+        addManagerBtn.addMouseListener(operatorManagerListener);
+        delManagerBtn.addMouseListener(operatorManagerListener);
+        queryManagerBtn.addMouseListener(queryManagerListener);
         managerOptionPanel = new JPanel();
         managerTextPanel = new JPanel();
         GridLayout optionHelper = new GridLayout(USER_COL,1);
@@ -221,37 +238,25 @@ class ManagerFrame extends JFrame {
         managerOperatorPanel.add(queryManagerBtn);
         managerTempPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,managerSettingPanel,managerOperatorPanel);
         managerPanel = new JSplitPane(JSplitPane.VERTICAL_SPLIT,managerTempPanel,managerResultPanel);
+        clearManagerResult();
     }
     void initMessagePanel(){
         messagePanel = new JPanel();
 
         GridBagLayout layout = new GridBagLayout();
         messagePanel.setLayout(layout);
-        Box box1 = Box.createHorizontalBox();
         sendTargetLable = new JLabel("send to");
         sendTargetLable.setHorizontalAlignment(JLabel.CENTER);
         messageLable = new JLabel("Message");
         messageLable.setHorizontalAlignment(JLabel.CENTER);
         sendTarget = new JTextField(10);
         message = new JTextArea(10,10);
-        JLabel blank= new JLabel();
         messageHelper = new JScrollPane(message);
         sendBtn = new JButton("send");
         sendBtn.setSize(1,2);
-//        box1.add(sendTargetLable);
-//        box1.add(sendTarget);
-//        box1.add(sendBtn);
-//        box1.setAlignmentX(Box.LEFT_ALIGNMENT);
-//        Box box2 = Box.createHorizontalBox();
-//        box2.add(messageLable);
-//        box2.add(messageHelper);
-//        box2.setAlignmentX(Box.LEFT_ALIGNMENT);
-//
-//        messagePanel.add(box1);
-//        messagePanel.add(box2);
+
         JPanel blank1 = new JPanel();
         blank1.setSize(100,100);
-        //blank1.setBackground(Color.YELLOW);
         sendTargetLable.setFont(new java.awt.Font("Dialog",1,25));
         blank1.add(sendTargetLable);
         messagePanel.add(blank1);
@@ -263,20 +268,6 @@ class ManagerFrame extends JFrame {
         s.gridheight=1;
         layout.setConstraints(blank1,s);
         sendTargetLable.setBackground(Color.red);
-
-//        messagePanel.add(sendTargetLable);
-
-//        s.weightx = 1;
-//        s.weighty = 0;
-//        s.gridwidth = 1;
-//        s.gridheight = 2;
-//        layout.setConstraints(sendTargetLable,s);
-
-//        JPanel jPanel = new JPanel();
-//        messagePanel.add(jPanel);
-//        s.weightx = 2;
-//        s.gridwidth = 1;
-//        layout.setConstraints(jPanel,s);
 
         messagePanel.add(sendTarget);
         s.weightx = 3;
@@ -290,7 +281,6 @@ class ManagerFrame extends JFrame {
         layout.setConstraints(sendBtn,s);
 
         JPanel blank2 = new JPanel();
-        //blank2.setBackground(Color.ORANGE);
         blank2.setSize(100,100);
         messageLable.setFont(new java.awt.Font("Dialog",1,25));
         messageLable.setVerticalAlignment(JLabel.CENTER);
@@ -301,35 +291,118 @@ class ManagerFrame extends JFrame {
         s.weighty=3;
         s.gridwidth=2;
         layout.setConstraints(blank2,s);
-//        messagePanel.add(messageLable);
-//        s.weightx = 1;
-//        s.weighty = 3;
-//        s.gridwidth = 2;
-//        layout.setConstraints(messageLable,s);
 
         messagePanel.add(messageHelper);
         s.weightx = 3;
         s.weighty = 2;
         s.gridwidth = 0;
         layout.setConstraints(messageHelper,s);
-        //
-//        s.weightx = 0;
-//        s.weighty = 3;
-//        s.gridwidth = 10;
-//        s.gridheight = 10;
-//        layout.setConstraints(box2,s);
+    }
+    void clearUserResult(){
+        manager.userId = null;
+        manager.userHostName = null;
+        manager.userRentCount = null;
+        manager.userStatus = null;
+        manager.userName = null;
+        manager.isAdmin = null;
+        manager.userSex = null;
+        userResult = new JTable(manager.queryUser(),USER_COL_ITEM);
+        validate();
+    }
+    void clearBookResult(){
+        manager.queryBookID = null;
+        manager.queryBookName = null;
+        manager.queryAuthor= null;
+        manager.queryPressName = null;
+        manager.queryClassification = null;
+        manager.queryEntyrDate = null;
+        manager.queryStatus = null;
+        bookResult = new JTable(manager.queryBook(),BOOK_COL_ITEM);
+        validate();
+    }
+    void clearManagerResult(){
+        manager.userId = null;
+        manager.userHostName = null;
+        manager.userRentCount = null;
+        manager.userStatus = null;
+        manager.userName = null;
+        manager.isAdmin = "1";
+        manager.userSex = null;
+        userResult = new JTable(manager.queryUser(),USER_COL_ITEM);
+        validate();
     }
 }
 
-class QueryListener implements MouseListener{
+class QueryUserListener implements MouseListener{
     ManagerFrame workArea;
-    user 
-    public QueryListener(ManagerFrame myFrame){
+    public QueryUserListener(ManagerFrame myFrame){
         this.workArea= myFrame;
+    }
+    class Information{
+        ArrayList<String> dataArray;
+        public Information(String...information){
+            dataArray = new ArrayList<String>();
+            for(String info:information){
+
+                dataArray.add(info);
+            }
+        }
+
+        @Override
+        public String toString() {
+            String output=null;
+            int cnt =0;
+            for(String data:dataArray){
+                output+=cnt+data+"  ";
+                cnt++;
+            }
+            return output;
+        }
+    }
+    class UserTableModel extends AbstractTableModel {
+        private static final long serialVersionUID = 1L;
+        // 保存一个User的列表
+        private ArrayList<Information> informationArray = new ArrayList<Information>();
+        // 设置User列表, 同时通知JTabel数据对象更改, 重绘界面
+        public void setList(ArrayList<Information> informationArray) {
+            this.informationArray = informationArray;
+            int cnt = 0;
+            for(Information info:informationArray){
+                System.out.println(info);
+            }
+            System.out.println(getColumnCount()+" "+getRowCount());
+            this.fireTableDataChanged();// 同时通知JTabel数据对象更改, 重绘界面
+        }
+        public int getColumnCount() {
+            return informationArray.get(0).dataArray.size();
+        }
+        public int getRowCount() {
+            return informationArray.size();
+        }
+        // 从list中拿出rowIndex行columnIndex列显示的值
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            Information info =informationArray.get(rowIndex);
+            return info.dataArray.get(columnIndex);
+        }
     }
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
-
+        workArea.manager.userId = workArea.userQueryText[0].getText();
+        workArea.manager.isAdmin = workArea.userQueryText[1].getText();
+        workArea.manager.userName = workArea.userQueryText[2].getText();
+        workArea.manager.userSex = workArea.userQueryText[3].getText();
+        workArea.manager.userStatus = workArea.userQueryText[4].getText();
+        workArea.manager.userRentCount = workArea.userQueryText[5].getText();
+        workArea.manager.userHostName = workArea.userQueryText[6].getText();
+        String[][] data = workArea.manager.queryUser();
+        ArrayList<Information> tempArray = new ArrayList<>();
+        for(int i = 0;i < data.length;i ++){
+            Information tempInfo = new Information(data[i]);
+            tempArray.add(tempInfo);
+        }
+        UserTableModel tempModel = new UserTableModel();
+        tempModel.setList(tempArray);
+        workArea.userResult.setModel(tempModel);
     }
 
     @Override
@@ -352,7 +425,313 @@ class QueryListener implements MouseListener{
 
     }
 }
+class OperatorUserListener implements MouseListener{
+    ManagerFrame workArea;
+    public OperatorUserListener(ManagerFrame workArea) {
+        this.workArea = workArea;
+    }
+    void solveDel() {
+        int cur_row = workArea.userResult.getSelectedRow();
+        if(cur_row == -1) {
+            JOptionPane.showMessageDialog(workArea, "you should choose one user!");
+            return;
+        }
+        workArea.manager.removeInformation("user",(String)workArea.userResult.getValueAt(cur_row,0));
+        workArea.clearUserResult();
+    }
+    void solveBan() {
+        int cur_row = workArea.userResult.getSelectedRow();
+        if(cur_row == -1){
+            JOptionPane.showMessageDialog(workArea,"you should choose one user!");
+            return;
+        }
+        String wait_set;
+        if("1".equals((String)workArea.userResult.getValueAt(cur_row,4)))
+            wait_set = "0";
+        else
+            wait_set = "1";
+        workArea.manager.setUserStatus((String)workArea.userResult.getValueAt(cur_row,0),wait_set);
+        workArea.clearUserResult();
+    }
+    @Override
+    public void mouseClicked(MouseEvent mouseEvent) {
+        JButton curObj = (JButton)mouseEvent.getSource();
+        if("del".equals(curObj.getText()))
+            solveDel();
+        else if("ban".equals(curObj.getText()))
+            solveBan();
+    }
 
+    @Override
+    public void mousePressed(MouseEvent mouseEvent) {
 
+    }
 
+    @Override
+    public void mouseReleased(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent mouseEvent) {
+
+    }
+}
+class QueryManagerListener implements MouseListener{
+    ManagerFrame workArea;
+    public QueryManagerListener(ManagerFrame myFrame){
+        this.workArea= myFrame;
+    }
+    class Information{
+        ArrayList<String> dataArray;
+        public Information(String...information){
+            dataArray = new ArrayList<String>();
+            for(String info:information){
+
+                dataArray.add(info);
+            }
+        }
+
+        @Override
+        public String toString() {
+            String output = null;
+            int cnt = 0;
+            for (String data : dataArray) {
+                output += cnt + data + "  ";
+                cnt++;
+            }
+            return output;
+        }
+    }
+    class UserTableModel extends AbstractTableModel {
+        private static final long serialVersionUID = 1L;
+        // 保存一个User的列表
+        private ArrayList<Information> informationArray = new ArrayList<Information>();
+        // 设置User列表, 同时通知JTabel数据对象更改, 重绘界面
+        public void setList(ArrayList<Information> informationArray) {
+            this.informationArray = informationArray;
+            int cnt = 0;
+            for(Information info:informationArray){
+                System.out.println(info);
+            }
+            System.out.println(getColumnCount()+" "+getRowCount());
+            this.fireTableDataChanged();// 同时通知JTabel数据对象更改, 重绘界面
+        }
+        public int getColumnCount() {
+            return informationArray.get(0).dataArray.size();
+        }
+        public int getRowCount() {
+            return informationArray.size();
+        }
+        // 从list中拿出rowIndex行columnIndex列显示的值
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            Information info =informationArray.get(rowIndex);
+            return info.dataArray.get(columnIndex);
+        }
+    }
+    @Override
+    public void mouseClicked(MouseEvent mouseEvent) {
+        workArea.manager.userId = workArea.managerQueryText[0].getText();
+        workArea.manager.isAdmin = workArea.managerQueryText[1].getText();
+        workArea.manager.userName = workArea.managerQueryText[2].getText();
+        workArea.manager.userSex = workArea.managerQueryText[3].getText();
+        workArea.manager.userStatus = workArea.managerQueryText[4].getText();
+        workArea.manager.userRentCount = workArea.managerQueryText[5].getText();
+        workArea.manager.userHostName = workArea.managerQueryText[6].getText();
+        String[][] data = workArea.manager.queryUser();
+        ArrayList<Information> tempArray = new ArrayList<>();
+        for(int i = 0;i < data.length;i ++){
+            Information tempInfo = new Information(data[i]);
+            tempArray.add(tempInfo);
+        }
+        UserTableModel tempModel = new UserTableModel();
+        tempModel.setList(tempArray);
+        workArea.managerResult.setModel(tempModel);
+    }
+
+    @Override
+    public void mousePressed(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent mouseEvent) {
+
+    }
+}
+class OperatorManagerListener implements MouseListener{
+    ManagerFrame workArea;
+    public OperatorManagerListener(ManagerFrame workArea) {
+        this.workArea = workArea;
+    }
+    void solveAdd(){
+        int curRow = workArea.managerResult.getSelectedRow();
+        if(curRow == -1){
+            JOptionPane.showMessageDialog(workArea,"you should choose a manager!");
+            return;
+        }
+        String tarString = (String)workArea.managerResult.getValueAt(curRow,1);
+        if("1".equals(tarString)){
+            JOptionPane.showMessageDialog(workArea,"Already an admin!");
+            return;
+        }
+        userInformation information = new userInformation();
+        information.setHostName((String)workArea.managerResult.getValueAt(curRow,6));
+        information.setName((String)workArea.managerResult.getValueAt(curRow,2));
+        PrivilegeDivision.managerPrivilegeDivision(information);
+    }
+    void solveCancel(){
+        int curRow = workArea.managerResult.getSelectedRow();
+        if(curRow == -1){
+            JOptionPane.showMessageDialog(workArea,"you should choose a user!");
+            return;
+        }
+        String tarString = (String)workArea.managerResult.getValueAt(curRow,1);
+        if("0".equals(tarString)){
+            JOptionPane.showMessageDialog(workArea,"is not an admin!");
+            return;
+        }
+        userInformation information = new userInformation();
+        information.setHostName((String)workArea.managerResult.getValueAt(curRow,6));
+        information.setName((String)workArea.managerResult.getValueAt(curRow,2));
+        PrivilegeDivision.readerPrivilegeDivision(information);
+    }
+    @Override
+    public void mouseClicked(MouseEvent mouseEvent) {
+        JButton curObj = (JButton)mouseEvent.getSource();
+        if("add".equals(curObj.getText())){
+            solveAdd();
+        }
+        else if("cancel".equals(curObj.getText())){
+            solveCancel();
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent mouseEvent) {
+
+    }
+}
+class QueryBookListener implements MouseListener{
+    ManagerFrame workArea;
+    public QueryBookListener(ManagerFrame myFrame){
+        this.workArea= myFrame;
+    }
+    class Information{
+        ArrayList<String> dataArray;
+        public Information(String...information){
+            dataArray = new ArrayList<String>();
+            for(String info:information){
+
+                dataArray.add(info);
+            }
+        }
+
+        @Override
+        public String toString() {
+            String output=null;
+            int cnt =0;
+            for(String data:dataArray){
+                output+=cnt+data+"  ";
+                cnt++;
+            }
+            return output;
+        }
+    }
+    class UserTableModel extends AbstractTableModel {
+        private static final long serialVersionUID = 1L;
+        // 保存一个User的列表
+        private ArrayList<Information> informationArray = new ArrayList<Information>();
+        // 设置User列表, 同时通知JTabel数据对象更改, 重绘界面
+        public void setList(ArrayList<Information> informationArray) {
+            this.informationArray = informationArray;
+            int cnt = 0;
+            for(Information info:informationArray){
+                System.out.println(info);
+            }
+            System.out.println(getColumnCount()+" "+getRowCount());
+            this.fireTableDataChanged();// 同时通知JTabel数据对象更改, 重绘界面
+        }
+        public int getColumnCount() {
+            return informationArray.get(0).dataArray.size();
+        }
+        public int getRowCount() {
+            return informationArray.size();
+        }
+        // 从list中拿出rowIndex行columnIndex列显示的值
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            Information info =informationArray.get(rowIndex);
+            return info.dataArray.get(columnIndex);
+        }
+    }
+    @Override
+    public void mouseClicked(MouseEvent mouseEvent) {
+        workArea.manager.queryBookID = workArea.bookQueryText[0].getText();
+        workArea.manager.queryBookName = workArea.bookQueryText[1].getText();
+        workArea.manager.queryAuthor = workArea.bookQueryText[2].getText();
+        workArea.manager.queryClassification = workArea.bookQueryText[3].getText();
+        workArea.manager.queryPress = workArea.bookQueryText[4].getText();
+        workArea.manager.queryEntyrDate = workArea.bookQueryText[5].getText();
+        workArea.manager.queryStatus = workArea.bookQueryText[6].getText();
+        String[][] data = workArea.manager.queryBook();
+        ArrayList<Information> tempArray = new ArrayList<>();
+        for(int i = 0;i < data.length;i ++){
+            Information tempInfo = new Information(data[i]);
+            tempArray.add(tempInfo);
+        }
+        UserTableModel tempModel = new UserTableModel();
+        tempModel.setList(tempArray);
+        workArea.bookResult.setModel(tempModel);
+    }
+
+    @Override
+    public void mousePressed(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent mouseEvent) {
+
+    }
+}
 

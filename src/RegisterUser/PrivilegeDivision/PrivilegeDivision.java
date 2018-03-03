@@ -11,6 +11,8 @@ import java.sql.SQLException;
 public class PrivilegeDivision {
     public static void managerPrivilegeDivision(userInformation information) {
         Connection helper = GetDBConnection.connectDB("booklibrarymanager", "root", "");
+        cancelAllPrivilege(helper,information);
+        refreshPrivilege(helper);
         setPrivilege(helper, "*.*", "ALL", information);
         refreshPrivilege(helper);
         GetDBConnection.closeCon(helper);
@@ -18,6 +20,8 @@ public class PrivilegeDivision {
     public static void readerPrivilegeDivision(userInformation information){
         Connection helper = GetDBConnection.connectDB("booklibrarymanager","root","");
         //set Privilege
+        cancelAllPrivilege(helper,information);
+        refreshPrivilege(helper);
         setPrivilege(helper,"authorinformation,bookinformation,pressinformation,classificationinformation,rootinfomation",
                 "select",information);
         String sql = "select userId from userinformation where host = ?;";
@@ -40,7 +44,7 @@ public class PrivilegeDivision {
         GetDBConnection.closeCon(helper);
     }
     static void setPrivilege(Connection con,String table,String privilege,userInformation information){
-        String str = "GRANT ? ON ? TO '?'@'%';";
+        String str = "GRANT ? ON ? TO ?@'%';";
         PreparedStatement preSql;
         try{
             preSql = con.prepareStatement(str);
@@ -62,5 +66,17 @@ public class PrivilegeDivision {
        catch (SQLException e){
            System.out.println("Refresh Privileges Error!");
        }
+    }
+    static void cancelAllPrivilege(Connection con,userInformation information){
+        String sql = "REVOKE ALL ON *.* ?@'%';";
+        PreparedStatement preSQL;
+        try{
+            preSQL = con.prepareStatement(sql);
+            preSQL.setString(1,information.hostName);
+            preSQL.execute();
+        }
+        catch (SQLException e){
+            System.out.println("Privilege Division Error!");
+        }
     }
 }
