@@ -27,9 +27,9 @@ public class Manager extends user{
     public String queryPress;
     public String queryEntyrDate;
     public String queryStatus;
-    static int AUTHOR_INFORMATION = 0;
-    static int CLASSIFICATION_INFORMATION = 1;
-    static int PRESS_INFORMATION = 2;
+    public static int AUTHOR_INFORMATION = 0;
+    public static int CLASSIFICATION_INFORMATION = 1;
+    public static int PRESS_INFORMATION = 2;
     static String CAN_USE = "1";
     static String LENT = "2";
     static String CANT_USE  = "3";

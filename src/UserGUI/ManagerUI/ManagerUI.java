@@ -7,6 +7,7 @@ import UserRelated.Manager;
 import UserRelated.Root;
 import UserRelated.user;
 import UserRelated.userInformation;
+import com.sun.codemodel.internal.JOp;
 import jdk.nashorn.internal.scripts.JO;
 
 import javax.swing.*;
@@ -174,6 +175,12 @@ class ManagerFrame extends JFrame {
         queryBookBtn.addMouseListener(queryBookListener);
         bookOptionPanel = new JPanel();
         bookTextPanel = new JPanel();
+        AddDetailListener addDetailListener = new AddDetailListener(this);
+        addDetailBtn.addMouseListener(addDetailListener);
+        OperatorBookListener operatorBookListener = new OperatorBookListener(this);
+        addBookBtn.addMouseListener(operatorBookListener);
+        delBookBtn.addMouseListener(operatorBookListener);
+        updateBookBtn.addMouseListener(operatorBookListener);
         GridLayout optionHelper = new GridLayout(BOOK_COL,1);
         GridLayout textHelper = new GridLayout(BOOK_COL,1);
         bookOptionLable = new JLabel[BOOK_COL];
@@ -198,9 +205,10 @@ class ManagerFrame extends JFrame {
         bookOperatorPanel.add(delBookBtn);
         bookOperatorPanel.add(queryBookBtn);
         bookOperatorPanel.add(addDetailBtn);
-        bookOperatorPanel.add(updateBookBtn);
+        //bookOperatorPanel.add(updateBookBtn);
         bookTempPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,bookSettingPanel,bookOperatorPanel);
         bookPanel = new JSplitPane(JSplitPane.VERTICAL_SPLIT,bookTempPanel,bookResultPanel);
+        clearBookResult();
     }
     void initManagerPanel(){
         addManagerBtn = new JButton("add");
@@ -253,6 +261,8 @@ class ManagerFrame extends JFrame {
         message = new JTextArea(10,10);
         messageHelper = new JScrollPane(message);
         sendBtn = new JButton("send");
+        MessageListen messageListen = new MessageListen(this);
+        sendBtn.addMouseListener(messageListen);
         sendBtn.setSize(1,2);
 
         JPanel blank1 = new JPanel();
@@ -331,6 +341,24 @@ class ManagerFrame extends JFrame {
         userResult = new JTable(manager.queryUser(),USER_COL_ITEM);
         validate();
     }
+    void clearUserText(){
+        String nullString = null;
+        for(int i = 0;i < USER_COL;i ++) {
+            userQueryText[i].setText(nullString);
+        }
+    }
+    void clearBookText(){
+        String nulllString = null;
+        for(int i = 0;i < BOOK_COL;i ++) {
+           bookQueryText[i].setText(nulllString);
+        }
+    }
+    void clearManagerText(){
+        String nullString = null;
+        for(int i = 0;i < USER_COL;i ++) {
+            managerQueryText[i].setText(nullString);
+        }
+    }
 }
 
 class QueryUserListener implements MouseListener{
@@ -403,6 +431,7 @@ class QueryUserListener implements MouseListener{
         UserTableModel tempModel = new UserTableModel();
         tempModel.setList(tempArray);
         workArea.userResult.setModel(tempModel);
+        workArea.clearUserText();
     }
 
     @Override
@@ -438,6 +467,7 @@ class OperatorUserListener implements MouseListener{
         }
         workArea.manager.removeInformation("user",(String)workArea.userResult.getValueAt(cur_row,0));
         workArea.clearUserResult();
+        JOptionPane.showMessageDialog(workArea,"Operator Successful!");
     }
     void solveBan() {
         int cur_row = workArea.userResult.getSelectedRow();
@@ -452,6 +482,7 @@ class OperatorUserListener implements MouseListener{
             wait_set = "1";
         workArea.manager.setUserStatus((String)workArea.userResult.getValueAt(cur_row,0),wait_set);
         workArea.clearUserResult();
+        JOptionPane.showMessageDialog(workArea,"Operator Successful!");
     }
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
@@ -460,6 +491,7 @@ class OperatorUserListener implements MouseListener{
             solveDel();
         else if("ban".equals(curObj.getText()))
             solveBan();
+        workArea.clearUserText();
     }
 
     @Override
@@ -594,6 +626,7 @@ class OperatorManagerListener implements MouseListener{
         information.setHostName((String)workArea.managerResult.getValueAt(curRow,6));
         information.setName((String)workArea.managerResult.getValueAt(curRow,2));
         PrivilegeDivision.managerPrivilegeDivision(information);
+        JOptionPane.showMessageDialog(workArea,"Operator Successful!");
     }
     void solveCancel(){
         int curRow = workArea.managerResult.getSelectedRow();
@@ -610,6 +643,7 @@ class OperatorManagerListener implements MouseListener{
         information.setHostName((String)workArea.managerResult.getValueAt(curRow,6));
         information.setName((String)workArea.managerResult.getValueAt(curRow,2));
         PrivilegeDivision.readerPrivilegeDivision(information);
+        JOptionPane.showMessageDialog(workArea,"Operator Successful!");
     }
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
@@ -620,6 +654,7 @@ class OperatorManagerListener implements MouseListener{
         else if("cancel".equals(curObj.getText())){
             solveCancel();
         }
+        workArea.clearManagerText();
     }
 
     @Override
@@ -712,6 +747,7 @@ class QueryBookListener implements MouseListener{
         UserTableModel tempModel = new UserTableModel();
         tempModel.setList(tempArray);
         workArea.bookResult.setModel(tempModel);
+        workArea.clearBookText();
     }
 
     @Override
@@ -734,4 +770,178 @@ class QueryBookListener implements MouseListener{
 
     }
 }
+class AddDetailListener implements MouseListener{
+    ManagerFrame workarea;
+    public AddDetailListener(ManagerFrame workarea){
+       this.workarea = workarea;
+    }
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        int wrongFlag = 0;
+        if(workarea.bookQueryText[2] != null) {
+            if(!workarea.manager.addNewDetailInformation(Manager.AUTHOR_INFORMATION,workarea.bookQueryText[2].getText()))
+               wrongFlag |=  1;
+        }
+        if(workarea.bookQueryText[3] != null) {
+            if(!workarea.manager.addNewDetailInformation(Manager.CLASSIFICATION_INFORMATION,workarea.bookQueryText[3].getText()))
+                wrongFlag |= 2;
+        }
+        if(workarea.bookQueryText[4] != null) {
+            if(!workarea.manager.addNewDetailInformation(Manager.PRESS_INFORMATION,workarea.bookQueryText[4].getText()))
+                wrongFlag |= 4;
+        }
+        String wrongMsg = "Wrong Operator of";
+        if((wrongFlag & 1) != 0)
+            wrongMsg += " Author";
+        if((wrongFlag & 2) != 0)
+            wrongMsg += " Classification";
+        if((wrongFlag & 4) != 0)
+            wrongMsg += " Press";
+        if(wrongFlag != 0)
+           JOptionPane.showMessageDialog(workarea,wrongMsg);
+        else
+            JOptionPane.showMessageDialog(workarea,"Operator Successful");
+    }
 
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+}
+class OperatorBookListener implements MouseListener {
+    ManagerFrame workArea;
+    public OperatorBookListener(ManagerFrame workArea) {
+        this.workArea = workArea;
+    }
+
+    void solveDel(){
+        int curRow = workArea.bookResult.getSelectedRow();
+        if(curRow == -1){
+            JOptionPane.showMessageDialog(workArea,"you should select a book!");
+            return;
+        }
+        if(workArea.manager.removeBook((String)workArea.bookResult.getValueAt(curRow,0))) {
+            JOptionPane.showMessageDialog(workArea,"operator successful!");
+            return;
+        }
+        else{
+            JOptionPane.showMessageDialog(workArea,"operator fail");
+            return;
+        }
+    }
+
+    void solveAdd(){
+        if(workArea.bookQueryText[1].getText() != null && !"".equals(workArea.bookQueryText[1].getText()) && workArea.bookQueryText[2].getText() != null && !"".equals(workArea.bookQueryText[2].getText()) && workArea.bookQueryText[3].getText() != null && !"".equals(workArea.bookQueryText[3].getText()) && workArea.bookQueryText[4].getText() != null && !"".equals(workArea.bookQueryText[4].getText())){
+            String bookname = workArea.bookQueryText[1].getText();
+            String author = workArea.bookQueryText[2].getText();
+            String classification = workArea.bookQueryText[3].getText();
+            String press = workArea.bookQueryText[4].getText();
+            if(workArea.manager.addNewBook(bookname,author,classification,press)) {
+                JOptionPane.showMessageDialog(workArea,"operator successful!");
+            }
+            else{
+                JOptionPane.showMessageDialog(workArea,"add book fail!");
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(workArea,"need more information");
+        }
+        workArea.clearBookText();
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        JButton curObj = (JButton)e.getSource();
+        if("add book".equals(curObj.getText())){
+            solveAdd();
+        }
+        else if("del".equals(curObj.getText())){
+            solveDel();
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+}
+class MessageListen implements  MouseListener{
+    ManagerFrame workArea;
+    public MessageListen(ManagerFrame workArea) {
+        this.workArea = workArea;
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        String msg = workArea.message.getText();
+        workArea.message.setText("");
+        if("".equals(msg)){
+            JOptionPane.showMessageDialog(workArea,"can't send empty message!");
+            return;
+        }
+        String userId = workArea.sendTarget.getText();
+        workArea.sendTarget.setText("");
+        if("".equals(userId)) {
+            JOptionPane.showMessageDialog(workArea,"must choose one user!");
+            return;
+        }
+        if(workArea.manager.sendMessagetoReader(userId,msg)){
+            JOptionPane.showMessageDialog(workArea,"send successful!");
+            return;
+        }
+        else{
+            JOptionPane.showMessageDialog(workArea,"send fail!");
+            return;
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+}
