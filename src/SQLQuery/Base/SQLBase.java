@@ -8,11 +8,11 @@ public class SQLBase {
     //建立connection  连接数据库
     public void   GetDBConnection(String libName,String hostname,String password){
         con = null;
-        String url ="jdbc:mysql://localhost:3306/";
+        String url ="jdbc:mysql://211.159.219.126:3306/";
         url +=libName;
         url +="?useSSL=true";
         try{
-            Class.forName("com.mysql.jbbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
         }
         catch(Exception e){}
         try{

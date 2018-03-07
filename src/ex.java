@@ -2,6 +2,10 @@ import UserRelated.Root;
 import UserRelated.user;
 import UserRelated.userInformation;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class ex {
     public static void main(String[] argv){
         java.util.Date rendDate = new java.util.Date ();
@@ -77,5 +81,22 @@ public class ex {
 //            return ;
 //        }
 //        Root.transmit(UserInformation,false);
+        user reader = new user();
+        reader.GetDBConnection("booklibrarymanager","root","HanDong85");
+        try{
+            PreparedStatement pstmt = reader.con.prepareStatement("select * from 01message");
+//            pstmt.setString(1,"01");
+//            pstmt.executeUpdate();
+//            pstmt = reader.con.prepareStatement("insert into pressinformation (?,?)");
+//            pstmt.setString(1,"03");
+//            pstmt.setString(2,"随便");
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()){
+                System.out.println(rs.getString("sendMessage"));
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
     }
 }

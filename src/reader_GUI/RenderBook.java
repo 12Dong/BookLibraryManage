@@ -8,6 +8,8 @@ import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +26,7 @@ public class RenderBook extends JPanel {
 
     }
 
-    class Information{
+    private class Information{
         ArrayList<String> dataArray;
         public Information(String...information){
             dataArray = new ArrayList<String>();
@@ -206,6 +208,7 @@ public class RenderBook extends JPanel {
                 }else
                 {
                     try{
+                        reader.userId = "1";
                         reader.rendBook(bookId);
                         JOptionPane.showMessageDialog(new JPanel(),"借书成功");
                         userTableModel.setList(list);
