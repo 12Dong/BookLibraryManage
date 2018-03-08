@@ -7,8 +7,6 @@ import UserRelated.Manager;
 import UserRelated.Root;
 import UserRelated.user;
 import UserRelated.userInformation;
-import com.sun.codemodel.internal.JOp;
-import jdk.nashorn.internal.scripts.JO;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
@@ -93,6 +91,9 @@ class ManagerFrame extends JFrame {
     JButton addManagerBtn;
     JButton delManagerBtn;
     JButton queryManagerBtn;
+    // fuck
+    final UserTableModel tempModel = new UserTableModel();
+
     public ManagerFrame(String userID,String password,boolean is_supper_manager) {
         this.is_supper_manager = is_supper_manager;
         manager = new Manager(userID,password);
@@ -151,8 +152,15 @@ class ManagerFrame extends JFrame {
         userOptionPanel.setLayout(optionHelper);
         userTextPanel.setLayout(textHelper);
         userSettingPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,userOptionPanel,userTextPanel);
-        userQueryResult = manager.queryUser();
-        userResult = new JTable(userQueryResult,USER_COL_ITEM);
+//        userQueryResult = manager.queryUser();
+//        System.out.println(userQueryResult == null);
+//        userResult = new JTable(userQueryResult,USER_COL_ITEM);
+        userResult = new JTable();
+        ArrayList<Information> list = new ArrayList<Information>();
+        list.add(new Information("等待传参","等待传参","等待传参","等待传参","等待传参","等待传参"));
+        tempModel.setList(list);
+        userResult.setModel(tempModel);
+
         userResultPanel = new JScrollPane(userResult);
         userOperatorPanel = new JPanel();
         GridLayout operatorHelper = new GridLayout(3,1);
@@ -162,6 +170,7 @@ class ManagerFrame extends JFrame {
         userOperatorPanel.add(banUserBtn);
         userTempPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,userSettingPanel,userOperatorPanel);
         userPanel = new JSplitPane(JSplitPane.VERTICAL_SPLIT,userTempPanel,userResultPanel);
+
         //userTempPanel.setDividerSize(0);
         //userPanel.setDividerSize(0);
     }
@@ -208,7 +217,7 @@ class ManagerFrame extends JFrame {
         //bookOperatorPanel.add(updateBookBtn);
         bookTempPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,bookSettingPanel,bookOperatorPanel);
         bookPanel = new JSplitPane(JSplitPane.VERTICAL_SPLIT,bookTempPanel,bookResultPanel);
-        clearBookResult();
+        //clearBookResult();
     }
     void initManagerPanel(){
         addManagerBtn = new JButton("add");
@@ -246,7 +255,7 @@ class ManagerFrame extends JFrame {
         managerOperatorPanel.add(queryManagerBtn);
         managerTempPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,managerSettingPanel,managerOperatorPanel);
         managerPanel = new JSplitPane(JSplitPane.VERTICAL_SPLIT,managerTempPanel,managerResultPanel);
-        clearManagerResult();
+//        clearManagerResult();
     }
     void initMessagePanel(){
         messagePanel = new JPanel();
@@ -320,13 +329,12 @@ class ManagerFrame extends JFrame {
         validate();
     }
     void clearBookResult(){
-        manager.queryBookID = null;
         manager.queryBookName = null;
-        manager.queryAuthor= null;
+        manager.queryAuthorName = null;
         manager.queryPressName = null;
-        manager.queryClassification = null;
-        manager.queryEntyrDate = null;
-        manager.queryStatus = null;
+//        manager.queryClassification = null;
+//        manager.queryEntyrDate = null;
+//        manager.queryStatus = null;
         bookResult = new JTable(manager.queryBook(),BOOK_COL_ITEM);
         validate();
     }
@@ -354,84 +362,89 @@ class ManagerFrame extends JFrame {
         }
     }
     void clearManagerText(){
-        String nullString = null;
+        String nullString = "";
         for(int i = 0;i < USER_COL;i ++) {
-            managerQueryText[i].setText(nullString);
+            managerQueryText[i].setText("");
         }
     }
 }
+class Information{
+    ArrayList<String> dataArray;
+    public Information(String...information){
+        dataArray = new ArrayList<String>();
+        for(String info:information){
 
+            dataArray.add(info);
+        }
+    }
+
+    @Override
+    public String toString() {
+        String output=null;
+        int cnt =0;
+        for(String data:dataArray){
+            output+=cnt+data+"  ";
+            cnt++;
+        }
+        return output;
+    }
+}
+class UserTableModel extends AbstractTableModel {
+    private static final long serialVersionUID = 1L;
+    // 保存一个User的列表
+    private ArrayList<Information> informationArray = new ArrayList<Information>();
+
+    // 设置User列表, 同时通知JTabel数据对象更改, 重绘界面
+    public void setList(ArrayList<Information> informationArray) {
+        this.informationArray = informationArray;
+        int cnt = 0;
+        for (Information info : informationArray) {
+            System.out.println(info);
+        }
+        System.out.println(getColumnCount() + " " + getRowCount());
+        this.fireTableDataChanged();// 同时通知JTabel数据对象更改, 重绘界面
+    }
+
+    public int getColumnCount() {
+        return informationArray.get(0).dataArray.size();
+    }
+
+    public int getRowCount() {
+        return informationArray.size();
+    }
+
+    // 从list中拿出rowIndex行columnIndex列显示的值
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        Information info = informationArray.get(rowIndex);
+        return info.dataArray.get(columnIndex);
+    }
+}
 class QueryUserListener implements MouseListener{
     ManagerFrame workArea;
     public QueryUserListener(ManagerFrame myFrame){
         this.workArea= myFrame;
     }
-    class Information{
-        ArrayList<String> dataArray;
-        public Information(String...information){
-            dataArray = new ArrayList<String>();
-            for(String info:information){
 
-                dataArray.add(info);
-            }
-        }
-
-        @Override
-        public String toString() {
-            String output=null;
-            int cnt =0;
-            for(String data:dataArray){
-                output+=cnt+data+"  ";
-                cnt++;
-            }
-            return output;
-        }
-    }
-    class UserTableModel extends AbstractTableModel {
-        private static final long serialVersionUID = 1L;
-        // 保存一个User的列表
-        private ArrayList<Information> informationArray = new ArrayList<Information>();
-        // 设置User列表, 同时通知JTabel数据对象更改, 重绘界面
-        public void setList(ArrayList<Information> informationArray) {
-            this.informationArray = informationArray;
-            int cnt = 0;
-            for(Information info:informationArray){
-                System.out.println(info);
-            }
-            System.out.println(getColumnCount()+" "+getRowCount());
-            this.fireTableDataChanged();// 同时通知JTabel数据对象更改, 重绘界面
-        }
-        public int getColumnCount() {
-            return informationArray.get(0).dataArray.size();
-        }
-        public int getRowCount() {
-            return informationArray.size();
-        }
-        // 从list中拿出rowIndex行columnIndex列显示的值
-        public Object getValueAt(int rowIndex, int columnIndex) {
-            Information info =informationArray.get(rowIndex);
-            return info.dataArray.get(columnIndex);
-        }
-    }
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
-        workArea.manager.userId = workArea.userQueryText[0].getText();
-        workArea.manager.isAdmin = workArea.userQueryText[1].getText();
-        workArea.manager.userName = workArea.userQueryText[2].getText();
-        workArea.manager.userSex = workArea.userQueryText[3].getText();
-        workArea.manager.userStatus = workArea.userQueryText[4].getText();
-        workArea.manager.userRentCount = workArea.userQueryText[5].getText();
-        workArea.manager.userHostName = workArea.userQueryText[6].getText();
+        workArea.manager.userid = workArea.userQueryText[0].getText().trim();
+        workArea.manager.isAdmin = workArea.userQueryText[1].getText().trim();
+        workArea.manager.userName = workArea.userQueryText[2].getText().trim();
+        workArea.manager.userSex = workArea.userQueryText[3].getText().trim();
+        workArea.manager.userStatus = workArea.userQueryText[4].getText().trim();
+        workArea.manager.userRentCount = workArea.userQueryText[5].getText().trim();
+        workArea.manager.userHostName = workArea.userQueryText[6].getText().trim();
         String[][] data = workArea.manager.queryUser();
         ArrayList<Information> tempArray = new ArrayList<>();
         for(int i = 0;i < data.length;i ++){
             Information tempInfo = new Information(data[i]);
             tempArray.add(tempInfo);
         }
-        UserTableModel tempModel = new UserTableModel();
-        tempModel.setList(tempArray);
-        workArea.userResult.setModel(tempModel);
-        workArea.clearUserText();
+
+        workArea.tempModel.setList(tempArray);
+
+
+        //workArea.clearUserText();
     }
 
     @Override
@@ -461,6 +474,7 @@ class OperatorUserListener implements MouseListener{
     }
     void solveDel() {
         int cur_row = workArea.userResult.getSelectedRow();
+
         if(cur_row == -1) {
             JOptionPane.showMessageDialog(workArea, "you should choose one user!");
             return;
@@ -471,6 +485,9 @@ class OperatorUserListener implements MouseListener{
     }
     void solveBan() {
         int cur_row = workArea.userResult.getSelectedRow();
+        System.out.println("Row "+workArea.tempModel.getRowCount());
+//        System.out.println(workArea.userResult==null);
+//        String bookId = (String)workArea.userResult.getValueAt(1,0);
         if(cur_row == -1){
             JOptionPane.showMessageDialog(workArea,"you should choose one user!");
             return;
@@ -487,10 +504,21 @@ class OperatorUserListener implements MouseListener{
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
         JButton curObj = (JButton)mouseEvent.getSource();
+        System.out.println("JButton "+curObj.getText());
+        int count=workArea.userResult.getSelectedRow();
+        for(int i=0;i<workArea.userResult.getRowCount();i++){
+            for(int j=0;j<workArea.userResult.getColumnCount();j++){
+                String str=workArea.userResult.getValueAt(i, j).toString();
+                System.out.print(str+"   ");
+            }
+            System.out.println();
+        }
         if("del".equals(curObj.getText()))
             solveDel();
-        else if("ban".equals(curObj.getText()))
+        else if("ban".equals(curObj.getText())){
+            System.out.println("This is ban ");
             solveBan();
+        }
         workArea.clearUserText();
     }
 
@@ -731,13 +759,12 @@ class QueryBookListener implements MouseListener{
     }
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
-        workArea.manager.queryBookID = workArea.bookQueryText[0].getText();
-        workArea.manager.queryBookName = workArea.bookQueryText[1].getText();
-        workArea.manager.queryAuthor = workArea.bookQueryText[2].getText();
-        workArea.manager.queryClassification = workArea.bookQueryText[3].getText();
-        workArea.manager.queryPress = workArea.bookQueryText[4].getText();
-        workArea.manager.queryEntyrDate = workArea.bookQueryText[5].getText();
-        workArea.manager.queryStatus = workArea.bookQueryText[6].getText();
+        workArea.manager.queryBookName = workArea.bookQueryText[1].getText().trim();
+        workArea.manager.queryAuthorName = workArea.bookQueryText[2].getText().trim();
+        //workArea.manager.queryClassification = workArea.bookQueryText[3].getText();
+        workArea.manager.queryPressName = workArea.bookQueryText[4].getText().trim();
+        //workArea.manager.queryEntyrDate = workArea.bookQueryText[5].getText();
+        //workArea.manager.queryStatus = workArea.bookQueryText[6].getText();
         String[][] data = workArea.manager.queryBook();
         ArrayList<Information> tempArray = new ArrayList<>();
         for(int i = 0;i < data.length;i ++){

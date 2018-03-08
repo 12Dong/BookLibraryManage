@@ -1,21 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/src/UserRelated/Manager.java" line="327" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="00c6e917-f6b2-4f5f-8709-30e4529a0cf3" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/preferred-vcs.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_45_bin.xml" afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_45_bin.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/RegisterUser/MailCreator/MailCreator.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/RegisterUser/PrivilegeDivision/PrivilegeDivision.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/SQLQuery/Base/SQLBase.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/SQLQuery/Connect/GetDBConnection.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/UserGUI/ManagerUI/ManagerFrame.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/UserGUI/ManagerUI/ManagerUI.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/UserRelated/Manager.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/UserRelated/Root.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/UserRelated/user.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/UserRelated/userInformation.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/ex.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/UserGUI/ManagerUI/OperatorUserListener.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/UserGUI/ManagerUI/QueryUserListener$Information.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/UserGUI/ManagerUI/QueryUserListener$UserTableModel.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/UserGUI/ManagerUI/QueryUserListener.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/reader_GUI/Communication.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/reader_GUI/Communication.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/reader_GUI/MyFrame.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/reader_GUI/MyFrame.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/reader_GUI/RenderBook$1.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/reader_GUI/RenderBook$1.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/reader_GUI/RenderBook$2.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/reader_GUI/RenderBook$2.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/reader_GUI/RenderBook$Information.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/reader_GUI/RenderBook$Information.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/reader_GUI/RenderBook$UserTableModel.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/reader_GUI/RenderBook$UserTableModel.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/reader_GUI/RenderBook.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/reader_GUI/RenderBook.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/reader_GUI/ReturnBook.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/reader_GUI/ReturnBook.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/reader_GUI/User.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/reader_GUI/User.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/reader_GUI/UserTableModel.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/reader_GUI/UserTableModel.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/reader_GUI/main.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/reader_GUI/main.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/reader_GUI/userjtable$1.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/reader_GUI/userjtable$1.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/reader_GUI/userjtable.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/reader_GUI/userjtable.class" />
+      <change beforePath="$PROJECT_DIR$/src/SQLQuery/Connect/GetDBConnection.java" afterPath="$PROJECT_DIR$/src/SQLQuery/Connect/GetDBConnection.java" />
       <change beforePath="$PROJECT_DIR$/src/UserGUI/ManagerUI/ManagerUI.java" afterPath="$PROJECT_DIR$/src/UserGUI/ManagerUI/ManagerUI.java" />
       <change beforePath="$PROJECT_DIR$/src/UserRelated/Manager.java" afterPath="$PROJECT_DIR$/src/UserRelated/Manager.java" />
     </list>
@@ -33,83 +43,69 @@
       <file leaf-file-name="ManagerUI.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/UserGUI/ManagerUI/ManagerUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="12" column="20" lean-forward="false" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
+            <state relative-caret-position="697">
+              <caret line="451" column="0" lean-forward="true" selection-start-line="451" selection-start-column="0" selection-end-line="451" selection-end-column="0" />
               <folding>
-                <element signature="e#710#711#0" expanded="true" />
-                <element signature="e#751#752#0" expanded="true" />
-                <element signature="class#ManagerFrame#0" expanded="false" />
-                <element signature="method#ManagerFrame#0;class#ManagerFrame#0" expanded="false" />
-                <element signature="method#init#0;class#ManagerFrame#0" expanded="false" />
-                <element signature="method#initUserPanel#0;class#ManagerFrame#0" expanded="false" />
-                <element signature="e#6037#6071#0" expanded="false" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#631#632#0" expanded="true" />
+                <element signature="e#672#673#0" expanded="true" />
+                <element signature="e#5632#5645#0" expanded="true" />
                 <element signature="method#initBookPanel#0;class#ManagerFrame#0" expanded="false" />
-                <element signature="method#initManagerPanel#0;class#ManagerFrame#0" expanded="false" />
-                <element signature="method#clearUserResult#0;class#ManagerFrame#0" expanded="false" />
+                <element signature="method#initMessagePanel#0;class#ManagerFrame#0" expanded="false" />
                 <element signature="method#clearBookResult#0;class#ManagerFrame#0" expanded="false" />
-                <element signature="method#clearManagerResult#0;class#ManagerFrame#0" expanded="false" />
                 <element signature="method#clearUserText#0;class#ManagerFrame#0" expanded="false" />
                 <element signature="method#clearBookText#0;class#ManagerFrame#0" expanded="false" />
                 <element signature="method#clearManagerText#0;class#ManagerFrame#0" expanded="false" />
-                <element signature="class#QueryUserListener#0" expanded="false" />
-                <element signature="e#14484#14485#0" expanded="true" />
-                <element signature="e#14522#14523#0" expanded="true" />
-                <element signature="e#15760#15761#0" expanded="true" />
-                <element signature="e#15831#15832#0" expanded="true" />
-                <element signature="e#15866#15867#0" expanded="true" />
-                <element signature="e#15920#15921#0" expanded="true" />
-                <element signature="method#mouseClicked#0;class#QueryUserListener#0" expanded="false" />
-                <element signature="class#OperatorUserListener#0" expanded="false" />
-                <element signature="method#solveBan#0;class#OperatorUserListener#0" expanded="false" />
+                <element signature="e#15278#15291#0" expanded="true" />
+                <element signature="e#15743#15744#0" expanded="true" />
+                <element signature="e#15806#15807#0" expanded="true" />
+                <element signature="e#15838#15839#0" expanded="true" />
+                <element signature="e#15884#15885#0" expanded="true" />
+                <element signature="e#16232#16233#0" expanded="true" />
+                <element signature="e#16270#16271#0" expanded="true" />
+                <element signature="method#solveDel#0;class#OperatorUserListener#0" expanded="false" />
                 <element signature="method#mouseClicked#0;class#OperatorUserListener#0" expanded="false" />
                 <element signature="method#mousePressed#0;class#OperatorUserListener#0" expanded="false" />
                 <element signature="method#mouseReleased#0;class#OperatorUserListener#0" expanded="false" />
                 <element signature="method#mouseEntered#0;class#OperatorUserListener#0" expanded="false" />
                 <element signature="method#mouseExited#0;class#OperatorUserListener#0" expanded="false" />
                 <element signature="class#QueryManagerListener#0" expanded="false" />
-                <element signature="e#19475#19476#0" expanded="true" />
-                <element signature="e#19513#19514#0" expanded="true" />
+                <element signature="e#20222#20223#0" expanded="true" />
+                <element signature="e#20260#20261#0" expanded="true" />
                 <element signature="class#UserTableModel#0;class#QueryManagerListener#0" expanded="false" />
-                <element signature="e#20764#20765#0" expanded="true" />
-                <element signature="e#20835#20836#0" expanded="true" />
-                <element signature="e#20870#20871#0" expanded="true" />
-                <element signature="e#20924#20925#0" expanded="true" />
+                <element signature="e#21012#21025#0" expanded="true" />
+                <element signature="e#21511#21512#0" expanded="true" />
+                <element signature="e#21582#21583#0" expanded="true" />
+                <element signature="e#21617#21618#0" expanded="true" />
+                <element signature="e#21671#21672#0" expanded="true" />
                 <element signature="method#mouseClicked#0;class#QueryManagerListener#0" expanded="false" />
                 <element signature="class#OperatorManagerListener#0" expanded="false" />
-                <element signature="e#22645#22646#0" expanded="true" />
-                <element signature="e#22685#22686#0" expanded="true" />
+                <element signature="e#23392#23393#0" expanded="true" />
+                <element signature="e#23432#23433#0" expanded="true" />
                 <element signature="method#solveAdd#0;class#OperatorManagerListener#0" expanded="false" />
                 <element signature="method#solveCancel#0;class#OperatorManagerListener#0" expanded="false" />
                 <element signature="method#mouseClicked#0;class#OperatorManagerListener#0" expanded="false" />
                 <element signature="class#QueryBookListener#0" expanded="false" />
-                <element signature="e#25080#25081#0" expanded="true" />
-                <element signature="e#25118#25119#0" expanded="true" />
-                <element signature="e#26356#26357#0" expanded="true" />
-                <element signature="e#26427#26428#0" expanded="true" />
-                <element signature="e#26462#26463#0" expanded="true" />
-                <element signature="e#26516#26517#0" expanded="true" />
+                <element signature="class#Information#0;class#QueryBookListener#0" expanded="false" />
+                <element signature="class#UserTableModel#0;class#QueryBookListener#0" expanded="false" />
+                <element signature="e#26604#26617#0" expanded="true" />
+                <element signature="e#27103#27104#0" expanded="true" />
+                <element signature="e#27174#27175#0" expanded="true" />
+                <element signature="e#27209#27210#0" expanded="true" />
+                <element signature="e#27263#27264#0" expanded="true" />
+                <element signature="method#mouseClicked#0;class#QueryBookListener#0" expanded="false" />
                 <element signature="class#AddDetailListener#0" expanded="false" />
-                <element signature="e#28260#28261#0" expanded="true" />
-                <element signature="e#28299#28300#0" expanded="true" />
+                <element signature="e#28966#28967#0" expanded="true" />
+                <element signature="e#29005#29006#0" expanded="true" />
                 <element signature="method#mouseClicked#0;class#AddDetailListener#0" expanded="false" />
                 <element signature="class#OperatorBookListener#0" expanded="false" />
-                <element signature="e#29876#29877#0" expanded="true" />
-                <element signature="e#29916#29917#0" expanded="true" />
+                <element signature="e#30582#30583#0" expanded="true" />
+                <element signature="e#30622#30623#0" expanded="true" />
                 <element signature="class#MessageListen#0" expanded="false" />
-                <element signature="e#32254#32255#0" expanded="true" />
-                <element signature="e#32294#32295#0" expanded="true" />
+                <element signature="e#32960#32961#0" expanded="true" />
+                <element signature="e#33000#33001#0" expanded="true" />
                 <element signature="method#mouseClicked#0;class#MessageListen#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="userInformation.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/UserRelated/userInformation.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" column="21" lean-forward="false" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -117,8 +113,43 @@
       <file leaf-file-name="user.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/UserRelated/user.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="110" column="83" lean-forward="false" selection-start-line="110" selection-start-column="83" selection-end-line="110" selection-end-column="83" />
+            <state relative-caret-position="421">
+              <caret line="113" column="17" lean-forward="false" selection-start-line="113" selection-start-column="17" selection-end-line="113" selection-end-column="17" />
+              <folding>
+                <element signature="method#queryBook#0;class#user#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Manager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UserRelated/Manager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="250">
+              <caret line="246" column="37" lean-forward="false" selection-start-line="246" selection-start-column="37" selection-end-line="246" selection-end-column="37" />
+              <folding>
+                <element signature="initializer##0;class#Manager#0" expanded="false" />
+                <element signature="method#queryInformation#0;class#Manager#0" expanded="false" />
+                <element signature="method#removeInformation#0;class#Manager#0" expanded="false" />
+                <element signature="method#addNewDetailInformation#0;class#Manager#0" expanded="false" />
+                <element signature="method#removeDetailInformation#0;class#Manager#0" expanded="false" />
+                <element signature="method#addNewBook#0;class#Manager#0" expanded="false" />
+                <element signature="method#updateBookStatus#0;class#Manager#0" expanded="false" />
+                <element signature="method#removeBook#0;class#Manager#0" expanded="false" />
+                <element signature="method#sendMessagetoReader#0;class#Manager#0" expanded="false" />
+                <element signature="method#queryUser#0;class#Manager#0" expanded="false" />
+                <element signature="method#queryBook#0;class#Manager#0" expanded="false" />
+                <marker date="1520443863044" expanded="true" signature="11695:11875" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Integer.java" pinned="false" current-in-tab="false">
+        <entry file="jar://F:/Java/jdk/lib/src.zip!/java.base/java/lang/Integer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="172">
+              <caret line="769" column="0" lean-forward="false" selection-start-line="769" selection-start-column="0" selection-end-line="769" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -137,46 +168,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Manager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/UserRelated/Manager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="157" column="24" lean-forward="true" selection-start-line="157" selection-start-column="24" selection-end-line="157" selection-end-column="24" />
-              <folding>
-                <element signature="initializer##0;class#Manager#0" expanded="false" />
-                <element signature="method#queryInformation#0;class#Manager#0" expanded="false" />
-                <element signature="method#removeInformation#0;class#Manager#0" expanded="false" />
-                <element signature="method#addNewDetailInformation#0;class#Manager#0" expanded="false" />
-                <element signature="method#removeDetailInformation#0;class#Manager#0" expanded="false" />
-                <element signature="method#addNewBook#0;class#Manager#0" expanded="false" />
-                <element signature="method#updateBookStatus#0;class#Manager#0" expanded="false" />
-                <element signature="method#removeBook#0;class#Manager#0" expanded="false" />
-                <element signature="method#setUserStatus#0;class#Manager#0" expanded="false" />
-                <element signature="method#queryUser#0;class#Manager#0" expanded="false" />
-                <element signature="method#queryBook#0;class#Manager#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PrivilegeDivision.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/RegisterUser/PrivilegeDivision/PrivilegeDivision.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="19" column="75" lean-forward="true" selection-start-line="19" selection-start-column="75" selection-end-line="19" selection-end-column="75" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#managerPrivilegeDivision#0;class#PrivilegeDivision#0" expanded="false" />
-                <element signature="method#readerPrivilegeDivision#0;class#PrivilegeDivision#0" expanded="false" />
-                <element signature="method#setPrivilege#0;class#PrivilegeDivision#0" expanded="false" />
-                <element signature="method#refreshPrivilege#0;class#PrivilegeDivision#0" expanded="false" />
-                <element signature="method#cancelAllPrivilege#0;class#PrivilegeDivision#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>queryUser</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -190,8 +187,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/RegisterUser/PrivilegeDivision/PrivilegeDivision.java" />
-        <option value="$PROJECT_DIR$/src/UserRelated/Manager.java" />
+        <option value="$PROJECT_DIR$/src/SQLQuery/Connect/GetDBConnection.java" />
         <option value="$PROJECT_DIR$/src/UserGUI/ManagerUI/ManagerUI.java" />
+        <option value="$PROJECT_DIR$/src/UserRelated/Manager.java" />
       </list>
     </option>
   </component>
@@ -216,10 +214,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -236,19 +230,43 @@
               <item name="BookLibraryManage" type="b2602c69:ProjectViewProjectNode" />
               <item name="BookLibraryManage" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="SQLQuery" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BookLibraryManage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BookLibraryManage" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="SQLQuery" type="462c0819:PsiDirectoryNode" />
+              <item name="Connect" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BookLibraryManage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BookLibraryManage" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="ManagerUI" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BookLibraryManage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BookLibraryManage" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="UserRelated" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$USER_HOME$/桌面/jdk-9.0.1/lib/mysql-connector-java-5.1.45-bin.jar!/" />
+    <property name="last_opened_file_path" value="F:/Java/jdk/lib/mysql-connector-java-5.1.45-bin.jar!/" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -387,27 +405,28 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32873806" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32873806" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Learn" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997879" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="SFDX" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -416,9 +435,7 @@
       <window_info id="Execute Anonymous" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Salesforce" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Log Manager" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -427,7 +444,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="8" />
+      <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -437,68 +454,197 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#710#711#0" expanded="true" />
-            <element signature="e#751#752#0" expanded="true" />
-            <element signature="class#ManagerFrame#0" expanded="false" />
-            <element signature="method#ManagerFrame#0;class#ManagerFrame#0" expanded="false" />
-            <element signature="method#init#0;class#ManagerFrame#0" expanded="false" />
-            <element signature="method#initUserPanel#0;class#ManagerFrame#0" expanded="false" />
-            <element signature="e#6037#6071#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#631#632#0" expanded="true" />
+            <element signature="e#672#673#0" expanded="true" />
+            <element signature="e#5632#5645#0" expanded="true" />
             <element signature="method#initBookPanel#0;class#ManagerFrame#0" expanded="false" />
-            <element signature="method#initManagerPanel#0;class#ManagerFrame#0" expanded="false" />
-            <element signature="method#clearUserResult#0;class#ManagerFrame#0" expanded="false" />
+            <element signature="method#initMessagePanel#0;class#ManagerFrame#0" expanded="false" />
             <element signature="method#clearBookResult#0;class#ManagerFrame#0" expanded="false" />
-            <element signature="method#clearManagerResult#0;class#ManagerFrame#0" expanded="false" />
             <element signature="method#clearUserText#0;class#ManagerFrame#0" expanded="false" />
             <element signature="method#clearBookText#0;class#ManagerFrame#0" expanded="false" />
             <element signature="method#clearManagerText#0;class#ManagerFrame#0" expanded="false" />
-            <element signature="class#QueryUserListener#0" expanded="false" />
-            <element signature="e#14484#14485#0" expanded="true" />
-            <element signature="e#14522#14523#0" expanded="true" />
-            <element signature="e#15760#15761#0" expanded="true" />
-            <element signature="e#15831#15832#0" expanded="true" />
-            <element signature="e#15866#15867#0" expanded="true" />
-            <element signature="e#15920#15921#0" expanded="true" />
-            <element signature="method#mouseClicked#0;class#QueryUserListener#0" expanded="false" />
-            <element signature="class#OperatorUserListener#0" expanded="false" />
-            <element signature="method#solveBan#0;class#OperatorUserListener#0" expanded="false" />
+            <element signature="e#15278#15291#0" expanded="true" />
+            <element signature="e#15743#15744#0" expanded="true" />
+            <element signature="e#15806#15807#0" expanded="true" />
+            <element signature="e#15838#15839#0" expanded="true" />
+            <element signature="e#15884#15885#0" expanded="true" />
+            <element signature="e#16232#16233#0" expanded="true" />
+            <element signature="e#16270#16271#0" expanded="true" />
+            <element signature="method#solveDel#0;class#OperatorUserListener#0" expanded="false" />
             <element signature="method#mouseClicked#0;class#OperatorUserListener#0" expanded="false" />
             <element signature="method#mousePressed#0;class#OperatorUserListener#0" expanded="false" />
             <element signature="method#mouseReleased#0;class#OperatorUserListener#0" expanded="false" />
             <element signature="method#mouseEntered#0;class#OperatorUserListener#0" expanded="false" />
             <element signature="method#mouseExited#0;class#OperatorUserListener#0" expanded="false" />
             <element signature="class#QueryManagerListener#0" expanded="false" />
-            <element signature="e#19475#19476#0" expanded="true" />
-            <element signature="e#19513#19514#0" expanded="true" />
+            <element signature="e#20222#20223#0" expanded="true" />
+            <element signature="e#20260#20261#0" expanded="true" />
             <element signature="class#UserTableModel#0;class#QueryManagerListener#0" expanded="false" />
-            <element signature="e#20764#20765#0" expanded="true" />
-            <element signature="e#20835#20836#0" expanded="true" />
-            <element signature="e#20870#20871#0" expanded="true" />
-            <element signature="e#20924#20925#0" expanded="true" />
+            <element signature="e#21012#21025#0" expanded="true" />
+            <element signature="e#21511#21512#0" expanded="true" />
+            <element signature="e#21582#21583#0" expanded="true" />
+            <element signature="e#21617#21618#0" expanded="true" />
+            <element signature="e#21671#21672#0" expanded="true" />
             <element signature="method#mouseClicked#0;class#QueryManagerListener#0" expanded="false" />
             <element signature="class#OperatorManagerListener#0" expanded="false" />
-            <element signature="e#22645#22646#0" expanded="true" />
-            <element signature="e#22685#22686#0" expanded="true" />
+            <element signature="e#23392#23393#0" expanded="true" />
+            <element signature="e#23432#23433#0" expanded="true" />
             <element signature="method#solveAdd#0;class#OperatorManagerListener#0" expanded="false" />
             <element signature="method#solveCancel#0;class#OperatorManagerListener#0" expanded="false" />
             <element signature="method#mouseClicked#0;class#OperatorManagerListener#0" expanded="false" />
             <element signature="class#QueryBookListener#0" expanded="false" />
-            <element signature="e#25080#25081#0" expanded="true" />
-            <element signature="e#25118#25119#0" expanded="true" />
-            <element signature="e#26356#26357#0" expanded="true" />
-            <element signature="e#26427#26428#0" expanded="true" />
-            <element signature="e#26462#26463#0" expanded="true" />
-            <element signature="e#26516#26517#0" expanded="true" />
+            <element signature="class#Information#0;class#QueryBookListener#0" expanded="false" />
+            <element signature="class#UserTableModel#0;class#QueryBookListener#0" expanded="false" />
+            <element signature="e#26604#26617#0" expanded="true" />
+            <element signature="e#27103#27104#0" expanded="true" />
+            <element signature="e#27174#27175#0" expanded="true" />
+            <element signature="e#27209#27210#0" expanded="true" />
+            <element signature="e#27263#27264#0" expanded="true" />
+            <element signature="method#mouseClicked#0;class#QueryBookListener#0" expanded="false" />
             <element signature="class#AddDetailListener#0" expanded="false" />
-            <element signature="e#28260#28261#0" expanded="true" />
-            <element signature="e#28299#28300#0" expanded="true" />
+            <element signature="e#28966#28967#0" expanded="true" />
+            <element signature="e#29005#29006#0" expanded="true" />
             <element signature="method#mouseClicked#0;class#AddDetailListener#0" expanded="false" />
             <element signature="class#OperatorBookListener#0" expanded="false" />
-            <element signature="e#29876#29877#0" expanded="true" />
-            <element signature="e#29916#29917#0" expanded="true" />
+            <element signature="e#30582#30583#0" expanded="true" />
+            <element signature="e#30622#30623#0" expanded="true" />
             <element signature="class#MessageListen#0" expanded="false" />
-            <element signature="e#32254#32255#0" expanded="true" />
-            <element signature="e#32294#32295#0" expanded="true" />
+            <element signature="e#32960#32961#0" expanded="true" />
+            <element signature="e#33000#33001#0" expanded="true" />
+            <element signature="method#mouseClicked#0;class#MessageListen#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserRelated/userInformation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="21" lean-forward="false" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserRelated/user.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2090">
+          <caret line="110" column="83" lean-forward="false" selection-start-line="110" selection-start-column="83" selection-end-line="110" selection-end-column="83" />
+          <folding>
+            <element signature="method#queryBook#0;class#user#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserRelated/Root.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1349">
+          <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+          <folding>
+            <element signature="method#transmit#0;class#Root#0" expanded="false" />
+            <element signature="method#getNextId#0;class#Root#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserRelated/Manager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2983">
+          <caret line="157" column="24" lean-forward="true" selection-start-line="157" selection-start-column="24" selection-end-line="157" selection-end-column="24" />
+          <folding>
+            <element signature="initializer##0;class#Manager#0" expanded="false" />
+            <element signature="method#queryInformation#0;class#Manager#0" expanded="false" />
+            <element signature="method#removeInformation#0;class#Manager#0" expanded="false" />
+            <element signature="method#addNewDetailInformation#0;class#Manager#0" expanded="false" />
+            <element signature="method#removeDetailInformation#0;class#Manager#0" expanded="false" />
+            <element signature="method#addNewBook#0;class#Manager#0" expanded="false" />
+            <element signature="method#updateBookStatus#0;class#Manager#0" expanded="false" />
+            <element signature="method#removeBook#0;class#Manager#0" expanded="false" />
+            <element signature="method#sendMessagetoReader#0;class#Manager#0" expanded="false" />
+            <element signature="method#queryUser#0;class#Manager#0" expanded="false" />
+            <element signature="method#queryBook#0;class#Manager#0" expanded="false" />
+            <marker date="1520443863044" expanded="true" signature="11695:11875" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/RegisterUser/PrivilegeDivision/PrivilegeDivision.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="19" column="75" lean-forward="false" selection-start-line="19" selection-start-column="75" selection-end-line="19" selection-end-column="75" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="method#managerPrivilegeDivision#0;class#PrivilegeDivision#0" expanded="false" />
+            <element signature="method#readerPrivilegeDivision#0;class#PrivilegeDivision#0" expanded="false" />
+            <element signature="method#setPrivilege#0;class#PrivilegeDivision#0" expanded="false" />
+            <element signature="method#refreshPrivilege#0;class#PrivilegeDivision#0" expanded="false" />
+            <element signature="method#cancelAllPrivilege#0;class#PrivilegeDivision#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserGUI/ManagerUI/ManagerUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#631#632#0" expanded="true" />
+            <element signature="e#672#673#0" expanded="true" />
+            <element signature="e#5632#5645#0" expanded="true" />
+            <element signature="method#initBookPanel#0;class#ManagerFrame#0" expanded="false" />
+            <element signature="method#initMessagePanel#0;class#ManagerFrame#0" expanded="false" />
+            <element signature="method#clearBookResult#0;class#ManagerFrame#0" expanded="false" />
+            <element signature="method#clearUserText#0;class#ManagerFrame#0" expanded="false" />
+            <element signature="method#clearBookText#0;class#ManagerFrame#0" expanded="false" />
+            <element signature="method#clearManagerText#0;class#ManagerFrame#0" expanded="false" />
+            <element signature="e#15278#15291#0" expanded="true" />
+            <element signature="e#15743#15744#0" expanded="true" />
+            <element signature="e#15806#15807#0" expanded="true" />
+            <element signature="e#15838#15839#0" expanded="true" />
+            <element signature="e#15884#15885#0" expanded="true" />
+            <element signature="e#16232#16233#0" expanded="true" />
+            <element signature="e#16270#16271#0" expanded="true" />
+            <element signature="method#solveDel#0;class#OperatorUserListener#0" expanded="false" />
+            <element signature="method#mouseClicked#0;class#OperatorUserListener#0" expanded="false" />
+            <element signature="method#mousePressed#0;class#OperatorUserListener#0" expanded="false" />
+            <element signature="method#mouseReleased#0;class#OperatorUserListener#0" expanded="false" />
+            <element signature="method#mouseEntered#0;class#OperatorUserListener#0" expanded="false" />
+            <element signature="method#mouseExited#0;class#OperatorUserListener#0" expanded="false" />
+            <element signature="class#QueryManagerListener#0" expanded="false" />
+            <element signature="e#20222#20223#0" expanded="true" />
+            <element signature="e#20260#20261#0" expanded="true" />
+            <element signature="class#UserTableModel#0;class#QueryManagerListener#0" expanded="false" />
+            <element signature="e#21012#21025#0" expanded="true" />
+            <element signature="e#21511#21512#0" expanded="true" />
+            <element signature="e#21582#21583#0" expanded="true" />
+            <element signature="e#21617#21618#0" expanded="true" />
+            <element signature="e#21671#21672#0" expanded="true" />
+            <element signature="method#mouseClicked#0;class#QueryManagerListener#0" expanded="false" />
+            <element signature="class#OperatorManagerListener#0" expanded="false" />
+            <element signature="e#23392#23393#0" expanded="true" />
+            <element signature="e#23432#23433#0" expanded="true" />
+            <element signature="method#solveAdd#0;class#OperatorManagerListener#0" expanded="false" />
+            <element signature="method#solveCancel#0;class#OperatorManagerListener#0" expanded="false" />
+            <element signature="method#mouseClicked#0;class#OperatorManagerListener#0" expanded="false" />
+            <element signature="class#QueryBookListener#0" expanded="false" />
+            <element signature="class#Information#0;class#QueryBookListener#0" expanded="false" />
+            <element signature="class#UserTableModel#0;class#QueryBookListener#0" expanded="false" />
+            <element signature="e#26604#26617#0" expanded="true" />
+            <element signature="e#27103#27104#0" expanded="true" />
+            <element signature="e#27174#27175#0" expanded="true" />
+            <element signature="e#27209#27210#0" expanded="true" />
+            <element signature="e#27263#27264#0" expanded="true" />
+            <element signature="method#mouseClicked#0;class#QueryBookListener#0" expanded="false" />
+            <element signature="class#AddDetailListener#0" expanded="false" />
+            <element signature="e#28966#28967#0" expanded="true" />
+            <element signature="e#29005#29006#0" expanded="true" />
+            <element signature="method#mouseClicked#0;class#AddDetailListener#0" expanded="false" />
+            <element signature="class#OperatorBookListener#0" expanded="false" />
+            <element signature="e#30582#30583#0" expanded="true" />
+            <element signature="e#30622#30623#0" expanded="true" />
+            <element signature="class#MessageListen#0" expanded="false" />
+            <element signature="e#32960#32961#0" expanded="true" />
+            <element signature="e#33000#33001#0" expanded="true" />
             <element signature="method#mouseClicked#0;class#MessageListen#0" expanded="false" />
           </folding>
         </state>
@@ -516,7 +662,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1672">
           <caret line="110" column="83" lean-forward="false" selection-start-line="110" selection-start-column="83" selection-end-line="110" selection-end-column="83" />
-          <folding />
+          <folding>
+            <element signature="method#queryBook#0;class#user#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -544,9 +692,10 @@
             <element signature="method#addNewBook#0;class#Manager#0" expanded="false" />
             <element signature="method#updateBookStatus#0;class#Manager#0" expanded="false" />
             <element signature="method#removeBook#0;class#Manager#0" expanded="false" />
-            <element signature="method#setUserStatus#0;class#Manager#0" expanded="false" />
+            <element signature="method#sendMessagetoReader#0;class#Manager#0" expanded="false" />
             <element signature="method#queryUser#0;class#Manager#0" expanded="false" />
             <element signature="method#queryBook#0;class#Manager#0" expanded="false" />
+            <marker date="1520443863044" expanded="true" signature="11695:11875" ph="..." />
           </folding>
         </state>
       </provider>
@@ -556,7 +705,7 @@
         <state relative-caret-position="228">
           <caret line="19" column="75" lean-forward="false" selection-start-line="19" selection-start-column="75" selection-end-line="19" selection-end-column="75" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="method#managerPrivilegeDivision#0;class#PrivilegeDivision#0" expanded="false" />
             <element signature="method#readerPrivilegeDivision#0;class#PrivilegeDivision#0" expanded="false" />
             <element signature="method#setPrivilege#0;class#PrivilegeDivision#0" expanded="false" />
@@ -571,68 +720,64 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#710#711#0" expanded="true" />
-            <element signature="e#751#752#0" expanded="true" />
-            <element signature="class#ManagerFrame#0" expanded="false" />
-            <element signature="method#ManagerFrame#0;class#ManagerFrame#0" expanded="false" />
-            <element signature="method#init#0;class#ManagerFrame#0" expanded="false" />
-            <element signature="method#initUserPanel#0;class#ManagerFrame#0" expanded="false" />
-            <element signature="e#6037#6071#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#631#632#0" expanded="true" />
+            <element signature="e#672#673#0" expanded="true" />
+            <element signature="e#5632#5645#0" expanded="true" />
             <element signature="method#initBookPanel#0;class#ManagerFrame#0" expanded="false" />
-            <element signature="method#initManagerPanel#0;class#ManagerFrame#0" expanded="false" />
-            <element signature="method#clearUserResult#0;class#ManagerFrame#0" expanded="false" />
+            <element signature="method#initMessagePanel#0;class#ManagerFrame#0" expanded="false" />
             <element signature="method#clearBookResult#0;class#ManagerFrame#0" expanded="false" />
-            <element signature="method#clearManagerResult#0;class#ManagerFrame#0" expanded="false" />
             <element signature="method#clearUserText#0;class#ManagerFrame#0" expanded="false" />
             <element signature="method#clearBookText#0;class#ManagerFrame#0" expanded="false" />
             <element signature="method#clearManagerText#0;class#ManagerFrame#0" expanded="false" />
-            <element signature="class#QueryUserListener#0" expanded="false" />
-            <element signature="e#14484#14485#0" expanded="true" />
-            <element signature="e#14522#14523#0" expanded="true" />
-            <element signature="e#15760#15761#0" expanded="true" />
-            <element signature="e#15831#15832#0" expanded="true" />
-            <element signature="e#15866#15867#0" expanded="true" />
-            <element signature="e#15920#15921#0" expanded="true" />
-            <element signature="method#mouseClicked#0;class#QueryUserListener#0" expanded="false" />
-            <element signature="class#OperatorUserListener#0" expanded="false" />
-            <element signature="method#solveBan#0;class#OperatorUserListener#0" expanded="false" />
+            <element signature="e#15278#15291#0" expanded="true" />
+            <element signature="e#15743#15744#0" expanded="true" />
+            <element signature="e#15806#15807#0" expanded="true" />
+            <element signature="e#15838#15839#0" expanded="true" />
+            <element signature="e#15884#15885#0" expanded="true" />
+            <element signature="e#16232#16233#0" expanded="true" />
+            <element signature="e#16270#16271#0" expanded="true" />
+            <element signature="method#solveDel#0;class#OperatorUserListener#0" expanded="false" />
             <element signature="method#mouseClicked#0;class#OperatorUserListener#0" expanded="false" />
             <element signature="method#mousePressed#0;class#OperatorUserListener#0" expanded="false" />
             <element signature="method#mouseReleased#0;class#OperatorUserListener#0" expanded="false" />
             <element signature="method#mouseEntered#0;class#OperatorUserListener#0" expanded="false" />
             <element signature="method#mouseExited#0;class#OperatorUserListener#0" expanded="false" />
             <element signature="class#QueryManagerListener#0" expanded="false" />
-            <element signature="e#19475#19476#0" expanded="true" />
-            <element signature="e#19513#19514#0" expanded="true" />
+            <element signature="e#20222#20223#0" expanded="true" />
+            <element signature="e#20260#20261#0" expanded="true" />
             <element signature="class#UserTableModel#0;class#QueryManagerListener#0" expanded="false" />
-            <element signature="e#20764#20765#0" expanded="true" />
-            <element signature="e#20835#20836#0" expanded="true" />
-            <element signature="e#20870#20871#0" expanded="true" />
-            <element signature="e#20924#20925#0" expanded="true" />
+            <element signature="e#21012#21025#0" expanded="true" />
+            <element signature="e#21511#21512#0" expanded="true" />
+            <element signature="e#21582#21583#0" expanded="true" />
+            <element signature="e#21617#21618#0" expanded="true" />
+            <element signature="e#21671#21672#0" expanded="true" />
             <element signature="method#mouseClicked#0;class#QueryManagerListener#0" expanded="false" />
             <element signature="class#OperatorManagerListener#0" expanded="false" />
-            <element signature="e#22645#22646#0" expanded="true" />
-            <element signature="e#22685#22686#0" expanded="true" />
+            <element signature="e#23392#23393#0" expanded="true" />
+            <element signature="e#23432#23433#0" expanded="true" />
             <element signature="method#solveAdd#0;class#OperatorManagerListener#0" expanded="false" />
             <element signature="method#solveCancel#0;class#OperatorManagerListener#0" expanded="false" />
             <element signature="method#mouseClicked#0;class#OperatorManagerListener#0" expanded="false" />
             <element signature="class#QueryBookListener#0" expanded="false" />
-            <element signature="e#25080#25081#0" expanded="true" />
-            <element signature="e#25118#25119#0" expanded="true" />
-            <element signature="e#26356#26357#0" expanded="true" />
-            <element signature="e#26427#26428#0" expanded="true" />
-            <element signature="e#26462#26463#0" expanded="true" />
-            <element signature="e#26516#26517#0" expanded="true" />
+            <element signature="class#Information#0;class#QueryBookListener#0" expanded="false" />
+            <element signature="class#UserTableModel#0;class#QueryBookListener#0" expanded="false" />
+            <element signature="e#26604#26617#0" expanded="true" />
+            <element signature="e#27103#27104#0" expanded="true" />
+            <element signature="e#27174#27175#0" expanded="true" />
+            <element signature="e#27209#27210#0" expanded="true" />
+            <element signature="e#27263#27264#0" expanded="true" />
+            <element signature="method#mouseClicked#0;class#QueryBookListener#0" expanded="false" />
             <element signature="class#AddDetailListener#0" expanded="false" />
-            <element signature="e#28260#28261#0" expanded="true" />
-            <element signature="e#28299#28300#0" expanded="true" />
+            <element signature="e#28966#28967#0" expanded="true" />
+            <element signature="e#29005#29006#0" expanded="true" />
             <element signature="method#mouseClicked#0;class#AddDetailListener#0" expanded="false" />
             <element signature="class#OperatorBookListener#0" expanded="false" />
-            <element signature="e#29876#29877#0" expanded="true" />
-            <element signature="e#29916#29917#0" expanded="true" />
+            <element signature="e#30582#30583#0" expanded="true" />
+            <element signature="e#30622#30623#0" expanded="true" />
             <element signature="class#MessageListen#0" expanded="false" />
-            <element signature="e#32254#32255#0" expanded="true" />
-            <element signature="e#32294#32295#0" expanded="true" />
+            <element signature="e#32960#32961#0" expanded="true" />
+            <element signature="e#33000#33001#0" expanded="true" />
             <element signature="method#mouseClicked#0;class#MessageListen#0" expanded="false" />
           </folding>
         </state>
@@ -650,7 +795,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="817">
           <caret line="57" column="83" lean-forward="true" selection-start-line="57" selection-start-column="83" selection-end-line="57" selection-end-column="83" />
-          <folding />
+          <folding>
+            <element signature="method#queryBook#0;class#user#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -678,9 +825,10 @@
             <element signature="method#addNewBook#0;class#Manager#0" expanded="false" />
             <element signature="method#updateBookStatus#0;class#Manager#0" expanded="false" />
             <element signature="method#removeBook#0;class#Manager#0" expanded="false" />
-            <element signature="method#setUserStatus#0;class#Manager#0" expanded="false" />
+            <element signature="method#sendMessagetoReader#0;class#Manager#0" expanded="false" />
             <element signature="method#queryUser#0;class#Manager#0" expanded="false" />
             <element signature="method#queryBook#0;class#Manager#0" expanded="false" />
+            <marker date="1520443863044" expanded="true" signature="11695:11875" ph="..." />
           </folding>
         </state>
       </provider>
@@ -690,22 +838,7 @@
         <state relative-caret-position="228">
           <caret line="17" column="75" lean-forward="false" selection-start-line="17" selection-start-column="75" selection-end-line="17" selection-end-column="75" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#managerPrivilegeDivision#0;class#PrivilegeDivision#0" expanded="false" />
-            <element signature="method#readerPrivilegeDivision#0;class#PrivilegeDivision#0" expanded="false" />
-            <element signature="method#setPrivilege#0;class#PrivilegeDivision#0" expanded="false" />
-            <element signature="method#refreshPrivilege#0;class#PrivilegeDivision#0" expanded="false" />
-            <element signature="method#cancelAllPrivilege#0;class#PrivilegeDivision#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/RegisterUser/PrivilegeDivision/PrivilegeDivision.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="19" column="75" lean-forward="true" selection-start-line="19" selection-start-column="75" selection-end-line="19" selection-end-column="75" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="method#managerPrivilegeDivision#0;class#PrivilegeDivision#0" expanded="false" />
             <element signature="method#readerPrivilegeDivision#0;class#PrivilegeDivision#0" expanded="false" />
             <element signature="method#setPrivilege#0;class#PrivilegeDivision#0" expanded="false" />
@@ -723,6 +856,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/RegisterUser/PrivilegeDivision/PrivilegeDivision.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="19" column="75" lean-forward="false" selection-start-line="19" selection-start-column="75" selection-end-line="19" selection-end-column="75" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="method#managerPrivilegeDivision#0;class#PrivilegeDivision#0" expanded="false" />
+            <element signature="method#readerPrivilegeDivision#0;class#PrivilegeDivision#0" expanded="false" />
+            <element signature="method#setPrivilege#0;class#PrivilegeDivision#0" expanded="false" />
+            <element signature="method#refreshPrivilege#0;class#PrivilegeDivision#0" expanded="false" />
+            <element signature="method#cancelAllPrivilege#0;class#PrivilegeDivision#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SQLQuery/Connect/GetDBConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="19" lean-forward="false" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://F:/Java/jdk/lib/src.zip!/java.desktop/javax/swing/JTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13281">
+          <caret line="699" column="0" lean-forward="false" selection-start-line="699" selection-start-column="0" selection-end-line="699" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/UserRelated/Root.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -736,16 +900,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/UserRelated/user.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="110" column="83" lean-forward="false" selection-start-line="110" selection-start-column="83" selection-end-line="110" selection-end-column="83" />
+        <state relative-caret-position="421">
+          <caret line="113" column="17" lean-forward="false" selection-start-line="113" selection-start-column="17" selection-end-line="113" selection-end-column="17" />
+          <folding>
+            <element signature="method#queryBook#0;class#user#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://F:/Java/jdk/lib/src.zip!/java.base/jdk/internal/util/Preconditions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://F:/Java/jdk/lib/src.zip!/java.base/java/lang/Integer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="769" column="0" lean-forward="false" selection-start-line="769" selection-start-column="0" selection-end-line="769" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/UserRelated/Manager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="157" column="24" lean-forward="true" selection-start-line="157" selection-start-column="24" selection-end-line="157" selection-end-column="24" />
+        <state relative-caret-position="250">
+          <caret line="246" column="37" lean-forward="false" selection-start-line="246" selection-start-column="37" selection-end-line="246" selection-end-column="37" />
           <folding>
             <element signature="initializer##0;class#Manager#0" expanded="false" />
             <element signature="method#queryInformation#0;class#Manager#0" expanded="false" />
@@ -755,80 +937,77 @@
             <element signature="method#addNewBook#0;class#Manager#0" expanded="false" />
             <element signature="method#updateBookStatus#0;class#Manager#0" expanded="false" />
             <element signature="method#removeBook#0;class#Manager#0" expanded="false" />
-            <element signature="method#setUserStatus#0;class#Manager#0" expanded="false" />
+            <element signature="method#sendMessagetoReader#0;class#Manager#0" expanded="false" />
             <element signature="method#queryUser#0;class#Manager#0" expanded="false" />
             <element signature="method#queryBook#0;class#Manager#0" expanded="false" />
+            <marker date="1520443863044" expanded="true" signature="11695:11875" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/UserGUI/ManagerUI/ManagerUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="20" lean-forward="false" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
+        <state relative-caret-position="697">
+          <caret line="451" column="0" lean-forward="true" selection-start-line="451" selection-start-column="0" selection-end-line="451" selection-end-column="0" />
           <folding>
-            <element signature="e#710#711#0" expanded="true" />
-            <element signature="e#751#752#0" expanded="true" />
-            <element signature="class#ManagerFrame#0" expanded="false" />
-            <element signature="method#ManagerFrame#0;class#ManagerFrame#0" expanded="false" />
-            <element signature="method#init#0;class#ManagerFrame#0" expanded="false" />
-            <element signature="method#initUserPanel#0;class#ManagerFrame#0" expanded="false" />
-            <element signature="e#6037#6071#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#631#632#0" expanded="true" />
+            <element signature="e#672#673#0" expanded="true" />
+            <element signature="e#5632#5645#0" expanded="true" />
             <element signature="method#initBookPanel#0;class#ManagerFrame#0" expanded="false" />
-            <element signature="method#initManagerPanel#0;class#ManagerFrame#0" expanded="false" />
-            <element signature="method#clearUserResult#0;class#ManagerFrame#0" expanded="false" />
+            <element signature="method#initMessagePanel#0;class#ManagerFrame#0" expanded="false" />
             <element signature="method#clearBookResult#0;class#ManagerFrame#0" expanded="false" />
-            <element signature="method#clearManagerResult#0;class#ManagerFrame#0" expanded="false" />
             <element signature="method#clearUserText#0;class#ManagerFrame#0" expanded="false" />
             <element signature="method#clearBookText#0;class#ManagerFrame#0" expanded="false" />
             <element signature="method#clearManagerText#0;class#ManagerFrame#0" expanded="false" />
-            <element signature="class#QueryUserListener#0" expanded="false" />
-            <element signature="e#14484#14485#0" expanded="true" />
-            <element signature="e#14522#14523#0" expanded="true" />
-            <element signature="e#15760#15761#0" expanded="true" />
-            <element signature="e#15831#15832#0" expanded="true" />
-            <element signature="e#15866#15867#0" expanded="true" />
-            <element signature="e#15920#15921#0" expanded="true" />
-            <element signature="method#mouseClicked#0;class#QueryUserListener#0" expanded="false" />
-            <element signature="class#OperatorUserListener#0" expanded="false" />
-            <element signature="method#solveBan#0;class#OperatorUserListener#0" expanded="false" />
+            <element signature="e#15278#15291#0" expanded="true" />
+            <element signature="e#15743#15744#0" expanded="true" />
+            <element signature="e#15806#15807#0" expanded="true" />
+            <element signature="e#15838#15839#0" expanded="true" />
+            <element signature="e#15884#15885#0" expanded="true" />
+            <element signature="e#16232#16233#0" expanded="true" />
+            <element signature="e#16270#16271#0" expanded="true" />
+            <element signature="method#solveDel#0;class#OperatorUserListener#0" expanded="false" />
             <element signature="method#mouseClicked#0;class#OperatorUserListener#0" expanded="false" />
             <element signature="method#mousePressed#0;class#OperatorUserListener#0" expanded="false" />
             <element signature="method#mouseReleased#0;class#OperatorUserListener#0" expanded="false" />
             <element signature="method#mouseEntered#0;class#OperatorUserListener#0" expanded="false" />
             <element signature="method#mouseExited#0;class#OperatorUserListener#0" expanded="false" />
             <element signature="class#QueryManagerListener#0" expanded="false" />
-            <element signature="e#19475#19476#0" expanded="true" />
-            <element signature="e#19513#19514#0" expanded="true" />
+            <element signature="e#20222#20223#0" expanded="true" />
+            <element signature="e#20260#20261#0" expanded="true" />
             <element signature="class#UserTableModel#0;class#QueryManagerListener#0" expanded="false" />
-            <element signature="e#20764#20765#0" expanded="true" />
-            <element signature="e#20835#20836#0" expanded="true" />
-            <element signature="e#20870#20871#0" expanded="true" />
-            <element signature="e#20924#20925#0" expanded="true" />
+            <element signature="e#21012#21025#0" expanded="true" />
+            <element signature="e#21511#21512#0" expanded="true" />
+            <element signature="e#21582#21583#0" expanded="true" />
+            <element signature="e#21617#21618#0" expanded="true" />
+            <element signature="e#21671#21672#0" expanded="true" />
             <element signature="method#mouseClicked#0;class#QueryManagerListener#0" expanded="false" />
             <element signature="class#OperatorManagerListener#0" expanded="false" />
-            <element signature="e#22645#22646#0" expanded="true" />
-            <element signature="e#22685#22686#0" expanded="true" />
+            <element signature="e#23392#23393#0" expanded="true" />
+            <element signature="e#23432#23433#0" expanded="true" />
             <element signature="method#solveAdd#0;class#OperatorManagerListener#0" expanded="false" />
             <element signature="method#solveCancel#0;class#OperatorManagerListener#0" expanded="false" />
             <element signature="method#mouseClicked#0;class#OperatorManagerListener#0" expanded="false" />
             <element signature="class#QueryBookListener#0" expanded="false" />
-            <element signature="e#25080#25081#0" expanded="true" />
-            <element signature="e#25118#25119#0" expanded="true" />
-            <element signature="e#26356#26357#0" expanded="true" />
-            <element signature="e#26427#26428#0" expanded="true" />
-            <element signature="e#26462#26463#0" expanded="true" />
-            <element signature="e#26516#26517#0" expanded="true" />
+            <element signature="class#Information#0;class#QueryBookListener#0" expanded="false" />
+            <element signature="class#UserTableModel#0;class#QueryBookListener#0" expanded="false" />
+            <element signature="e#26604#26617#0" expanded="true" />
+            <element signature="e#27103#27104#0" expanded="true" />
+            <element signature="e#27174#27175#0" expanded="true" />
+            <element signature="e#27209#27210#0" expanded="true" />
+            <element signature="e#27263#27264#0" expanded="true" />
+            <element signature="method#mouseClicked#0;class#QueryBookListener#0" expanded="false" />
             <element signature="class#AddDetailListener#0" expanded="false" />
-            <element signature="e#28260#28261#0" expanded="true" />
-            <element signature="e#28299#28300#0" expanded="true" />
+            <element signature="e#28966#28967#0" expanded="true" />
+            <element signature="e#29005#29006#0" expanded="true" />
             <element signature="method#mouseClicked#0;class#AddDetailListener#0" expanded="false" />
             <element signature="class#OperatorBookListener#0" expanded="false" />
-            <element signature="e#29876#29877#0" expanded="true" />
-            <element signature="e#29916#29917#0" expanded="true" />
+            <element signature="e#30582#30583#0" expanded="true" />
+            <element signature="e#30622#30623#0" expanded="true" />
             <element signature="class#MessageListen#0" expanded="false" />
-            <element signature="e#32254#32255#0" expanded="true" />
-            <element signature="e#32294#32295#0" expanded="true" />
+            <element signature="e#32960#32961#0" expanded="true" />
+            <element signature="e#33000#33001#0" expanded="true" />
             <element signature="method#mouseClicked#0;class#MessageListen#0" expanded="false" />
           </folding>
         </state>
@@ -900,6 +1079,17 @@
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
           <last-edited>mysql-connector-java-5.1.45-bin</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
           <splitter-proportions>
             <option name="proportions">
               <list>
