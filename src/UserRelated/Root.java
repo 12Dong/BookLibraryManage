@@ -70,15 +70,14 @@ public class Root extends Manager{
     }
     //libName 仅仅包含 authorinformation bookinformation classification pressinformation  userinformation  开放
     public static String getNextId(String libName){
-        if(libName=="authorinformation" || libName=="bookinformation" || libName=="classification" ||
+        if(libName=="authorinformation" || libName=="bookinformation" || libName=="classificationinformation" ||
                 libName=="pressinformation" || libName=="userinformation") {
         }
         else return null;
         String nextId = null;
         SQLBase root = new SQLBase();
-        root.GetDBConnection("booklibrarymanager","host","HanDong85");
+        root.GetDBConnection("booklibrarymanager","root","HanDong85");
         String SQLCommand = "select * from " + libName;
-        System.out.println(SQLCommand);
         root.query(SQLCommand);
         if(root.table==null){
             System.out.println("table is null");

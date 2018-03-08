@@ -19,13 +19,13 @@ public class Manager extends user{
     public String userStatus;
     public String userRentCount;
     public String userHostName;
-//    public String queryBookID;
-//    public String queryBookName;
-//    public String queryAuthor;
-//    public String queryClassification;
-//    public String queryPress;
-//    public String queryEntyrDate;
-//    public String queryStatus;
+    public String queryBookID;
+    public String queryBookName;
+    public String queryAuthor;
+    public String queryClassification;
+    public String queryPress;
+    public String queryEntyrDate;
+    public String queryStatus;
     public static int AUTHOR_INFORMATION = 0;
     public static int CLASSIFICATION_INFORMATION = 1;
     public static int PRESS_INFORMATION = 2;
@@ -46,14 +46,23 @@ public class Manager extends user{
     //-1 not exist else return id
     String queryInformation(String tableName,String queryname){
        Connection con = GetDBConnection.connectDB("booklibrarymanager","root","HanDong85");
-       String sql = "select ? from ? where ? = ?;";
+       String tar;
+       if(tableName.equals("authorinformation"))
+           tar = "author";
+       else if(tableName.equals("classificationinformation"))
+           tar = "classification";
+       else tar = "press";
+       String sql = "select " + tar + "Id" + " from "  + tableName + " where ";
+       if(tableName.equals("authorinformation"))
+           sql += "authorName = ?;";
+       else if(tableName.equals("classificationinformation"))
+           sql += "classifcationName = ?;";
+       else sql += "pressName = ?;";
+       System.out.println(sql);
        PreparedStatement preSQL;
        try{
            preSQL = con.prepareStatement(sql);
-           preSQL.setString(1,tableName + "ID");
-           preSQL.setString(2,tableName);
-           preSQL.setString(3,tableName + "Name");
-           preSQL.setString(4,queryname);
+           preSQL.setString(1,queryname);
            ResultSet rs = preSQL.executeQuery();
            rs.beforeFirst();
            if(rs.next()){
@@ -67,11 +76,13 @@ public class Manager extends user{
            }
        }
        catch (SQLException e){
-           return null;
+           GetDBConnection.closeCon(con);
+           return ERROR_TIP;
        }
     }
     //add press || classification || author
     public boolean removeInformation(String type,String removeKey){
+        System.out.println("start remove");
        if(type == null || removeKey == null)
            return false;
        Connection con = GetDBConnection.connectDB("booklibrarymanager","root","HanDong85");
@@ -79,13 +90,12 @@ public class Manager extends user{
        String[][] res = queryUser();
        if(res == null)
            return false;
-       String sql = "delete from ? where ? = ?;";
+       String sql = "delete from " + type + "information where " + type +"Id = ?;";
        PreparedStatement preSQL;
        try{
            preSQL = con.prepareStatement(sql);
-           preSQL.setString(1,type + "information");
-           preSQL.setString(2,type + "Id");
-           preSQL.setString(3,removeKey);
+           preSQL.setString(1,removeKey);
+           //System.out.println("delete from " + type + "information where " + type + "Id = " + removeKey);
            int ok = preSQL.executeUpdate();
            GetDBConnection.closeCon(con);
            if(ok == 1)
@@ -103,25 +113,26 @@ public class Manager extends user{
         String tableName = informationTable[tableID];
         if(needAdd == null)
             return false;
-        Connection con = GetDBConnection.connectDB("booklibrarymanager","root","HanDong85");
         String tempID = queryInformation(tableName,needAdd);
         if(!ERROR_TIP.equals(tempID))
             return false;
         String next = Root.getNextId(tableName);
-        String sql = "insert into ? values(?,?);";
+        selfcon = GetDBConnection.connectDB("booklibrarymanager","root","HanDong85");
+        String sql = "insert into " + tableName +" values (?,?);";
         PreparedStatement preSQL ;
         try{
-           preSQL = con.prepareStatement(sql);
-           preSQL.setString(1,tableName);
-           preSQL.setString(2,next);
-           preSQL.setString(3,needAdd);
+           preSQL = selfcon.prepareStatement(sql);
+           preSQL.setString(1,next);
+           preSQL.setString(2,needAdd);
            int ok  = preSQL.executeUpdate();
-           GetDBConnection.closeCon(con);
+           GetDBConnection.closeCon(selfcon);
+           System.out.println("after 134");
            if(ok == 1)
                return true;
-           else return false;
+           return false;
         }
         catch (SQLException e){
+            GetDBConnection.closeCon(selfcon);
            return false;
         }
     }
@@ -131,17 +142,21 @@ public class Manager extends user{
         String tableName = informationTable[tableID];
         if(needRemove == null)
             return false;
-        Connection con = GetDBConnection.connectDB("booklibrarymanager","root","HanDong85");
         String tempID = queryInformation(tableName,needRemove);
         if(ERROR_TIP.equals(tempID))
             return false;
-        String sql = "delete from ? where ?=?;";
+        Connection con = GetDBConnection.connectDB("booklibrarymanager","root","HanDong85");
+        String tar;
+       if(tableName.equals("authorinformation"))
+           tar = "author";
+       else if(tableName.equals("classificationinformation"))
+           tar = "classification";
+       else tar = "press";
+        String sql = "delete from " + tableName + " where " + tar + "Id = ?;";
         PreparedStatement preSQL;
         try{
            preSQL = con.prepareStatement(sql);
-           preSQL.setString(1,tableName);
-           preSQL.setString(2,tableName + "Id");
-           preSQL.setString(3,tempID);
+           preSQL.setString(1,tempID);
            int ok = preSQL.executeUpdate();
            GetDBConnection.closeCon(con);
            if(ok == 1)
@@ -160,8 +175,10 @@ public class Manager extends user{
         String authorId= queryInformation(informationTable[AUTHOR_INFORMATION],author);
         String classificationId = queryInformation(informationTable[CLASSIFICATION_INFORMATION],classification);
         String pressId = queryInformation(informationTable[PRESS_INFORMATION],press);
+        System.out.println("test first");
         if(authorId == null || classification == null || pressId == null)
             return false;
+        System.out.println("test second");
         if(ERROR_TIP.equals(authorId) || ERROR_TIP.equals(classificationId) || ERROR_TIP.equals(pressId))
             return false;
         selfcon = GetDBConnection.connectDB("booklibrarymanager","root","HanDong85");
@@ -169,15 +186,17 @@ public class Manager extends user{
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String formatDate = format.format(entryDate);
         String status = CAN_USE;
-        String sql = "insert into bookinformation values(?,?,?,?,?,?,?);";
+        String sql = "insert into bookinformation values (?,?,?,?,?,?,?);";
+        String ID = Root.getNextId("bookinformation");
+        System.out.println(ID + bookName + author + classification + press + formatDate + status);
         PreparedStatement preSQL;
         try{
             preSQL = selfcon.prepareStatement(sql);
-            preSQL.setString(1,Root.getNextId("bookinformation"));
+            preSQL.setString(1,ID);
             preSQL.setString(2,bookName);
-            preSQL.setString(3,authorId);
+            preSQL.setString(3,author);
             preSQL.setString(4,classification);
-            preSQL.setString(5,pressId);
+            preSQL.setString(5,press);
             preSQL.setString(6,formatDate);
             preSQL.setString(7,status);
             int ok = preSQL.executeUpdate();
@@ -293,7 +312,7 @@ public class Manager extends user{
                     has = true;
                 }
                 else{
-                    sql += "and ";
+                    sql += " and ";
                 }
                 sql += "userId = '" + userid + "'";
             }
@@ -303,31 +322,63 @@ public class Manager extends user{
                     has = true;
                 }
                 else{
-                    sql += "and";
+                    sql += " and ";
                 }
                 sql += "isAdmin = " + isAdmin;
             }
+            if(userName != null && !"".equals(userName)){
+                if(!has){
+                    sql += "where ";
+                    has = true;
+                }
+                else{
+                    sql += " and ";
+                }
+                sql += "userName = '" + userName + "'";
+            }
+            if(userSex != null && !"".equals(userSex)){
+                if(!has){
+                    sql += "where ";
+                    has = true;
+                }
+                else{
+                    sql += " and ";
+                }
+                sql += "userSex = '" + userSex + "'";
+            }
+            if(userStatus != null && !"".equals(userStatus)){
+                if(!has){
+                    sql += "where ";
+                    has = true;
+                }
+                else{
+                    sql += " and ";
+                }
+                sql += "userStatus = " + userStatus;
+            }
+            if(userRentCount != null && !"".equals(userRentCount)){
+                if(!has){
+                    sql += "where ";
+                    has = true;
+                }
+                else{
+                    sql += " and ";
+                }
+                sql += "userRendCount = " + userRentCount;
+            }
+            if(userHostName != null && !"".equals(userHostName)){
+                if(!has){
+                    sql += "where ";
+                    has = true;
+                }
+                else{
+                    sql += " and ";
+                }
+                sql += "host = '" + userHostName + "'";
+            }
             sql += ";";
-//            String sql = "select * from userinformation where userId = ? and userStatus = ? and userRendCount = ? and userSex = ? ";
-//            String sql = "select * from userinformation where userId = ?;";
-            //String sql = "select * from userinformation";
-            //PreparedStatement preSQL = selfcon.prepareStatement(sql);
-//            System.out.println(userid);
-//            System.out.println(Integer.parseInt(isAdmin));
-//            System.out.println(userName);
-//            System.out.println(userSex);
-//            System.out.println(Integer.parseInt(userStatus));
-//            System.out.println(Integer.parseInt(userRentCount));
-//            System.out.println(userHostName);
+            System.out.println(sql);
             PreparedStatement preSQL = selfcon.prepareStatement(sql);
-//            preSQL.setString(1,"1");
-//            preSQL.setInt(2,Integer.parseInt(isAdmin));
-//            preSQL.setString(3,userName);
-//            preSQL.setString(4,userSex);
-//            preSQL.setInt(2,Integer.parseInt(userStatus));
-//            preSQL.setInt(3,Integer.parseInt(userRentCount));
-//            preSQL.setString(7,userHostName);
-            System.out.println(userid);
             ResultSet rs = preSQL.executeQuery();
             ResultSetMetaData metaData;
             metaData = rs.getMetaData();
@@ -362,8 +413,81 @@ public class Manager extends user{
     public String[][] queryBook(){
         try {
             selfcon = GetDBConnection.connectDB("booklibrarymanager","root","HanDong85");
-            String sql = super.makeQuerySQLCommand();
             //System.out.println(con == null);
+            boolean has = false;
+            String sql = "select * from bookinformation ";
+            if(queryBookID != null && !"".equals(queryBookID)){
+                if(!has) {
+                    sql += "where ";
+                    has = true;
+                }
+                else{
+                    sql += " and ";
+                }
+                sql += "bookId = '" + queryBookID + "'";
+            }
+            if(queryBookName!= null && !"".equals(queryBookName)){
+                if(!has){
+                    sql += "where ";
+                    has = true;
+                }
+                else{
+                    sql += " and ";
+                }
+                sql += "bookName = '" + queryBookName + "'";
+            }
+            if(queryAuthor != null && !"".equals(queryAuthor)){
+                if(!has){
+                    sql += "where ";
+                    has = true;
+                }
+                else{
+                    sql += " and ";
+                }
+                sql += "author = '" + queryAuthor + "'";
+            }
+            if(queryClassification != null && !"".equals(queryClassification)){
+                if(!has){
+                    sql += "where ";
+                    has = true;
+                }
+                else{
+                    sql += " and ";
+                }
+                sql += "classification = '" + queryClassification + "'";
+            }
+            if(queryPress != null && !"".equals(queryPress)){
+                if(!has){
+                    sql += "where ";
+                    has = true;
+                }
+                else{
+                    sql += " and ";
+                }
+                sql += "press = '" + queryPress + "'";
+            }
+            if(queryEntyrDate != null && !"".equals(queryEntyrDate)){
+                if(!has){
+                    sql += "where ";
+                    has = true;
+                }
+                else{
+                    sql += " and ";
+                }
+                sql += "entryData = '" + queryEntyrDate + "'";
+            }
+            if(queryStatus != null && !"".equals(queryStatus)){
+                if(!has){
+                    sql += "where ";
+                    has = true;
+                }
+                else{
+                    sql += " and ";
+                }
+                sql += "status = '" + userHostName + "'";
+            }
+            sql += ";";
+            System.out.println(sql);
             PreparedStatement preSQL = selfcon.prepareStatement(sql);
             ResultSet rs = preSQL.executeQuery();
             ResultSetMetaData metaData;

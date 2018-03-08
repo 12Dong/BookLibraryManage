@@ -23,6 +23,7 @@ public class GetDBConnection {
             return;
         try{
             con.close();
+            System.out.println("close Connection");
         }
         catch (SQLException e){
             System.out.println("Close Error!");
