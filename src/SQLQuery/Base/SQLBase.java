@@ -12,10 +12,14 @@ public class SQLBase {
         con = null;
         String url ="jdbc:mysql://211.159.219.126:3306/";
         url +=libName;
-        url +="?useSSL=true";
+        url +="?useSSL=true&useUnicode=true&characterEncoding=UTF-8";
         try{
+<<<<<<< HEAD
             Class.forName("com.mysql.jbbc.Driver");
             System.out.println("SQLBase successful Driver");
+=======
+            Class.forName("com.mysql.jdbc.Driver");
+>>>>>>> new_repository_name/master
         }
         catch(Exception e){}
         try{

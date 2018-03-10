@@ -4,6 +4,8 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import SQLQuery.Base.*;
 
 import javax.xml.transform.Result;
@@ -25,13 +27,18 @@ public class user extends SQLBase {
     //set相关 因为要进行可缺省查询 所以直接加%匹配所有 在查询中使用like 进行查询 查询完毕后 在进行升序排序
     // 完全匹配字典序最小 因为下一次比较为null对任意
     public void setQueryBookName(String queryBookName){
-        this.queryBookName= "%"+queryBookName+"%";
+        this.queryBookName= queryBookName;
     }
     public void setQueryAuthorName(String queryAuthorName){
-        this.queryAuthorName = "%"+queryAuthorName+"%";
+        this.queryAuthorName = queryAuthorName;
     }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     public void setQueryPressName(String queryPressName){
-        this.queryPressName="%"+queryPressName+"%";
+        this.queryPressName=queryPressName;
     }
     public void setUserName(String userName){
         this.userName = userName;
@@ -52,16 +59,51 @@ public class user extends SQLBase {
         return queryPressName;
     }
 
+    public String[][] queryRenderInformation(){
+        String[][] result = null;
+    userId = "1";
+        try{
+            PreparedStatement pstmt = con.prepareStatement("select userId,rendinformation.bookId,bookinformation.bookName,lendDate,returnDate from rendinformation,bookinformation where userId = ? and rendinformation.bookId = bookinformation.bookId");
+            pstmt.setString(1,userId);
+            System.out.println("userId: "+userId);
+            ResultSet rs = pstmt.executeQuery();
+            rs.last();
+            int row = rs.getRow();
+            ResultSetMetaData metaData = rs.getMetaData();
+            int col = metaData.getColumnCount();
+            result = new String[row+1][col];
+            int nowRow=0;
+            System.out.println("col"+":"+" "+col+" row: "+row);
+            rs.beforeFirst();
+            while(rs.next()){
+                System.out.println("nowRow"+":"+" "+nowRow);
+                for(int i=0;i<col;i++){
+                    System.out.println(i);
+                    if(i==3 || i==4) {
+                        java.sql.Date date = rs.getDate(i+1);
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        result[nowRow][i] = sdf.format(date);
+                    }
+                    else result[nowRow][i]=rs.getString(i+1);
+                }
+                nowRow++;
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return result;
+    }
     public String[][] queryBook(){
         try{
 
-            PreparedStatement pstmt = con.prepareStatement("select bookId,bookName,author,classification,press from bookinformation where bookName like ? and author like ? and press like ?");
+            PreparedStatement pstmt = con.prepareStatement("select bookId,bookName,author,classification,press,status "+
+                    "from bookinformation where bookName like ? and author like ? and press like ?");
             System.out.println(getQueryBookName());
             System.out.println(getQueryAuthorName());
             System.out.println(getQueryPressName());
-            pstmt.setString(1,getQueryBookName());
-            pstmt.setString(2,getQueryAuthorName());
-            pstmt.setString(3,getQueryPressName());
+            pstmt.setString(1,"%"+getQueryBookName()+"%");
+            pstmt.setString(2,"%"+getQueryAuthorName()+"%");
+            pstmt.setString(3,"%"+getQueryPressName()+"%");
             ResultSet rs = pstmt.executeQuery();
             ResultSetMetaData metaData;
             metaData = rs.getMetaData();
@@ -133,7 +175,7 @@ public class user extends SQLBase {
             }else if(queryBookName!=null){
                 QueryInformation +=" and ";
             }
-            QueryInformation+=" pressinformation.pressName likes "+queryPressName+" and pressinformation.pressId = "+
+            QueryInformation+=" pressinformation.pressName like "+queryPressName+" and pressinformation.pressId = "+
                     "bookinformation.pressId ";
         }
         SQLCommand = SQLCommand+FromInformation + QueryInformation;
@@ -171,7 +213,7 @@ public class user extends SQLBase {
 //        String SQLCommand = "select status from bookInformation where bookId =  \'"+bookId+" \'";
 
         try{
-            PreparedStatement pstmt = con.prepareStatement("select status from bookInformation where bookId = ?");
+            PreparedStatement pstmt = con.prepareStatement("select status from bookinformation where bookId = ?");
 //            Statement statement = con.createStatement();
 //            System.out.println(SQLCommand);
 //            query(SQLCommand);
@@ -181,7 +223,7 @@ public class user extends SQLBase {
             pstmt.setString(1,bookId);
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()){
-                if( rs.getString("status")=="1") return true;
+                if( rs.getString("status").equals("1")) return true;
             }
         }catch(SQLException e){
             e.printStackTrace();
@@ -189,37 +231,40 @@ public class user extends SQLBase {
         return false;
     }
 
-    public void rendBook(String bookId){
-        if(!checkRend(bookId)){
-            System.out.println("The book was rended.");
-            return ;
-        }
+    public boolean rendBook(String bookId){
         if(userId ==null ||userName ==null) getUserId();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date rendDate = new Date();
-        String strRendDate = sdf.format(rendDate);
-        Calendar returndate = Calendar.getInstance();
-        returndate.add(Calendar.DAY_OF_YEAR,30);
-        Date returnDate = returndate.getTime();
-        String strReturnDate = sdf.format(returnDate);
-        String SQLUpdateCommand = "update bookinformation set status = 2 where bookId = "+"\'"+bookId+"\'";
-        String SQLInsertCommand = "insert rendinformation values(\'"+userId+"\',\'"+bookId+"\',\'"+strRendDate+"\',"+
-                "\'"+strReturnDate+ "\'"+")";
+        java.util.Date rendDate = new java.util.Date ();
+        java.sql.Date RendDate = new java.sql.Date(rendDate.getTime());
+        Calendar returndate = new GregorianCalendar();
+        returndate.setTime(RendDate);
+        returndate.add(returndate.DATE,30);
+        java.util.Date returnDate = (java.util.Date)returndate.getTime();
+        java.sql.Date ReturnDate = new java.sql.Date(returnDate.getTime());
+        System.out.println(returnDate.getTime());
         try{
-            System.out.println("SQLUpdateCommand is "+SQLUpdateCommand);
-            System.out.println("SQLInsertCommand is "+SQLInsertCommand);
-            Statement statement = con.createStatement();
-            statement.executeUpdate(SQLUpdateCommand);
-            statement.executeUpdate(SQLInsertCommand);
-            System.out.println("Successfully rend.");
+
+            PreparedStatement pstmt = con.prepareStatement("insert into rendinformation values (?,?,?,?)");
+            pstmt.setString(1,userId);
+            pstmt.setString(2,bookId);
+            pstmt.setDate(3,RendDate);
+            pstmt.setDate(4,ReturnDate);
+            pstmt.executeUpdate();
+            pstmt = con.prepareStatement("update bookinformation set status = 2 where bookId = ?");
+            pstmt.setString(1,bookId);
+            pstmt.executeUpdate();
+
         }
-        catch(SQLException e) {}
+        catch(SQLException e) {
+            return false;
+        }
+        return true;
     }
     //执行还书操作
     //准备工作取得用户编号
     //操作一 更新bookinformation
     //操作二 更新rendinformation
-    public void returnBook(String bookId){
+    public boolean returnBook(String bookId){
         if(userId ==null ||userName ==null) getUserId();
 //        String SQLUpdateCommand = "update bookinformation set status = 3 where bookId = "+"\'"+bookId+"\'";
 //        String SQLDeleteCommand = "delete from rendinformation where bookId = "+"\'"+bookId+"\'";
@@ -229,17 +274,18 @@ public class user extends SQLBase {
             PreparedStatement pstmt = con.prepareStatement("update bookinformation set status = 3 where bookId = ?");
             pstmt.setString(1,bookId);
             pstmt.executeUpdate();
-
+            pstmt.close();
+            GetDBConnection("booklibrarymanager","root","HanDong85");
             pstmt = con.prepareStatement("delete from rendinformation where bookId = ?");
             pstmt.setString(1,bookId);
             pstmt.executeUpdate();
 
-//            Statement statement = con.createStatement();
-//            statement.executeUpdate(SQLUpdateCommand);
-//            statement.executeUpdate(SQLDeleteCommand);
             System.out.println("Successfully return.");
         }
-        catch(SQLException e) {}
+        catch(SQLException e) {
+            return false;
+        }
+        return true;
     }
     //获得自己所属表里信息
     public String makeGetMessageSQLCommand(){
@@ -255,10 +301,10 @@ public class user extends SQLBase {
         String SQLCommand = "insert into rootMessage values (\'"+userId+"\',\'"+strCurTime+"\',\'"+sendMessage+"\')";
         try{
             System.out.println(SQLCommand);
-            PreparedStatement pstmt = con.prepareStatement("insert into rootMessage values (?,?,?)");
+            PreparedStatement pstmt = con.prepareStatement("insert into rootmessage values (?,?,?)");
             pstmt.setString(1,userId);
             pstmt.setString(2,strCurTime);
-            pstmt.setString(3,sendMessage);
+            pstmt.setString(3,sendMessage.trim());
             pstmt.executeUpdate();
 //            Statement statement = con.createStatement();
 //            statement.executeUpdate(SQLCommand);
