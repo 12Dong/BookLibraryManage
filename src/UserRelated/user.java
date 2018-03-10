@@ -61,7 +61,6 @@ public class user extends SQLBase {
 
     public String[][] queryRenderInformation(){
         String[][] result = null;
-    userId = "1";
         try{
             PreparedStatement pstmt = con.prepareStatement("select userId,rendinformation.bookId,bookinformation.bookName,lendDate,returnDate from rendinformation,bookinformation where userId = ? and rendinformation.bookId = bookinformation.bookId");
             pstmt.setString(1,userId);
@@ -110,12 +109,8 @@ public class user extends SQLBase {
             int columnCount = metaData.getColumnCount();
             rs.last();
             int recordAmount = rs.getRow();
-            table = new String[recordAmount+1][columnCount];
-            for(int i=1;i<=columnCount;i++){
-                table[0][i-1]=metaData.getColumnName(i);
-                if(i==1) System.out.println(metaData.getColumnName(i));
-            }
-            int i=1;
+            table = new String[recordAmount][columnCount];
+            int i=0;
             rs.beforeFirst();
             while(rs.next()){
                 for(int j=1;j<=columnCount;j++){
@@ -240,11 +235,11 @@ public class user extends SQLBase {
         returndate.setTime(RendDate);
         returndate.add(returndate.DATE,30);
         java.util.Date returnDate = (java.util.Date)returndate.getTime();
-        java.sql.Date ReturnDate = new java.sql.Date(returnDate.getTime());
-        System.out.println(returnDate.getTime());
+        java.sql.Date ReturnDate =new java.sql.Date(returnDate.getTime());
+        System.out.println("Rend + "+userId);
         try{
 
-            PreparedStatement pstmt = con.prepareStatement("insert into rendinformation values (?,?,?,?)");
+            PreparedStatement pstmt = con.prepareStatement("insert into rendinformation values (?,?,?,?);");
             pstmt.setString(1,userId);
             pstmt.setString(2,bookId);
             pstmt.setDate(3,RendDate);

@@ -13,7 +13,7 @@ public class MailCreator {
         try{
             Connection helper = GetDBConnection.connectDB("booklibrarymanager","root","");
             preSQL = helper.prepareStatement(sql);
-            preSQL.setString(1,userId + "message");
+            preSQL.setString(1,"booklibrarymanager." + userId + "message");
             int ok = preSQL.executeUpdate();
             GetDBConnection.closeCon(helper);
             if(ok == 1)

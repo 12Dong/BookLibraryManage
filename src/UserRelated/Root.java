@@ -11,25 +11,33 @@ import SQLQuery.Connect.GetDBConnection;
 public class Root extends Manager{
     public static boolean transmit(userInformation UserInformation, boolean check){
         //未实现manage注册
-        String sql = "create user '?'@'?' identified by '?';";
+        String sql = "create user ?@? identified by ?;";
         PreparedStatement preSQL;
-        Connection helper = GetDBConnection.connectDB("booklibrarymanager","root","");
+        Connection helper = GetDBConnection.connectDB("booklibrarymanager","root","HanDong85");
+        System.out.println(UserInformation.hostName+"   "+UserInformation.password);
         try{
+            System.out.println("into try");
             preSQL = helper.prepareStatement(sql);
             preSQL.setString(1,UserInformation.hostName);
             preSQL.setString(2,"%");
             preSQL.setString(3,UserInformation.password);
-            int ok = preSQL.executeUpdate();
+            System.out.println("before update");
+            boolean ok = preSQL.execute();
+            System.out.println("before close");
             GetDBConnection.closeCon(helper);
-            if(ok == 0)
-                return false;
+            System.out.println("after close");
+            System.out.println(ok);
+            //if(ok == 0)
+            //    return false;
         }
         catch (SQLException e){
+            GetDBConnection.closeCon(helper);
             return false;
         }
+        System.out.println("successfully create");
         if(check){
             user register = new user();
-            register.GetDBConnection("booklibrarymanager","host","HanDong85");
+            register.GetDBConnection("booklibrarymanager","root","HanDong85");
             String nextId;
             try{
                 Statement statement = register.con.createStatement();
@@ -48,23 +56,25 @@ public class Root extends Manager{
         }
         //未实现root分配权限
         else{
-            user register = new user();
-            register.GetDBConnection("booklibrarymanager","host","HanDong85");
+            helper = GetDBConnection.connectDB("booklibrarymanager","root","HanDong85");
             String nextId;
             try{
-                Statement statement = register.con.createStatement();
+                Statement statement = helper.createStatement();
                 nextId = getNextId("userinformation");
                 String SQLCommand = "insert into userinformation values (\'"+nextId+"\',\'0\',"+
                         "\'"+UserInformation.name+"\',\'"+UserInformation.sex+"\',\'1\',\'0\',\'"+UserInformation.hostName
                         +"\')";
                 System.out.println(SQLCommand);
                 statement.executeUpdate(SQLCommand);
+                GetDBConnection.closeCon(helper);
             }catch(SQLException e){
+                GetDBConnection.closeCon(helper);
                 e.printStackTrace();
                 return false;
             }
-            MailCreator.createMail(nextId);
+            //MailCreator.createMail(nextId);
             PrivilegeDivision.readerPrivilegeDivision(UserInformation);
+            System.out.println("succefully privilegedivision");
         }
         return true;
     }

@@ -385,7 +385,10 @@ public class Manager extends user{
             int columnCount = metaData.getColumnCount();
             rs.last();
             int recordAmount = rs.getRow();
+
             System.out.println("CNT :  "  + recordAmount);
+            if(recordAmount == 0)
+                return null;
             table = new String[recordAmount][columnCount];
 
             int i = 0;

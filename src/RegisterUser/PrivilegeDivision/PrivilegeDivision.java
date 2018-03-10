@@ -13,7 +13,7 @@ public class PrivilegeDivision {
         Connection helper = GetDBConnection.connectDB("booklibrarymanager", "root", "HanDong85");
         cancelAllPrivilege(helper,information);
         refreshPrivilege(helper);
-        setPrivilege(helper, "*.*", "ALL", information);
+        setPrivilege(helper, "*", "ALL", information);
         refreshPrivilege(helper);
         updateisAdmin(helper,1,information);
         GetDBConnection.closeCon(helper);
@@ -23,8 +23,11 @@ public class PrivilegeDivision {
         //set Privilege
         cancelAllPrivilege(helper,information);
         refreshPrivilege(helper);
-        setPrivilege(helper,"authorinformation,bookinformation,pressinformation,classificationinformation,rootinfomation",
-                "select",information);
+        setPrivilege(helper,"authorinformation","select",information);
+        setPrivilege(helper,"bookinformation","select",information);
+        setPrivilege(helper,"pressinformation","select",information);
+        setPrivilege(helper,"classificationinformation","select",information);
+        setPrivilege(helper,"rootinformation","select",information);
         String sql = "select userId from userinformation where host = ?;";
         String userId = null;
         PreparedStatement preSQL;
@@ -40,20 +43,22 @@ public class PrivilegeDivision {
         catch (SQLException e){
             GetDBConnection.closeCon(helper);
         }
-        setPrivilege(helper,userId + "message","select,delete,insert",information);
+        //setPrivilege(helper,userId + "message","select,delete,insert",information);
         setPrivilege(helper,"rendinformation","*",information);
         refreshPrivilege(helper);
         GetDBConnection.closeCon(helper);
     }
     static void setPrivilege(Connection con,String table,String privilege,userInformation information){
         Connection c = GetDBConnection.connectDB("booklibrarymanager","root","HanDong85");
-        String str = "GRANT ? ON ? TO ?@'%';";
+        String str = "GRANT "+ privilege + " ON booklibrarymanager."+ table +" TO '" + information.hostName + "'@'%';";
+        System.out.println(str);
+
         PreparedStatement preSql;
         try{
             preSql = c.prepareStatement(str);
-            preSql.setString(1,privilege);
-            preSql.setString(2,table);
-            preSql.setString(3,information.hostName);
+//            preSql.setString(1,privilege);
+//            preSql.setString(2,"booklibrarymanager." + table);
+//            preSql.setString(3,information.hostName);
             preSql.execute();
             GetDBConnection.closeCon(c);
         }
@@ -61,14 +66,15 @@ public class PrivilegeDivision {
             GetDBConnection.closeCon(c);
             System.out.println("Privilege Division Error!");
         }
+        refreshPrivilege(con);
     }
     static void refreshPrivilege(Connection con){
        String str = "flush privileges;";
        Connection c = GetDBConnection.connectDB("booklibrarymanager","root","HanDong85");
        try {
            PreparedStatement sql = c.prepareStatement(str);
-           GetDBConnection.closeCon(c);
            sql.execute();
+           GetDBConnection.closeCon(c);
        }
        catch (SQLException e){
            GetDBConnection.closeCon(c);
@@ -90,6 +96,7 @@ public class PrivilegeDivision {
             System.out.println("Privilege Division Error!");
         }
         updateisAdmin(con,0,information);
+        refreshPrivilege(con);
     }
     static void updateisAdmin(Connection con,int status,userInformation information){
         Connection c = GetDBConnection.connectDB("booklibrarymanager","root","HanDong85");

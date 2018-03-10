@@ -14,12 +14,9 @@ public class SQLBase {
         url +=libName;
         url +="?useSSL=true&useUnicode=true&characterEncoding=UTF-8";
         try{
-<<<<<<< HEAD
             Class.forName("com.mysql.jbbc.Driver");
             System.out.println("SQLBase successful Driver");
-=======
             Class.forName("com.mysql.jdbc.Driver");
->>>>>>> new_repository_name/master
         }
         catch(Exception e){}
         try{
