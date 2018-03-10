@@ -2,6 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="69a5098c-cc83-42c6-99ea-a8bb36bf7c09" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/AddDetailListener.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/AddDetailListener.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/MessageListen.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/MessageListen.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/OperatorBookListener.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/OperatorBookListener.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/OperatorManagerListener.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/OperatorManagerListener.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/OperatorUserListener.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/OperatorUserListener.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/QueryBookListener.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/QueryBookListener.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/QueryManagerListener.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/QueryManagerListener.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/QueryUserListener.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/QueryUserListener.class" />
       <change beforePath="$PROJECT_DIR$/src/GUI/login_GUI/ManagerUI/ManagerUI.java" afterPath="$PROJECT_DIR$/src/GUI/login_GUI/ManagerUI/ManagerUI.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -44,7 +53,7 @@
       <file leaf-file-name="login.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI/login_GUI/login.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-270">
+            <state relative-caret-position="86">
               <caret line="114" column="83" lean-forward="false" selection-start-line="114" selection-start-column="83" selection-end-line="114" selection-end-column="83" />
               <folding />
             </state>
@@ -54,8 +63,8 @@
       <file leaf-file-name="ManagerUI.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GUI/login_GUI/ManagerUI/ManagerUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="451" column="0" lean-forward="false" selection-start-line="451" selection-start-column="0" selection-end-line="451" selection-end-column="0" />
+            <state relative-caret-position="68">
+              <caret line="564" column="0" lean-forward="true" selection-start-line="564" selection-start-column="0" selection-end-line="564" selection-end-column="0" />
               <folding>
                 <element signature="e#16369#16370#0" expanded="true" />
                 <element signature="e#16432#16433#0" expanded="true" />
@@ -67,20 +76,20 @@
       <file leaf-file-name="Manager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/UserRelated/Manager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="59">
-              <caret line="303" column="22" lean-forward="false" selection-start-line="303" selection-start-column="22" selection-end-line="303" selection-end-column="22" />
+            <state relative-caret-position="187">
+              <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
               <folding>
-                <marker date="1520696216892" expanded="true" signature="1807:1862" ph="select missi... missingValue" />
-                <marker date="1520696216892" expanded="true" signature="3177:3236" ph="delete from missingValueinformation... " />
-                <marker date="1520696216892" expanded="true" signature="4277:4318" ph="insert into missingValue... " />
-                <marker date="1520696216892" expanded="true" signature="5537:5590" ph="delete from missingValue... " />
-                <marker date="1520696216892" expanded="true" signature="7155:7205" ph="insert into bookinformation... " />
-                <marker date="1520696216892" expanded="true" signature="8371:8421" ph="update bookinformation... " />
-                <marker date="1520696216892" expanded="true" signature="9047:9091" ph="delete from bookinformation... " />
-                <marker date="1520696216892" expanded="true" signature="9909:9967" ph="update userinformation... " />
-                <marker date="1520696216892" expanded="true" signature="10565:10592" ph="insert into ?... " />
-                <marker date="1520696216892" expanded="true" signature="11584:11613" ph="select * fro... userinformation" />
-                <marker date="1520696216892" expanded="true" signature="15359:15388" ph="select * fro... bookinformation" />
+                <element signature="method#queryInformation#0;class#Manager#0" expanded="false" />
+                <element signature="method#removeInformation#0;class#Manager#0" expanded="false" />
+                <element signature="method#addNewDetailInformation#0;class#Manager#0" expanded="false" />
+                <element signature="method#removeDetailInformation#0;class#Manager#0" expanded="false" />
+                <element signature="method#addNewBook#0;class#Manager#0" expanded="false" />
+                <element signature="method#updateBookStatus#0;class#Manager#0" expanded="false" />
+                <element signature="method#removeBook#0;class#Manager#0" expanded="false" />
+                <element signature="method#setUserStatus#0;class#Manager#0" expanded="false" />
+                <element signature="method#sendMessagetoReader#0;class#Manager#0" expanded="false" />
+                <element signature="method#queryUser#0;class#Manager#0" expanded="false" />
+                <element signature="method#queryBook#0;class#Manager#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -135,6 +144,12 @@
       <find>\/\/        public String getColumnName\(int column\) \{return columName\[column\]\;\}\n</find>
       <find>jTable</find>
       <find>jT</find>
+      <find>del</find>
+      <find>solveDel</find>
+      <find>ban</find>
+      <find>banUserBtn</find>
+      <find>operatorUserListener</find>
+      <find>QueryBookListener</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -258,6 +273,11 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="login_GUI" type="462c0819:PsiDirectoryNode" />
               <item name="login.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="BookLibraryManage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="UserRelated" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -506,12 +526,12 @@
       <workItem from="1520647203846" duration="8732000" />
       <workItem from="1520661800574" duration="2000" />
       <workItem from="1520661842312" duration="98000" />
-      <workItem from="1520696260608" duration="1579000" />
+      <workItem from="1520696260608" duration="4277000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68141000" />
+    <option name="totallyTimeSpent" value="70839000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="145" y="23" width="1123" height="721" extended-state="0" />
@@ -526,13 +546,13 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32990867" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3272933" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32747602" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3258786" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21369103" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32776618" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3258786" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -595,7 +615,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="14" />
+      <option name="time" value="16" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -922,38 +942,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UserRelated/Manager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="59">
-          <caret line="303" column="22" lean-forward="false" selection-start-line="303" selection-start-column="22" selection-end-line="303" selection-end-column="22" />
-          <folding>
-            <marker date="1520696216892" expanded="true" signature="1807:1862" ph="select missi... missingValue" />
-            <marker date="1520696216892" expanded="true" signature="3177:3236" ph="delete from missingValueinformation... " />
-            <marker date="1520696216892" expanded="true" signature="4277:4318" ph="insert into missingValue... " />
-            <marker date="1520696216892" expanded="true" signature="5537:5590" ph="delete from missingValue... " />
-            <marker date="1520696216892" expanded="true" signature="7155:7205" ph="insert into bookinformation... " />
-            <marker date="1520696216892" expanded="true" signature="8371:8421" ph="update bookinformation... " />
-            <marker date="1520696216892" expanded="true" signature="9047:9091" ph="delete from bookinformation... " />
-            <marker date="1520696216892" expanded="true" signature="9909:9967" ph="update userinformation... " />
-            <marker date="1520696216892" expanded="true" signature="10565:10592" ph="insert into ?... " />
-            <marker date="1520696216892" expanded="true" signature="11584:11613" ph="select * fro... userinformation" />
-            <marker date="1520696216892" expanded="true" signature="15359:15388" ph="select * fro... bookinformation" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/login_GUI/login.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-270">
+        <state relative-caret-position="86">
           <caret line="114" column="83" lean-forward="false" selection-start-line="114" selection-start-column="83" selection-end-line="114" selection-end-column="83" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserRelated/Manager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+          <folding>
+            <element signature="method#queryInformation#0;class#Manager#0" expanded="false" />
+            <element signature="method#removeInformation#0;class#Manager#0" expanded="false" />
+            <element signature="method#addNewDetailInformation#0;class#Manager#0" expanded="false" />
+            <element signature="method#removeDetailInformation#0;class#Manager#0" expanded="false" />
+            <element signature="method#addNewBook#0;class#Manager#0" expanded="false" />
+            <element signature="method#updateBookStatus#0;class#Manager#0" expanded="false" />
+            <element signature="method#removeBook#0;class#Manager#0" expanded="false" />
+            <element signature="method#setUserStatus#0;class#Manager#0" expanded="false" />
+            <element signature="method#sendMessagetoReader#0;class#Manager#0" expanded="false" />
+            <element signature="method#queryUser#0;class#Manager#0" expanded="false" />
+            <element signature="method#queryBook#0;class#Manager#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/login_GUI/ManagerUI/ManagerUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="451" column="0" lean-forward="false" selection-start-line="451" selection-start-column="0" selection-end-line="451" selection-end-column="0" />
+        <state relative-caret-position="68">
+          <caret line="564" column="0" lean-forward="true" selection-start-line="564" selection-start-column="0" selection-end-line="564" selection-end-column="0" />
           <folding>
             <element signature="e#16369#16370#0" expanded="true" />
             <element signature="e#16432#16433#0" expanded="true" />

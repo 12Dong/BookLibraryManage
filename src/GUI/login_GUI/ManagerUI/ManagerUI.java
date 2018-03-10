@@ -499,6 +499,29 @@ class OperatorUserListener implements MouseListener{
         }
         workArea.manager.removeInformation("user",(String)workArea.userResult.getValueAt(cur_row,0));
         //workArea.clearUserResult();
+        workArea.manager.userid = workArea.userQueryText[0].getText().trim();
+        workArea.manager.isAdmin = workArea.userQueryText[1].getText().trim();
+        workArea.manager.userName = workArea.userQueryText[2].getText().trim();
+        workArea.manager.userSex = workArea.userQueryText[3].getText().trim();
+        workArea.manager.userStatus = workArea.userQueryText[4].getText().trim();
+        workArea.manager.userRentCount = workArea.userQueryText[5].getText().trim();
+        workArea.manager.userHostName = workArea.userQueryText[6].getText().trim();
+        String[][] data = workArea.manager.queryUser();
+        ArrayList<Information> tempArray = new ArrayList<>();
+        if(data.length==0)
+        {
+            Information tempInfo = new Information("等待传参","等待传参","等待传参","等待传参","等待传参","等待传参","等待传参");
+            tempArray.add(tempInfo);
+        }
+        else{
+            for(int i = 0;i < data.length;i ++) {
+                Information tempInfo = new Information(data[i]);
+                tempArray.add(tempInfo);
+            }
+        }
+
+        workArea.tempModel.setList(tempArray);
+
         JOptionPane.showMessageDialog(workArea,"Operator Successful!");
     }
     void solveBan() {
@@ -517,6 +540,29 @@ class OperatorUserListener implements MouseListener{
             wait_set = "1";
         workArea.manager.setUserStatus((String)workArea.userResult.getValueAt(cur_row,0),wait_set);
         //workArea.clearUserResult();
+        workArea.manager.userid = workArea.userQueryText[0].getText().trim();
+        workArea.manager.isAdmin = workArea.userQueryText[1].getText().trim();
+        workArea.manager.userName = workArea.userQueryText[2].getText().trim();
+        workArea.manager.userSex = workArea.userQueryText[3].getText().trim();
+        workArea.manager.userStatus = workArea.userQueryText[4].getText().trim();
+        workArea.manager.userRentCount = workArea.userQueryText[5].getText().trim();
+        workArea.manager.userHostName = workArea.userQueryText[6].getText().trim();
+        String[][] data = workArea.manager.queryUser();
+        ArrayList<Information> tempArray = new ArrayList<>();
+        if(data.length==0)
+        {
+            Information tempInfo = new Information("等待传参","等待传参","等待传参","等待传参","等待传参","等待传参","等待传参");
+            tempArray.add(tempInfo);
+        }
+        else{
+            for(int i = 0;i < data.length;i ++) {
+                Information tempInfo = new Information(data[i]);
+                tempArray.add(tempInfo);
+            }
+        }
+
+        workArea.tempModel.setList(tempArray);
+
         JOptionPane.showMessageDialog(workArea,"Operator Successful!");
     }
     @Override
@@ -577,9 +623,16 @@ class QueryManagerListener implements MouseListener{
         workArea.manager.userHostName = workArea.managerQueryText[6].getText();
         String[][] data = workArea.manager.queryUser();
         ArrayList<Information> tempArray = new ArrayList<>();
-        for(int i = 0;i < data.length;i ++){
-            Information tempInfo = new Information(data[i]);
+        if(data.length==0)
+        {
+            Information tempInfo = new Information("等待传参","等待传参","等待传参","等待传参","等待传参","等待传参","等待传参");
             tempArray.add(tempInfo);
+        }
+        else{
+            for(int i = 0;i < data.length;i ++) {
+                Information tempInfo = new Information(data[i]);
+                tempArray.add(tempInfo);
+                }
         }
         workArea.managerTempModel.setList(tempArray);
     }
@@ -624,7 +677,29 @@ class OperatorManagerListener implements MouseListener{
         information.setHostName((String)workArea.managerResult.getValueAt(curRow,6));
         information.setName((String)workArea.managerResult.getValueAt(curRow,2));
         PrivilegeDivision.managerPrivilegeDivision(information);
+        workArea.manager.userid = workArea.managerQueryText[0].getText();
+        workArea.manager.isAdmin = workArea.managerQueryText[1].getText();
+        workArea.manager.userName = workArea.managerQueryText[2].getText();
+        workArea.manager.userSex = workArea.managerQueryText[3].getText();
+        workArea.manager.userStatus = workArea.managerQueryText[4].getText();
+        workArea.manager.userRentCount = workArea.managerQueryText[5].getText();
+        workArea.manager.userHostName = workArea.managerQueryText[6].getText();
+        String[][] data = workArea.manager.queryUser();
+        ArrayList<Information> tempArray = new ArrayList<>();
+        if(data.length==0)
+        {
+            Information tempInfo = new Information("等待传参","等待传参","等待传参","等待传参","等待传参","等待传参","等待传参");
+            tempArray.add(tempInfo);
+        }
+        else{
+            for(int i = 0;i < data.length;i ++) {
+                Information tempInfo = new Information(data[i]);
+                tempArray.add(tempInfo);
+            }
+        }
+        workArea.managerTempModel.setList(tempArray);
         JOptionPane.showMessageDialog(workArea,"Operator Successful!");
+
     }
     void solveCancel(){
         int curRow = workArea.managerResult.getSelectedRow();
@@ -641,6 +716,27 @@ class OperatorManagerListener implements MouseListener{
         information.setHostName((String)workArea.managerResult.getValueAt(curRow,6));
         information.setName((String)workArea.managerResult.getValueAt(curRow,2));
         PrivilegeDivision.readerPrivilegeDivision(information);
+        workArea.manager.userid = workArea.managerQueryText[0].getText();
+        workArea.manager.isAdmin = workArea.managerQueryText[1].getText();
+        workArea.manager.userName = workArea.managerQueryText[2].getText();
+        workArea.manager.userSex = workArea.managerQueryText[3].getText();
+        workArea.manager.userStatus = workArea.managerQueryText[4].getText();
+        workArea.manager.userRentCount = workArea.managerQueryText[5].getText();
+        workArea.manager.userHostName = workArea.managerQueryText[6].getText();
+        String[][] data = workArea.manager.queryUser();
+        ArrayList<Information> tempArray = new ArrayList<>();
+        if(data.length==0)
+        {
+            Information tempInfo = new Information("等待传参","等待传参","等待传参","等待传参","等待传参","等待传参","等待传参");
+            tempArray.add(tempInfo);
+        }
+        else{
+            for(int i = 0;i < data.length;i ++) {
+                Information tempInfo = new Information(data[i]);
+                tempArray.add(tempInfo);
+            }
+        }
+        workArea.managerTempModel.setList(tempArray);
         JOptionPane.showMessageDialog(workArea,"Operator Successful!");
     }
     @Override
@@ -802,6 +898,27 @@ class OperatorBookListener implements MouseListener {
             return;
         }
         if(workArea.manager.removeBook((String)workArea.bookResult.getValueAt(curRow,0))) {
+            workArea.manager.queryBookID = workArea.bookQueryText[0].getText().trim();
+            workArea.manager.queryBookName = workArea.bookQueryText[1].getText().trim();
+            workArea.manager.queryAuthor = workArea.bookQueryText[2].getText().trim();
+            workArea.manager.queryClassification = workArea.bookQueryText[3].getText().trim();
+            workArea.manager.queryPress = workArea.bookQueryText[4].getText().trim();
+            workArea.manager.queryEntyrDate = workArea.bookQueryText[5].getText().trim();
+            workArea.manager.queryStatus = workArea.bookQueryText[6].getText().trim();
+            String[][] data = workArea.manager.queryBook();
+            ArrayList<Information> tempArray = new ArrayList<>();
+            if(data.length==0)
+            {
+                Information tempInfo = new Information("等待传参","等待传参","等待传参","等待传参","等待传参","等待传参","等待传参");
+                tempArray.add(tempInfo);
+            }
+            else{
+                for(int i = 0;i < data.length;i ++){
+                    Information tempInfo = new Information(data[i]);
+                    tempArray.add(tempInfo);
+                }
+            }
+            workArea.bookTempModel.setList(tempArray);
             JOptionPane.showMessageDialog(workArea,"operator successful!");
             return;
         }
@@ -818,6 +935,27 @@ class OperatorBookListener implements MouseListener {
             String classification = workArea.bookQueryText[3].getText();
             String press = workArea.bookQueryText[4].getText();
             if(workArea.manager.addNewBook(bookname,author,classification,press)) {
+                workArea.manager.queryBookID = workArea.bookQueryText[0].getText().trim();
+                workArea.manager.queryBookName = workArea.bookQueryText[1].getText().trim();
+                workArea.manager.queryAuthor = workArea.bookQueryText[2].getText().trim();
+                workArea.manager.queryClassification = workArea.bookQueryText[3].getText().trim();
+                workArea.manager.queryPress = workArea.bookQueryText[4].getText().trim();
+                workArea.manager.queryEntyrDate = workArea.bookQueryText[5].getText().trim();
+                workArea.manager.queryStatus = workArea.bookQueryText[6].getText().trim();
+                String[][] data = workArea.manager.queryBook();
+                ArrayList<Information> tempArray = new ArrayList<>();
+                if(data.length==0)
+                {
+                    Information tempInfo = new Information("等待传参","等待传参","等待传参","等待传参","等待传参","等待传参","等待传参");
+                    tempArray.add(tempInfo);
+                }
+                else{
+                    for(int i = 0;i < data.length;i ++){
+                        Information tempInfo = new Information(data[i]);
+                        tempArray.add(tempInfo);
+                    }
+                }
+                workArea.bookTempModel.setList(tempArray);
                 JOptionPane.showMessageDialog(workArea,"operator successful!");
             }
             else{
