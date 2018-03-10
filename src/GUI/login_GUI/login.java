@@ -111,6 +111,10 @@ class LoginMouseListener implements MouseListener{
             res = help.queryUser();
             System.out.println(res == null);
             if(res != null){
+                if(res[0][4].equals("0")){
+                    JOptionPane.showMessageDialog(workArea,"Your accout is frozened");
+                    return ;
+                }
                 if("root".equals(hostName))
                     isSupper = true;
                 else
