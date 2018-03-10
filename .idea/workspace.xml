@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="69a5098c-cc83-42c6-99ea-a8bb36bf7c09" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/AddDetailListener.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/AddDetailListener.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/MessageListen.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/MessageListen.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/OperatorBookListener.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/OperatorBookListener.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/OperatorManagerListener.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/OperatorManagerListener.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/OperatorUserListener.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/OperatorUserListener.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/QueryBookListener.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/QueryBookListener.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/QueryManagerListener.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/QueryManagerListener.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/QueryUserListener.class" afterPath="$PROJECT_DIR$/out/production/BookLibraryManage/GUI/login_GUI/ManagerUI/QueryUserListener.class" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/login_GUI/ManagerUI/ManagerUI.java" afterPath="$PROJECT_DIR$/src/GUI/login_GUI/ManagerUI/ManagerUI.java" />
-    </list>
+    <list default="true" id="69a5098c-cc83-42c6-99ea-a8bb36bf7c09" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -64,7 +53,7 @@
         <entry file="file://$PROJECT_DIR$/src/GUI/login_GUI/ManagerUI/ManagerUI.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
-              <caret line="564" column="0" lean-forward="true" selection-start-line="564" selection-start-column="0" selection-end-line="564" selection-end-column="0" />
+              <caret line="564" column="0" lean-forward="false" selection-start-line="564" selection-start-column="0" selection-end-line="564" selection-end-column="0" />
               <folding>
                 <element signature="e#16369#16370#0" expanded="true" />
                 <element signature="e#16432#16433#0" expanded="true" />
@@ -433,18 +422,6 @@
       <envs />
       <patterns />
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-    </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
@@ -484,6 +461,18 @@
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
       <option name="PROGRAM_PARAMETERS" />
       <predefined_log_file id="idea.log" enabled="true" />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.ex" />
@@ -526,12 +515,12 @@
       <workItem from="1520647203846" duration="8732000" />
       <workItem from="1520661800574" duration="2000" />
       <workItem from="1520661842312" duration="98000" />
-      <workItem from="1520696260608" duration="4277000" />
+      <workItem from="1520696260608" duration="4669000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70839000" />
+    <option name="totallyTimeSpent" value="71231000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="145" y="23" width="1123" height="721" extended-state="0" />
@@ -973,7 +962,7 @@
     <entry file="file://$PROJECT_DIR$/src/GUI/login_GUI/ManagerUI/ManagerUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="564" column="0" lean-forward="true" selection-start-line="564" selection-start-column="0" selection-end-line="564" selection-end-column="0" />
+          <caret line="564" column="0" lean-forward="false" selection-start-line="564" selection-start-column="0" selection-end-line="564" selection-end-column="0" />
           <folding>
             <element signature="e#16369#16370#0" expanded="true" />
             <element signature="e#16432#16433#0" expanded="true" />
