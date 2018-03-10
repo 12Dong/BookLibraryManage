@@ -81,6 +81,19 @@ public class ex {
 //            return ;
 //        }
 //        Root.transmit(UserInformation,false);
+<<<<<<< HEAD
+//        System.out.println(reader.checkRend("01"));
+        userInformation UserInformation = new userInformation();
+        UserInformation.setHostName("wangxiaoming");
+        UserInformation.setName("王小明");
+        UserInformation.setSex("男");
+        UserInformation.setPassword("123456");
+        if(UserInformation==null) {
+            System.out.println("NullPointerException");
+            return ;
+        }
+        Root.transmit(UserInformation,false);
+=======
         user reader = new user();
         reader.GetDBConnection("booklibrarymanager","root","HanDong85");
         try{
@@ -98,5 +111,6 @@ public class ex {
             e.printStackTrace();
         }
 
+>>>>>>> new_repository_name/master
     }
 }

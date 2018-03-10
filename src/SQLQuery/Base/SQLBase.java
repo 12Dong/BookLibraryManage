@@ -1,5 +1,7 @@
 package SQLQuery.Base;
 
+import SQLQuery.Connect.GetDBConnection;
+
 import java.sql.*;
 
 public class SQLBase {
@@ -12,13 +14,19 @@ public class SQLBase {
         url +=libName;
         url +="?useSSL=true&useUnicode=true&characterEncoding=UTF-8";
         try{
+<<<<<<< HEAD
+            Class.forName("com.mysql.jbbc.Driver");
+            System.out.println("SQLBase successful Driver");
+=======
             Class.forName("com.mysql.jdbc.Driver");
+>>>>>>> new_repository_name/master
         }
         catch(Exception e){}
         try{
             con = DriverManager.getConnection(url,hostname,password);
+            System.out.println("SQLBase successful Connect");
         }
-        catch(SQLException e){}
+        catch(SQLException e){System.out.println("SQLBase Fail Connect");}
     }
     //关闭数据库 确保先建立连接后 再关闭连接
     public void closeConnection(){
