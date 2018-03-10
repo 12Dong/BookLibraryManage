@@ -68,22 +68,20 @@ class ManagerFrame extends JFrame {
     JTextField[] managerQueryText;
     //send message
     JPanel messagePanel;
-    JLabel sendTargetLable;
-    JLabel messageLable;
-    JTextField sendTarget;
+    JTable messageResult;
     JScrollPane messageHelper;
     JTextArea message;
-    JButton sendBtn;
+    JButton freshBtn; // 刷新按钮 还没事件处理
     //user operator
-    JButton delUserBtn;
-    JButton queryUserBtn;
-    JButton banUserBtn;
+    JButton delUserBtn; //删除用户 添加OperatorUserListener
+    JButton queryUserBtn;//查询 QueryUserListener
+    JButton banUserBtn;// 封禁 OperatorUserListener
     //book operator
-    JButton addBookBtn;
-    JButton delBookBtn;
-    JButton queryBookBtn;
-    JButton addDetailBtn;
-    JButton updateBookBtn;
+    JButton addBookBtn; // 添加书 OperatorBookListener
+    JButton delBookBtn; // 删除书 OperatorBookListener
+    JButton queryBookBtn;// 查询书 QueryBookListener
+    JButton addDetailBtn;// 添加书类别作者等 AddDetailListener
+    JButton updateBookBtn; //删除书类别作者 AddDetailListener
     //manager operator
     JButton addManagerBtn;
     JButton delManagerBtn;
@@ -92,6 +90,7 @@ class ManagerFrame extends JFrame {
     final UserTableModel tempModel = new UserTableModel();
     final UserTableModel bookTempModel = new UserTableModel();
     final UserTableModel managerTempModel = new UserTableModel();
+    final UserTableModel messageTempModel = new UserTableModel();
     public ManagerFrame(String userID,String password,boolean is_supper_manager) {
         this.is_supper_manager = is_supper_manager;
         manager = new Manager(userID,password);
@@ -262,63 +261,16 @@ class ManagerFrame extends JFrame {
     }
     void initMessagePanel(){
         messagePanel = new JPanel();
-
-        GridBagLayout layout = new GridBagLayout();
-        messagePanel.setLayout(layout);
-        sendTargetLable = new JLabel("send to");
-        sendTargetLable.setHorizontalAlignment(JLabel.CENTER);
-        messageLable = new JLabel("Message");
-        messageLable.setHorizontalAlignment(JLabel.CENTER);
-        sendTarget = new JTextField(10);
-        message = new JTextArea(10,10);
-        messageHelper = new JScrollPane(message);
-        sendBtn = new JButton("send");
-        MessageListen messageListen = new MessageListen(this);
-        sendBtn.addMouseListener(messageListen);
-        sendBtn.setSize(1,2);
-
-        JPanel blank1 = new JPanel();
-        blank1.setSize(100,100);
-        sendTargetLable.setFont(new java.awt.Font("Dialog",1,25));
-        blank1.add(sendTargetLable);
-        messagePanel.add(blank1);
-        GridBagConstraints s = new GridBagConstraints();
-        s.fill=GridBagConstraints.BOTH;
-        s.weightx = 0;
-        s.weighty = 0;
-        s.gridwidth = 2;
-        s.gridheight=1;
-        layout.setConstraints(blank1,s);
-        sendTargetLable.setBackground(Color.red);
-
-        messagePanel.add(sendTarget);
-        s.weightx = 3;
-        s.gridwidth = 2;
-        layout.setConstraints(sendTarget,s);
-
-        messagePanel.add(sendBtn);
-        s.weightx = 5;
-        s.weighty = 0;
-        s.gridwidth = 0;
-        layout.setConstraints(sendBtn,s);
-
-        JPanel blank2 = new JPanel();
-        blank2.setSize(100,100);
-        messageLable.setFont(new java.awt.Font("Dialog",1,25));
-        messageLable.setVerticalAlignment(JLabel.CENTER);
-        blank2.setAlignmentY(JPanel.CENTER_ALIGNMENT);
-        blank2.add(messageLable);
-        messagePanel.add(blank2);
-        s.weightx=0;
-        s.weighty=3;
-        s.gridwidth=2;
-        layout.setConstraints(blank2,s);
-
+        messageResult = new JTable();
+        ArrayList<Information> list = new ArrayList<>();
+        list.add(new Information("等待传参","等待传参","等待传参"));
+        messageTempModel.setList(list);
+        messageTempModel.setRow(2); // 设置表头
+        messageResult.setModel(messageTempModel);
+        messageHelper = new JScrollPane(messageResult);
         messagePanel.add(messageHelper);
-        s.weightx = 3;
-        s.weighty = 2;
-        s.gridwidth = 0;
-        layout.setConstraints(messageHelper,s);
+        freshBtn = new JButton("refresh");
+        messagePanel.add(freshBtn);
     }
     void clearUserResult(){
         manager.userId = null;
@@ -397,7 +349,7 @@ class UserTableModel extends AbstractTableModel {
     // 保存一个User的列表
     private int ROW;
     private String columnName[][] = { {"用户Id","管理员权限","真实姓名","性 别","用户状态","借书数量","账号名"},
-            {"图书编号","书名","作者","类别","出版社","入库日期","图书状态"}};
+            {"图书编号","书名","作者","类别","出版社","入库日期","图书状态"},{"发送用户","发送时间","发送内容"}};
     private ArrayList<Information> informationArray = new ArrayList<Information>();
     public void setRow(int r){
         ROW = r;
@@ -824,56 +776,6 @@ class OperatorBookListener implements MouseListener {
         }
         else if("del".equals(curObj.getText())){
             solveDel();
-        }
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
-}
-class MessageListen implements  MouseListener{
-    ManagerFrame workArea;
-    public MessageListen(ManagerFrame workArea) {
-        this.workArea = workArea;
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        String msg = workArea.message.getText();
-        workArea.message.setText("");
-        if("".equals(msg)){
-            JOptionPane.showMessageDialog(workArea,"can't send empty message!");
-            return;
-        }
-        String userId = workArea.sendTarget.getText();
-        workArea.sendTarget.setText("");
-        if("".equals(userId)) {
-            JOptionPane.showMessageDialog(workArea,"must choose one user!");
-            return;
-        }
-        if(workArea.manager.sendMessagetoReader(userId,msg)){
-            JOptionPane.showMessageDialog(workArea,"send successful!");
-            return;
-        }
-        else{
-            JOptionPane.showMessageDialog(workArea,"send fail!");
-            return;
         }
     }
 
