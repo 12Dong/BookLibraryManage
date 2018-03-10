@@ -50,6 +50,8 @@ public class RenderBook extends JPanel {
         }
     }
     class UserTableModel extends AbstractTableModel {
+        String columnName[]={"书籍Id","书名","作者","分类","出版社","状态"};
+
         private static final long serialVersionUID = 1L;
         // 保存一个User的列表
         private List<Information> informationArray = new ArrayList<Information>();
@@ -68,6 +70,9 @@ public class RenderBook extends JPanel {
         }
         public int getRowCount() {
             return informationArray.size();
+        }
+        public String getColumnName(int col){
+            return columnName[col];
         }
         // 从list中拿出rowIndex行columnIndex列显示的值
         public Object getValueAt(int rowIndex, int columnIndex) {
@@ -129,7 +134,7 @@ public class RenderBook extends JPanel {
                 String authorMessage = authorText.getText();
                 String pressMessage = pressText.getText();
                 user reader = new user();
-                reader.GetDBConnection("booklibrarymanager","host","HanDong85");
+                reader.GetDBConnection("booklibrarymanager","root","HanDong85");
                 reader.setQueryBookName(bookMessage);
                 reader.setQueryAuthorName(authorMessage);
                 reader.setQueryPressName(pressMessage);
@@ -137,8 +142,12 @@ public class RenderBook extends JPanel {
 //                String[] colName ={"书号","书名","作者","类别","出版社"};
                 System.out.println("Now executing querying......");
                ArrayList<Information> list = new ArrayList<Information>();
-                for(String[] array:table){
-                    list.add(new Information(array));
+                if(table!=null){
+                    for(String[] array:table){
+                        list.add(new Information(array));
+                    }
+                }else{
+                    list.add(new Information("等待传参","等待传参","等待传参","等待传参","等待传参","等待传参"));
                 }
                 if(list.size()==0) System.out.println("ERROR");
                 userTableModel.setList(list);
@@ -188,12 +197,13 @@ public class RenderBook extends JPanel {
         jTable.setModel(userTableModel);
 
 //        jTable.setModel(dataJTable);
-        add(jTable);
+        JScrollPane jScrollPane = new JScrollPane(jTable);
+        add(jScrollPane);
         s.gridy = 4;
         s.gridx = 0;
         s.gridwidth = 9;
         s.gridheight = 5;
-        layout.setConstraints(jTable,s);
+        layout.setConstraints(jScrollPane,s);
         book = new JButton("借 阅");
         book.addActionListener(new ActionListener() {
             @Override
@@ -201,7 +211,7 @@ public class RenderBook extends JPanel {
                 int row = jTable.getSelectedRow();
                 String bookId = (String)jTable.getValueAt(row,0);
                 user reader = new user();
-                reader.GetDBConnection("booklibrarymanager","host","HanDong85");
+                reader.GetDBConnection("booklibrarymanager","root","HanDong85");
                 if(reader.checkRend(bookId)==false){
                     JOptionPane.showMessageDialog(new JPanel(),"此书已借出");
 

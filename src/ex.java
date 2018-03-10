@@ -88,7 +88,7 @@ public class ex {
 //            pstmt.setString(1,"01");
 //            pstmt.executeUpdate();
 //            pstmt = reader.con.prepareStatement("insert into pressinformation (?,?)");
-//            pstmt.setString(1,"03");
+//
 //            pstmt.setString(2,"随便");
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()){

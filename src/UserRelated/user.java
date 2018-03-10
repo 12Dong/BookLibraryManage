@@ -61,9 +61,9 @@ public class user extends SQLBase {
 
     public String[][] queryRenderInformation(){
         String[][] result = null;
-
+    userId = "1";
         try{
-            PreparedStatement pstmt = con.prepareStatement("select * from rendinformation where userId = ?");
+            PreparedStatement pstmt = con.prepareStatement("select userId,rendinformation.bookId,bookinformation.bookName,lendDate,returnDate from rendinformation,bookinformation where userId = ? and rendinformation.bookId = bookinformation.bookId");
             pstmt.setString(1,userId);
             System.out.println("userId: "+userId);
             ResultSet rs = pstmt.executeQuery();
@@ -79,7 +79,7 @@ public class user extends SQLBase {
                 System.out.println("nowRow"+":"+" "+nowRow);
                 for(int i=0;i<col;i++){
                     System.out.println(i);
-                    if(i==2 || i==3) {
+                    if(i==3 || i==4) {
                         java.sql.Date date = rs.getDate(i+1);
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                         result[nowRow][i] = sdf.format(date);
@@ -96,7 +96,8 @@ public class user extends SQLBase {
     public String[][] queryBook(){
         try{
 
-            PreparedStatement pstmt = con.prepareStatement("select bookId,bookName,author,classification,press,status from bookinformation where bookName like ? and author like ? and press like ?");
+            PreparedStatement pstmt = con.prepareStatement("select bookId,bookName,author,classification,press,status "+
+                    "from bookinformation where bookName like ? and author like ? and press like ?");
             System.out.println(getQueryBookName());
             System.out.println(getQueryAuthorName());
             System.out.println(getQueryPressName());
@@ -212,7 +213,7 @@ public class user extends SQLBase {
 //        String SQLCommand = "select status from bookInformation where bookId =  \'"+bookId+" \'";
 
         try{
-            PreparedStatement pstmt = con.prepareStatement("select status from bookInformation where bookId = ?");
+            PreparedStatement pstmt = con.prepareStatement("select status from bookinformation where bookId = ?");
 //            Statement statement = con.createStatement();
 //            System.out.println(SQLCommand);
 //            query(SQLCommand);
@@ -274,7 +275,7 @@ public class user extends SQLBase {
             pstmt.setString(1,bookId);
             pstmt.executeUpdate();
             pstmt.close();
-            GetDBConnection("booklibrarymanager","host","HanDong85");
+            GetDBConnection("booklibrarymanager","root","HanDong85");
             pstmt = con.prepareStatement("delete from rendinformation where bookId = ?");
             pstmt.setString(1,bookId);
             pstmt.executeUpdate();
@@ -300,10 +301,10 @@ public class user extends SQLBase {
         String SQLCommand = "insert into rootMessage values (\'"+userId+"\',\'"+strCurTime+"\',\'"+sendMessage+"\')";
         try{
             System.out.println(SQLCommand);
-            PreparedStatement pstmt = con.prepareStatement("insert into rootMessage values (?,?,?)");
+            PreparedStatement pstmt = con.prepareStatement("insert into rootmessage values (?,?,?)");
             pstmt.setString(1,userId);
             pstmt.setString(2,strCurTime);
-            pstmt.setString(3,sendMessage);
+            pstmt.setString(3,sendMessage.trim());
             pstmt.executeUpdate();
 //            Statement statement = con.createStatement();
 //            statement.executeUpdate(SQLCommand);

@@ -10,7 +10,7 @@ public class SQLBase {
         con = null;
         String url ="jdbc:mysql://211.159.219.126:3306/";
         url +=libName;
-        url +="?useSSL=true";
+        url +="?useSSL=true&useUnicode=true&characterEncoding=UTF-8";
         try{
             Class.forName("com.mysql.jdbc.Driver");
         }

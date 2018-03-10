@@ -18,6 +18,7 @@ public class ReturnBook extends JPanel {
     JButton returnBtn,resetBtn;
     JScrollPane jScrollPane;
     JTable jTable ;
+
     private class Information{
         ArrayList<String> dataArray=new ArrayList<String>();
         public Information(String...information){
@@ -40,11 +41,19 @@ public class ReturnBook extends JPanel {
         private static final long serialVersionUID = 1L;
         // 保存一个User的列表
         private List<Information> informationArray = new ArrayList<Information>();
+        final String columName[]={"借书者Id","书籍Id","书名","结束日期","还书日期"};
 
         public void setInformationArray(List<Information> informationArray) {
             this.informationArray = informationArray;
             this.fireTableDataChanged();
         }
+
+//        public String getColumnName(int col) {
+//            return columName[col];
+//        }
+
+        @Override
+        public String getColumnName(int column) {return columName[column];}
 
         @Override
         public int getRowCount() {
@@ -88,37 +97,48 @@ public class ReturnBook extends JPanel {
         ArrayList<Information> infoArray = new ArrayList<Information>();
         user reader = new user();
         reader.userId="1";
-        reader.GetDBConnection("booklibrarymanager","host","HanDong85");
+        reader.GetDBConnection("booklibrarymanager","root","HanDong85");
         String[][] table = reader.queryRenderInformation();
         int col=0;
         for(String[] array:table){
             infoArray.add(new Information(array));
         }
         final TableModel tableModel= new TableModel();
+
         tableModel.setInformationArray(infoArray);
-        jTable = new JTable();
-        jTable.setModel(tableModel);
+
+        jTable=new JTable(tableModel);
         TableColumnModel cm = jTable.getColumnModel();
         //得到第i个列对象
-        TableColumn column = cm.getColumn(2);
+        TableColumn column = cm.getColumn(3);
         column.setPreferredWidth(100);
-        column = cm.getColumn(3);
+        column = cm.getColumn(4);
         column.setPreferredWidth(100);
 
 
-        jScrollPane = new JScrollPane();
-        add(jTable);
+        jScrollPane = new JScrollPane(jTable);
+        add(jScrollPane);
         s.gridy = 3;
-        layout.setConstraints(jTable,s);
+        layout.setConstraints(jScrollPane,s);
         returnBtn = new JButton("还书");
         returnBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int row = jTable.getSelectedRow();
+                if(row==-1){
+                    JOptionPane.showMessageDialog(new JPanel(),"未选择书籍");
+                    return;
+
+                }
                 String bookId = (String)jTable.getValueAt(row,1);
+                if(bookId==null){
+                    JOptionPane.showMessageDialog(new JPanel(),"未选择书籍");
+                    return;
+
+                }
                 if(reader.returnBook(bookId)){
                     infoArray.clear();
-                    reader.GetDBConnection("booklibrarymanager","host","HanDong85");
+                    reader.GetDBConnection("booklibrarymanager","root","HanDong85");
                     String[][] table = reader.queryRenderInformation();
                     for(String[] array:table){
                         infoArray.add(new Information(array));
@@ -140,13 +160,19 @@ public class ReturnBook extends JPanel {
         resetBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                reader.GetDBConnection("booklibrarymanager","host","HanDong85");
+                reader.GetDBConnection("booklibrarymanager","root","HanDong85");
                 reader.setUserId("1");
                 infoArray.clear();
                 String[][] table = reader.queryRenderInformation();
-                for(String[] array:table){
-                    infoArray.add(new Information(array));
-                    System.out.println(Arrays.toString(array));
+                if(table!=null){
+                    for(String[] array:table){
+                        infoArray.add(new Information(array));
+                        System.out.println(Arrays.toString(array));
+                    }
+                }
+                else{
+                    infoArray.add(new Information("等待传参","等待传参","等待传参","等待传参","等待传参"));
+
                 }
                 tableModel.setInformationArray(infoArray);
             }

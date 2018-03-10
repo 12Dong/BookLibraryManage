@@ -38,6 +38,7 @@ public class Communication extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 user reader = new user();
+                reader.GetDBConnection("booklibrarymanager","root","HanDong85");
                 reader.userId="1";
                 String message = jTextArea.getText();
                 if(message.trim().equals("")){
