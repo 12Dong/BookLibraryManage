@@ -449,9 +449,16 @@ class QueryUserListener implements MouseListener{
         workArea.manager.userHostName = workArea.userQueryText[6].getText().trim();
         String[][] data = workArea.manager.queryUser();
         ArrayList<Information> tempArray = new ArrayList<>();
-        for(int i = 0;i < data.length;i ++){
-            Information tempInfo = new Information(data[i]);
+        if(data.length==0)
+        {
+            Information tempInfo = new Information("等待传参","等待传参","等待传参","等待传参","等待传参","等待传参","等待传参");
             tempArray.add(tempInfo);
+        }
+        else{
+            for(int i = 0;i < data.length;i ++) {
+                Information tempInfo = new Information(data[i]);
+                tempArray.add(tempInfo);
+            }
         }
 
         workArea.tempModel.setList(tempArray);
@@ -685,9 +692,16 @@ class QueryBookListener implements MouseListener{
         workArea.manager.queryStatus = workArea.bookQueryText[6].getText().trim();
         String[][] data = workArea.manager.queryBook();
         ArrayList<Information> tempArray = new ArrayList<>();
-        for(int i = 0;i < data.length;i ++){
-            Information tempInfo = new Information(data[i]);
+        if(data.length==0)
+        {
+            Information tempInfo = new Information("等待传参","等待传参","等待传参","等待传参","等待传参","等待传参","等待传参");
             tempArray.add(tempInfo);
+        }
+        else{
+            for(int i = 0;i < data.length;i ++){
+                Information tempInfo = new Information(data[i]);
+                tempArray.add(tempInfo);
+            }
         }
         workArea.bookTempModel.setList(tempArray);
     }
