@@ -516,4 +516,33 @@ public class Manager extends user{
         }
         return null;
     }
+    public String[][] getMessage(){
+        try{
+            Manager tmpManager = new Manager();
+            tmpManager.GetDBConnection("booklibrarymanager","root","HanDong85");
+            Connection con = tmpManager.con;
+            PreparedStatement pstmt = con.prepareStatement("select sender,sendTime,sendMessage from rootmessage");
+            ResultSet rs = pstmt.executeQuery();
+            ResultSetMetaData metaData;
+            metaData = rs.getMetaData();
+            int columnCount = metaData.getColumnCount();
+            rs.last();
+            int recordAmount = rs.getRow();
+            table = new String[recordAmount][columnCount];
+            int i=0;
+            rs.beforeFirst();
+            while(rs.next()){
+                for(int j=1;j<=columnCount;j++){
+                    table[i][j-1]=rs.getString(j);
+                    //                       System.out.print(table[i][j-1]+"\t");
+                }
+                i++;
+            }
+
+            return table;
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

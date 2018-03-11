@@ -296,10 +296,11 @@ public class user extends SQLBase {
         String SQLCommand = "insert into rootMessage values (\'"+userId+"\',\'"+strCurTime+"\',\'"+sendMessage+"\')";
         try{
             System.out.println(SQLCommand);
-            PreparedStatement pstmt = con.prepareStatement("insert into rootmessage values (?,?,?)");
+            PreparedStatement pstmt = con.prepareStatement("insert into rootmessage values (?,?,?,?)");
             pstmt.setString(1,userId);
-            pstmt.setString(2,strCurTime);
-            pstmt.setString(3,sendMessage.trim());
+            pstmt.setString(2,"GM");
+            pstmt.setString(3,strCurTime);
+            pstmt.setString(4,sendMessage.trim());
             pstmt.executeUpdate();
 //            Statement statement = con.createStatement();
 //            statement.executeUpdate(SQLCommand);

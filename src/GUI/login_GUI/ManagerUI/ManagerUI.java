@@ -3,13 +3,18 @@ package GUI.login_GUI.ManagerUI;
 
 import RegisterUser.PrivilegeDivision.PrivilegeDivision;
 import UserRelated.Manager;
+import UserRelated.Root;
 import UserRelated.userInformation;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class ManagerUI {
@@ -67,6 +72,7 @@ class ManagerFrame extends JFrame {
     JLabel[] managerOptionLable;
     JTextField[] managerQueryText;
     //send message
+    JButton freshBtn;
     JPanel messagePanel;
     JLabel sendTargetLable;
     JLabel messageLable;
@@ -91,6 +97,7 @@ class ManagerFrame extends JFrame {
     // fuck
     final UserTableModel tempModel = new UserTableModel();
     final UserTableModel bookTempModel = new UserTableModel();
+    final UserTableModel messageTempModel= new UserTableModel();
     final UserTableModel managerTempModel = new UserTableModel();
     public ManagerFrame(String userID,String password,boolean is_supper_manager) {
         this.is_supper_manager = is_supper_manager;
@@ -261,64 +268,130 @@ class ManagerFrame extends JFrame {
 //        clearManagerResult();
     }
     void initMessagePanel(){
+//        messagePanel = new JPanel();
+//
+//        GridBagLayout layout = new GridBagLayout();
+//        messagePanel.setLayout(layout);
+//        sendTargetLable = new JLabel("send to");
+//        sendTargetLable.setHorizontalAlignment(JLabel.CENTER);
+//        messageLable = new JLabel("Message");
+//        messageLable.setHorizontalAlignment(JLabel.CENTER);
+//        //
+//        sendTarget = new JTextField(10);
+//        //
+//        message = new JTextArea(10,10);
+//        messageHelper = new JScrollPane(message);
+//        sendBtn = new JButton("send");
+//        //
+//        sendBtn.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                String senderName = "GM";
+//                String receiverName = sendTarget.getText();
+//                java.util.Date curtime = new java.util.Date();
+//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//                String strCurTime = sdf.format(curtime);
+//                String sendMessage = message.getText();
+//                Manager tmpManager = new Manager();
+//                tmpManager.GetDBConnection("booklibrarymanager","root","HanDong85");
+//                if(tmpManager.sendMessage(senderName,receiverName,strCurTime,sendMessage)){
+//                    JOptionPane.showMessageDialog(new JPanel(),"成功发送");
+//                }
+//                else{
+//                    JOptionPane.showMessageDialog(new JPanel(),"发送失败");
+//
+//                }
+//
+//            }
+//        });
+//        MessageListen messageListen = new MessageListen(this);
+//        sendBtn.addMouseListener(messageListen);
+//        sendBtn.setSize(1,2);
+//
+//        JPanel blank1 = new JPanel();
+//        blank1.setSize(100,100);
+//        sendTargetLable.setFont(new java.awt.Font("Dialog",1,25));
+//        blank1.add(sendTargetLable);
+//        messagePanel.add(blank1);
+//        GridBagConstraints s = new GridBagConstraints();
+//        s.fill=GridBagConstraints.BOTH;
+//        s.weightx = 0;
+//        s.weighty = 0;
+//        s.gridwidth = 2;
+//        s.gridheight=1;
+//        layout.setConstraints(blank1,s);
+//        sendTargetLable.setBackground(Color.red);
+//
+//        messagePanel.add(sendTarget);
+//        s.weightx = 3;
+//        s.gridwidth = 2;
+//        layout.setConstraints(sendTarget,s);
+//
+//        messagePanel.add(sendBtn);
+//        s.weightx = 5;
+//        s.weighty = 0;
+//        s.gridwidth = 0;
+//        layout.setConstraints(sendBtn,s);
+//
+//        JPanel blank2 = new JPanel();
+//        blank2.setSize(100,100);
+//        messageLable.setFont(new java.awt.Font("Dialog",1,25));
+//        messageLable.setVerticalAlignment(JLabel.CENTER);
+//        blank2.setAlignmentY(JPanel.CENTER_ALIGNMENT);
+//        blank2.add(messageLable);
+//        messagePanel.add(blank2);
+//        s.weightx=0;
+//        s.weighty=3;
+//        s.gridwidth=2;
+//        layout.setConstraints(blank2,s);
+//
+//        messagePanel.add(messageHelper);
+//        s.weightx = 3;
+//        s.weighty = 2;
+//        s.gridwidth = 0;
+//        layout.setConstraints(messageHelper,s);
         messagePanel = new JPanel();
-
-        GridBagLayout layout = new GridBagLayout();
-        messagePanel.setLayout(layout);
-        sendTargetLable = new JLabel("send to");
-        sendTargetLable.setHorizontalAlignment(JLabel.CENTER);
-        messageLable = new JLabel("Message");
-        messageLable.setHorizontalAlignment(JLabel.CENTER);
-        sendTarget = new JTextField(10);
-        message = new JTextArea(10,10);
-        messageHelper = new JScrollPane(message);
-        sendBtn = new JButton("send");
-        MessageListen messageListen = new MessageListen(this);
-        sendBtn.addMouseListener(messageListen);
-        sendBtn.setSize(1,2);
-
-        JPanel blank1 = new JPanel();
-        blank1.setSize(100,100);
-        sendTargetLable.setFont(new java.awt.Font("Dialog",1,25));
-        blank1.add(sendTargetLable);
-        messagePanel.add(blank1);
-        GridBagConstraints s = new GridBagConstraints();
-        s.fill=GridBagConstraints.BOTH;
-        s.weightx = 0;
-        s.weighty = 0;
-        s.gridwidth = 2;
-        s.gridheight=1;
-        layout.setConstraints(blank1,s);
-        sendTargetLable.setBackground(Color.red);
-
-        messagePanel.add(sendTarget);
-        s.weightx = 3;
-        s.gridwidth = 2;
-        layout.setConstraints(sendTarget,s);
-
-        messagePanel.add(sendBtn);
-        s.weightx = 5;
-        s.weighty = 0;
-        s.gridwidth = 0;
-        layout.setConstraints(sendBtn,s);
-
-        JPanel blank2 = new JPanel();
-        blank2.setSize(100,100);
-        messageLable.setFont(new java.awt.Font("Dialog",1,25));
-        messageLable.setVerticalAlignment(JLabel.CENTER);
-        blank2.setAlignmentY(JPanel.CENTER_ALIGNMENT);
-        blank2.add(messageLable);
-        messagePanel.add(blank2);
-        s.weightx=0;
-        s.weighty=3;
-        s.gridwidth=2;
-        layout.setConstraints(blank2,s);
-
+        JTable messageResult = new JTable();
+        ArrayList<Information> list = new ArrayList<>();
+        list.add(new Information("等待传参","等待传参","等待传参"));
+        messageTempModel.setList(list);
+        messageTempModel.setRow(2); // 设置表头
+        messageResult.setModel(messageTempModel);
+        messageHelper = new JScrollPane(messageResult);
         messagePanel.add(messageHelper);
-        s.weightx = 3;
-        s.weighty = 2;
-        s.gridwidth = 0;
-        layout.setConstraints(messageHelper,s);
+        freshBtn = new JButton("refresh");
+        freshBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Manager tmpManager = new Manager();
+                tmpManager.GetDBConnection("booklibrarymanager","root","HanDong85");
+                Connection conn = tmpManager.con;
+                try{
+                    PreparedStatement pstmt = conn.prepareStatement("select sender,sendTime,sendMessage from rootmessage");
+                    ResultSet rs = pstmt.executeQuery();
+
+                    ResultSetMetaData metaData;
+                    metaData = rs.getMetaData();
+                    int col = metaData.getColumnCount();
+                    rs.last();
+                    int row = rs.getRow();
+                    rs.beforeFirst();
+                    ArrayList<Information> infoArray = new ArrayList<Information>();
+                    String res[][] = manager.getMessage();
+                    if(res==null){
+                        infoArray.add(new Information("等待传参","等待传参","等待传参"));
+                    }else{
+                        for(String info[]:res){
+                            infoArray.add(new Information(info));
+                        }
+                    }
+                    messageTempModel.setList(infoArray);
+                }catch(SQLException ee){
+                    ee.printStackTrace();
+                }
+            }
+        });
+        messagePanel.add(freshBtn);
     }
     void clearUserResult(){
         manager.userId = null;
@@ -397,7 +470,7 @@ class UserTableModel extends AbstractTableModel {
     // 保存一个User的列表
     private int ROW;
     private String columnName[][] = { {"用户Id","管理员权限","真实姓名","性 别","用户状态","借书数量","账号名"},
-            {"图书编号","书名","作者","类别","出版社","入库日期","图书状态"}};
+            {"图书编号","书名","作者","类别","出版社","入库日期","图书状态"},{"用户名","发送时间","发送内容"}};
     private ArrayList<Information> informationArray = new ArrayList<Information>();
     public void setRow(int r){
         ROW = r;
